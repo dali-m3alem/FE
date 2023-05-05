@@ -1,0 +1,796 @@
+{
+  "currentTheme":"ltr",
+
+  "global": {
+    "title": "BUREAU D'ORDRE CIPPH",
+    "browsehappy": "Vous utilisez un <strong>ancien</strong> navigateur. Veuillez <a href=\"http://browsehappy.com/?locale=fr\">mettre à jour votre navigateur</a> pour une meilleure expérience.",
+    "bienvenue": "Bienvenue",
+    "ar": "Arabe",
+    "fr": "Français",
+    "primeng": {
+      "startsWith": "Commence par",
+      "contains": "Contient",
+      "notContains": "Ne contient pas",
+      "endsWith": "Se termine par",
+      "equals": "Égal à",
+      "notEquals": "Pas égal à",
+      "noFilter": "Aucun filtre",
+      "lt": "Inférieur à",
+      "lte": "Inférieur ou égal à",
+      "gt": "Supérieur à",
+      "gte": "Supérieur ou égal à",
+      "is": "est",
+      "isNot": "n'est pas",
+      "before": "avant",
+      "after": "aprés",
+      "dateIs": "Date est",
+      "dateIsNot": "Date n'est pas",
+      "dateBefore": "avant le",
+      "dateAfter": "aprés le",
+      "clear": "vide",
+      "apply": "Appliquer",
+      "matchAll": "Tous est",
+      "matchAny": "N'import est",
+      "addRule": "Ajouter régle",
+      "removeRule": "Supprimer régle",
+      "accept": "Accepter",
+      "reject": "Rejeter",
+      "choose": "Choisir",
+      "upload": "Téléverser",
+      "cancel": "Annuler",
+      "dayNames": [
+        "dimanche",
+        "lundi",
+        "mardi",
+        "mercredi",
+        "jeudi",
+        "vendredi",
+        "Samedi"
+      ],
+      "dayNamesShort": [
+        "Dim",
+        "Lun",
+        "Mar",
+        "Mer",
+        "Jeu",
+        "Ven",
+        "Sam"
+      ],
+      "dayNamesMin": [
+        "Dim",
+        "Lun",
+        "Mar",
+        "Mer",
+        "Jeu",
+        "Ven",
+        "Sam"
+      ],
+      "monthNames": [
+        "Janvier",
+        "Février",
+        "Mars",
+        "Avril",
+        "Mai",
+        "Juin",
+        "Juillet",
+        "Aout",
+        "Septembre",
+        "Octobre",
+        "Novembre",
+        "décembre"
+      ],
+      "monthNamesShort": [
+        "Janv",
+        "Fév",
+        "Mars",
+        "Avril",
+        "Mai",
+        "Juin",
+        "Juillet",
+        "Aout",
+        "Sept",
+        "Oct",
+        "Nov",
+        "déc"
+      ],
+      "dateFormat": "dd/MM/yyyy",
+      "firstDayOfWeek": 0,
+      "today": "aujourd'hui",
+      "tomorrow": "Demain",
+      "nextweek": "La semaine prochaine",
+      "weekHeader": "Sem",
+      "weak": "Faible",
+      "medium": "Moyen",
+      "strong": "Fort",
+      "passwordPrompt": "Tapez mot de passe",
+      "emptyMessage": "Résultat non trouvée",
+      "emptyFilterMessage": "Résultat non trouvée",
+      "Showing": "La présentation",
+      "footerr": "Présentation {{first}} à {{last}} sur {{totalRecords}} demandes",
+
+      "to": "à",
+      "of": "sur",
+      "entries": "demandes"
+    },
+    "datatable": {
+      "nodata": "Aucune données",
+      "first": "Premier",
+      "next": "Suivant",
+      "last": "Derniére",
+      "previous": "Précedent",
+      "footerr": "Présentation _START_ à _END_ sur _TOTAL_"
+    },
+
+    "notification":
+    {
+      "situation": {
+        "en-cours": "En cours",
+        "valide": "Validé",
+        "rejete": "Rejeté"
+      },
+      "add-attachment": {
+        "import": "Importer du PC",
+        "scan": "Scanner"
+      },
+      "share-piece": {
+        "copy-to-other-folder": "Copier dans un autre dossier",
+        "creat-new-folder": "Créer un nouveau dossier"
+      },
+      "confirm": {
+        "title": "Confirmation",
+        "msg" : "Voulez vous confirmer ?"
+      },
+      "entrant-treat": {
+        "source-attachment-msg": "Veuillez choisir la source du document !",
+        "source-attachment-option-import": "Import",
+        "source-attachment-option-scan": "Scan"
+
+      },
+      "config_mail": {
+        "title-success": "Succès",
+        "title-error": "Erreur",
+        "check-config-success-msg": "Compte trouvé vous pouvez l'enregistrer.",
+        "check-config-error-msg": "Compte non trouvé verifier les information saisies."
+
+      },
+      "error": {
+        "title": "Erreur",
+        "msg": "Veuillez vérifier les informations saisies",
+        "required" : "Veuillez remplir les informations obligatoires"
+      },
+      "success": {
+        "title": "Succès",
+        "msg": "Enregistré avec succès"
+
+      }
+    ,
+      "success-deleted": {
+        "title": "Succès",
+        "msg": "Suppression avec succès"
+
+      },
+      "warn": {
+        "title": "",
+        "msg": "",
+        "inconge": "Vous étes en congé, vous ne pouvez pas valider les demandes"
+      }
+    ,
+
+      "loading-info": {
+        "title": "Chargement",
+        "msg": "Veuillez patienter,chargement en cours ..."
+      },
+      "loading-task": {
+        "title": "Chargement",
+        "msg": "Veuillez patienter,traitement en cours ..."
+      },
+
+      "loading-envoi": {
+        "title": "Chargement",
+        "msg": "Veuillez patienter,envoi en cours ..."
+      },
+      "loading-suppression": {
+        "title": "Suppression",
+        "msg": "Veuillez patienter,suppression en cours ..."
+      },
+      "info": {
+        "title": "",
+        "msg": ""
+      }
+    },
+
+
+
+    "userManagement" : {
+      "login": "Identifiant",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "langKey": "Clé de langue",
+      "createdBy": "Créé Par",
+      "createdDate": "Date de création",
+      "lastModifiedBy": "Dernière modification par",
+      "lastModifiedDate": "Date de la dernière modification",
+      "profiles": "Profils",
+      "activated": "Activé",
+      "deactivated": "Désactivé",
+      "users": "Liste des utilisateurs",
+      "mise-a-jour": "Mise à jour",
+      "action": {
+        "refresh": "Actualiser",
+        "create": "Creation d'un utilisateur"
+      },
+      "detail": {
+        "title": "Gestion des utilisateurs"
+      }
+    },
+    "dictionnaire" :
+    {
+      "ged": {
+        "path": "chemin",
+        "edit-piece": "Éditer pièce joint",
+        "localisation": "Emplacement physique",
+        "desc-file": "Description fichier",
+        "desc-folder": "Description dossier",
+        "meta-donne": "Métadonnée",
+        "source": "Sources",
+        "scanner": "Numériser",
+        "type-save": "Type d'enregistrement",
+        "scan-trace": "Trace des scan",
+        "num-dossier": "Numéro dossier",
+        "succes-op": "Opération Success",
+        "echec-op": "Opération échec",
+        "help-agent-scan": "Veuillez vérifier le module de scan installé sur votre machine\n                sous le dossier <span style=\"font-weight: bold;\">C:\\Agent_Scan</span> et lancer le fichier Launch.bat .\n                Si le dossier est introuvable merci de télécharger l'agent de scan <a  class=\"btn  bt-xs btn-warning\" (click)=\"downloadAgentScan()\">\n\n\n                  ici </a> et veuillez suivre les étapes d'installation et relancer la page aprés l'installtion.",
+        "msg-form-location-invalid": " Vérifiez  les Informations de la localisation.",
+        "msg-form-parametrage-invalid": " Vérifiez  les métadonnées entrées.",
+        "msg-form-location-valid": "Les Informations de la localisation valides.",
+        "msg-form-parametrage-valid": "Les métadonnées entrées valides ."
+
+
+      },
+      "workflow-rule-management":
+      {
+        "deployement": "Déploiement",
+        "key": "Clé",
+        "name": "Nom",
+        "version":"Version"
+      },
+      "email-conf": {
+        "host": " Hôte",
+        "port": " Port",
+        "username": " Nom d'utilisateur",
+        "password": " Le mot de passe",
+        "protocol": " Protocole",
+        "auth": " Authentification",
+        "enableTtls": " Activer tls",
+        "config-name": " Nom",
+        "besoin": " Besoin",
+        "template": " Template"
+      },
+      "courrier": {
+        "objet": "Objet",
+        "contenu": "Contenu",
+        "ref-bo": "Référence Bureau D'ordre",
+        "ref-origine": " Référence d'origine",
+        "date-envoi-prevu": "Date d'envoi prévu",
+        "date-courrier": "Date Courrier",
+        "courrier-mere": "Courrier rattachée",
+        "type-courrier": "Type Courrier",
+        "categorie": "Catégorie",
+        "confidentiality-level": "Niveau de confidentialité",
+        "importance": "Importance",
+        "transmission-mode": "Mode de Transmission",
+        "department": "Département",
+        "destinataire": "DESTINATAIRE",
+        "info-courrier": "Informations Courrier",
+        "parametrage": "PARAMÈTRAGE",
+        "needAwnser": "Besoin d'une réponse",
+        "dateLimitReponse": "Date Limite Réponse",
+        "dateRappel": "Date rappel",
+        "pieces-jointes": "Piéces jointes",
+        "emmeteur": "Emetteur",
+        "destinatairee": "Destinataire",
+        "initiateur": "Initiateur",
+        "depositaire": "Dépositaire",
+        "full-name": "Nom et prénom",
+        "email": "Email",
+        "tel": "Téléphone",
+        "tasks-treated": "Tâches traitées"
+
+
+      },
+      "description": "Description",
+      "action": "Action",
+      "tache": "Tâche",
+      "nature-demande": "Nature Demande",
+      "nature": "Nature",
+      "information-generale": "Information générale",
+      "ref": "REF",
+      "numero": "Numéro",
+      "question": "Question",
+      "reponse": "Réponse",
+      "information-detaillee": "Information détaillée",
+      "code": "Code",
+      "libFr": "Désignation latin",
+      "libAr": "Désignation arabe",
+      "titreFr": "Titre latin",
+      "titreAr": "Titre arabe",
+      "contenuFr": "Contenu ",
+      "contenuAr": "Contenu arabe",
+      "fileName": "Fichier",
+      "file": "Le fichier",
+      "fileType": "Type de Fichier",
+      "button" :
+      {
+          "search" : "Rechercher",
+          "view" :"Détails",
+          "sendvld" :"Envoyer pour validation",
+          "simuler":"Simuler",
+          "deployer": "Déployer",
+          "traiter": "Traiter",
+        "historique-validations": "Historique des validations",
+        "fermer": "Fermer",
+        "rejeter": "Rejeter",
+        "valider": "Valider",
+        "confirmer": "Confirmer",
+        "annuler": "Annuler",
+        "archiver": "Archiver",
+        "send-courrier-mail": "Envoyer par mail",
+        "entrant": "Entrant",
+        "sortant" : "Sortant"
+
+      },
+      "type":
+      {
+        "demande": "Type Demande",
+        "conge" :"Type congé",
+        "mutation":"Type mutation",
+        "pret" :"Prét",
+        "credit" :"Crédit",
+        "position":"Statut",
+        "sous-position":"Position"
+      },
+      "from" :"Du",
+      "to" :"Jusqu'a",
+      "nbJour" :"Nombre Jours",
+      "numDem":"Num Demande",
+      "annee": "Annee",
+      "demande-en-cours": "En cours ",
+      "demande-en-cours-table": "En cours <span >({{nbr}})</span>",
+      "demande-traitee-table": "Tâches traitées <span >({{nbr}})</span>",
+
+      "solde" :"Solde",
+       "documents":"Documents",
+      "dateDebut":"Date début",
+      "dateFin"  :"Date fin",
+      "DatePreEch" :"Date Premier echance",
+      "nbEchance" :"Nombre echance",
+      "nbEchanceMax" :"Nombre echance Max",
+      "montant":"Montant (TND)",
+      "montantMax":"Montant max (TND)",
+      "simulation-interet" :"Simulation intérêt",
+      "validateur" :"validateur",
+      "motif" :"Motif",
+      "situation": "Situation",
+      "observation" :"Observation",
+      "conge":
+      {
+            "annual":"Congé annuel",
+            "mat" :"Congé maternité",
+            "pat" :"Congé paternité",
+            "sick" :"Congé maladie",
+            "solde" :"Solde "
+      },
+      "fieldset" :
+      {
+        "fiche":{
+          "infoGen" :"Informations générales",
+          "profil" :"Profile",
+          "history" :"Historique",
+          "urgence" :"Contact d'urgence",
+          "infoBank" :"Informations bancaire",
+          "conjoint" :"Informations conjoint",
+          "enfant" :"Informations enfant",
+          "famille" :"Informations famille",
+          "agdip" :"Informations education",
+          "carriere" :"Carriére"
+        }
+      },
+      "affectGeo":"Affectation Géographique",
+      "collaborateur" : "Collaborateur",
+      "collaborateurs" : "Collaborateurs",
+      "poste":"Poste",
+      "tel" : "Telephone",
+      "fax" : "Fax",
+      "mail" :"Email",
+      "matricule" :"Matricule",
+      "nomFr" : "Nom Latin",
+      "nomAr" : "Nom Arabe",
+      "nom" : "Nom",
+      "prenom" : "Prénom",
+      "pere" :"Pére",
+      "mere" :"Mére",
+      "grandpere" :"Grand pére",
+      "ufg":"UFG",
+      "ufa" : "UFA",
+      "adresse" :"Adresse",
+      "sup" :"Superviseur",
+      "nat" :"Nationalité",
+      "religion":"Religion",
+      "sitFam":"Situation familiale",
+      "conjointI": "Conjoint Tunisiar",
+      "nbEnf":"Nombre enfant",
+      "conjoint" :"Conjoint",
+      "enfant" : "Enfant",
+      "enfants" :"Enfants",
+      "agdip" : "Informations Educations",
+      "carriere":"Carriere",
+      "diplome" :"Diplome",
+      "relation":"Relation",
+      "banque" :"Banque",
+      "nivScol" :"Niveau scolaire",
+      "nivEtude" :"Niveau etude",
+      "rib" :"RIB",
+      "pays" : "Pays",
+      "cin" :"Num CIN",
+      "passport" :"Passport",
+       "date":
+       {
+         "date": "Date",
+        "debut":"Date début",
+        "fin":"Date fin",
+        "depot":"Date dêpot",
+         "echeance":"Date échance",
+         "naiss":"Date naissance",
+         "cin" :"Date cin",
+         "emb" :"Date embauche",
+         "mutation": "Date mutation",
+         "depart": "Date départ",
+         "conge": "Date congé",
+         "pret": "Date crédit",
+         "reprise": "Date Reprise"
+       }
+,
+      "sexe":
+        {
+          "title":"Genre",
+          "1" : "Homme",
+          "0" : "Femme"
+        }
+    },
+    "menu": {
+      "home": " Accueil",
+      "historique-taches": "Historique des tâches",
+      "courrier": {
+        "title": " Courrier",
+        "ajout": " Nouveau Courrier",
+        "ajout-sortant": " Nouveau Sortant",
+        "ajout-entrant": " Nouveau Entrant",
+        "ajout-interne": " Nouveau Interne",
+        "courrier-sortant": " Courrier Sortant",
+        "courrier-entrant": " Courrier Entrant",
+        "courrier-interne": " Courrier Interne",
+        "rayon": " Rayon"
+
+      },
+      "referentiel": {
+        "title": "Référentiel",
+        "contact": " Contact",
+        "type-courrier": " Type Courrier",
+        "categorie": " Catégorie",
+        "niveau-confidentialite": " Niveau de confidentialité",
+        "departement": " Département",
+        "importance": " Importance",
+        "sense": "Sens",
+        "situation": "Situation",
+        "transmission-mode": " Mode de transmission",
+        "type-destination": " Type Destination",
+        "type-traitement": "Type Traitement"
+
+
+      },
+      "ged": {
+        "title": " GED",
+        "entrepot": " Entrepôt",
+        "etage": " Etage",
+        "rayon": " Rayon",
+        "salle": " Salle",
+        "module-scan": " Module Scan",
+        "type-piece": " Type Piéce",
+        "scan": " Numérisation des document"
+
+
+      },
+      "email-conf": {
+        "title": " Configuration Email"
+
+      },
+      "tbd": {
+        "title": " Tableau de bord",
+        "home": " Accueil",
+        "organigramme": " Organigramme"
+
+      },
+
+      "validateur": {
+        "title": " Espace validateur",
+        "suivi-point": " Consultation pointage",
+        "list-col": " Liste Collaborateur"
+
+      },
+      "info": {
+        "title": " Espace privé",
+        "sub-title": " Mes informations",
+        "fiche-collaborateur": " Fiche  signalétique",
+        "suivi-point": " Consultation pointage",
+        "cal-mal": " Calandrier maladie",
+        "overtime": " Heures supplémentaires"
+      },
+      "recrutement": {
+        "title": " Espace Recrutement",
+        "sub-title": " Offres internes",
+        "sessions-ouvertes": " Sessions ouvertes",
+        "suivi-condidature": " Suivi condidature"
+      },
+      "admininstration": {
+        "title": " Administration",
+        "champs-modification": " Champs Modification",
+        "utilisateurs": " Utilisateurs",
+        "metrics": " Métrique",
+        "workflow": " Flux de travail",
+        "regle-gestion": " Règles de gestion"
+
+      },
+
+      "demande": {
+        "title": " Demande en ligne",
+        "conge": " Demande congé",
+        "pret": " Demande  prêt",
+        "depart": " Demande départ",
+        "mutation": " Demande mutation",
+        "mission": " Demande mission",
+        "annulation": " Annulation avance AÏD",
+        "billet": " Billet de faveur",
+        "reclamation": " Réclamation pointage"
+
+      },
+      "webmaster": {
+        "title": " Webmaster",
+        "faq": " FAQ",
+        "file-type": " Type Fichier",
+        "actualite": " Actualité",
+        "nature-actualite": " Nature actualité"
+
+      },
+      "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
+      "entities": {
+        "main": "Entités",
+        "dgttConfig": "Dgtt Config",
+        "traceSearch": "Trace Search",
+        "tarification": "Tarification",
+        "centreConfig": "Centre Config",
+        "workDay": "Work Day",
+        "holiday": "Holiday",
+        "dayOff": "Day Off",
+        "pays": "Pays",
+        "region": "Region",
+        "annee": "Annee",
+        "mois": "Mois",
+        "dayOfWeek": "Day Of Week",
+        "constructeur": "Constructeur",
+        "cahierCharge": "Cahier Charge",
+        "agrement": "Agrement",
+        "marque": "Marque",
+        "modele": "Modele",
+        "motorisation": "Motorisation",
+        "puissanceFiscale": "Puissance Fiscale",
+        "sourceEnergie": "Source Energie",
+        "cylindre": "Cylindre",
+        "natureMoteur": "Nature Moteur",
+        "jante": "Jante",
+        "natureCarousserie": "Nature Carousserie",
+        "caracterestique": "Caracterestique",
+        "transmission": "Transmission",
+        "natureBoite": "Nature Boite",
+        "natureTransmission": "Nature Transmission",
+        "equipementSecurite": "Equipement Securite",
+        "dimension": "Dimension",
+        "consommation": "Consommation",
+        "niveauSonorArret": "Niveau Sonor Arret",
+        "classEnvironement": "Class Environement",
+        "informationEnvironement": "Information Environement",
+        "natureJustifTax": "Nature Justif Tax",
+        "typeTax": "Type Tax",
+        "categoryTax": "Category Tax",
+        "justifTax": "Justif Tax",
+        "tax": "Tax",
+        "vehiculeTax": "Vehicule Tax",
+        "vehiculeVersion": "Vehicule Version",
+        "vehicule": "Vehicule",
+        "flagVehicule": "Flag Vehicule",
+        "carteGrise": "Carte Grise",
+        "vehiculeActivite": "Vehicule Activite",
+        "categorieVehicule": "Categorie Vehicule",
+        "typeVehicule": "Type Vehicule",
+        "immatriculation": "Immatriculation",
+        "immatriculationType": "Immatriculation Type",
+        "immatriculationNature": "Immatriculation Nature",
+        "situation": "Situation",
+        "couleur": "Couleur",
+        "carOwner": "Car Owner",
+        "formeJuridique": "Forme Juridique",
+        "typeIdentite": "Type Identite",
+        "controleTech": "Controle Tech",
+        "articlePaiement": "Article Paiement",
+        "typeArticlePaie": "Type Article Paie",
+        "natureControleTech": "Nature Controle Tech",
+        "reservation": "Reservation",
+        "recuReservation": "Recu Reservation",
+        "mentionVisiteTech": "Mention Visite Tech",
+        "seanceControle": "Seance Controle",
+        "natureReservation": "Nature Reservation",
+        "modePaiement": "Mode Paiement",
+        "vignetteTech": "Vignette Tech",
+        "vignetteAssurance": "Vignette Assurance",
+        "societeTech": "Societe Tech",
+        "responsableSocTech": "Responsable Soc Tech",
+        "responsableCentreTech": "Responsable Centre Tech",
+        "centreTech": "Centre Tech",
+        "ligneCentreTech": "Ligne Centre Tech",
+        "ligneCategorieVehicule": "Ligne Categorie Vehicule",
+        "materielLigne": "Materiel Ligne",
+        "categorieMateriel": "Categorie Materiel",
+        "materiel": "Materiel",
+        "fournisseur": "Fournisseur",
+        "examenTech": "Examen Tech",
+        "testTech": "Test Tech",
+        "valueTest": "Value Test",
+        "formuleTest": "Formule Test",
+        "typeValueTest": "Type Value Test",
+        "modelEval": "Model Eval",
+        "niveauEval": "Niveau Eval",
+        "examenControle": "Examen Controle",
+        "resultControleTech": "Result Controle Tech",
+        "resultExamenTech": "Result Examen Tech",
+        "resultTestTech": "Result Test Tech",
+        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+      },
+      "account": {
+        "main": "Compte",
+        "settings": "Profil",
+        "password": "Mot de passe",
+        "sessions": "Sessions",
+        "login": "S'authentifier",
+        "logout": "Déconnexion",
+        "register": "Créer un compte"
+      },
+      "admin": {
+        "main": "Administration",
+        "userManagement": "Gestion des utilisateurs",
+        "tracker": "Suivi des utilisateurs",
+        "metrics": "Métriques",
+        "health": "Diagnostics",
+        "configuration": "Configuration",
+        "logs": "Logs",
+        "apidocs": "API",
+        "database": "Base de données",
+        "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
+      },
+      "language": "Langue"
+    },
+    "form": {
+      "username.label": "Nom d'utilisateur",
+      "username.placeholder": "Votre nom d'utilisateur",
+      "currentpassword.label": "Mot de passe actuel",
+      "currentpassword.placeholder": "Mot de passe actuel",
+      "newpassword.label": "Nouveau mot de passe",
+      "newpassword.placeholder": "Nouveau mot de passe",
+      "confirmpassword.label": "Confirmation du nouveau mot de passe",
+      "confirmpassword.placeholder": "Confirmation du nouveau mot de passe",
+      "email.label": "Email",
+      "email.placeholder": "Votre email"
+    },
+    "messages": {
+      "info": {
+        "authenticated": {
+          "prefix": "Si vous voulez vous ",
+          "link": "connecter",
+          "suffix": ", vous pouvez utiliser les comptes par défaut : <br/> - Administrateur (nom d'utilisateur=\"admin\" et mot de passe =\"admin\") <br/> - Utilisateur (nom d'utilisateur=\"user\" et mot de passe =\"user\")."
+        },
+        "register": {
+          "noaccount": "Vous n'avez pas encore de compte ?",
+          "link": "Créer un compte"
+        }
+      },
+      "error": {
+        "dontmatch": "Le nouveau mot de passe et sa confirmation ne sont pas égaux !"
+      },
+      "validate": {
+        "newpassword": {
+          "required": "Votre mot de passe est requis.",
+          "minlength": "Votre mot de passe doit comporter au moins 4 caractères.",
+          "maxlength": "Votre mot de passe ne doit pas comporter plus de 50 caractères.",
+          "strength": "Robustesse du mot de passe :"
+        },
+        "confirmpassword": {
+          "required": "Votre confirmation du mot de passe est requise.",
+          "minlength": "Votre confirmation du mot de passe doit comporter au moins 4 caractères.",
+          "maxlength": "Votre confirmation du mot de passe ne doit pas comporter plus de 50 caractères."
+        },
+        "email": {
+          "required": "Votre email est requis.",
+          "minlength": "Votre email doit comporter au moins 5 caractères.",
+          "maxlength": "Votre email ne doit pas comporter plus de 50 caractères.",
+          "invalid": "Votre email n'est pas valide."
+        }
+      }
+    },
+    "field": {
+      "id": "ID"
+    },
+    "ribbon": {
+      "dev": "Développement"
+    },
+    "item-count": "Affichage {{first}} - {{second}} de {{total}} items."
+  },
+  "entity": {
+    "action": {
+      "addblob": "Ajouter un fichier",
+      "addimage": "Ajouter image",
+      "addReponse": "Ajouter un  traitement",
+      "back": "Retour",
+      "cancel": "Annuler",
+      "edit": "Editer",
+      "delete": "Supprimer",
+      "open": "Ouvrir",
+      "save": "Sauvegarder",
+      "view": "Voir",
+      "rename": "Renommer",
+      "download": "Télécharger",
+      "use": "Utiliser",
+      "scan": "Scanner",
+      "share": "Partager",
+      "comp-info": "Complétion d'informations"
+
+
+    },
+    "detail": {
+      "field": "Champs",
+      "value": "Valeur"
+    },
+    "delete": {
+      "title": "Confirmation de suppression"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire.",
+      "minlength": "Ce champ doit faire au minimum {{min}} caractères.",
+      "maxlength": "Ce champ doit faire moins de {{max}} caractères.",
+      "min": "Ce champ doit être supérieur à {{min}}.",
+      "max": "Ce champ doit être inférieur à {{max}}.",
+      "minbytes": "Ce champ doit être supérieur à {{min}} bytes.",
+      "maxbytes": "Ce champ doit être inférieur à {{max}} bytes.",
+      "pattern": "Ce champ doit suivre l'expression régulière {{pattern}}.",
+      "number": "Ce champ doit être un nombre.",
+      "datetimelocal": "Ce champ doit être une date et une heure.",
+      "patternLogin": "Ce champ ne peut contenir que des lettres, des chiffres ou des adresses e-mail."
+    }
+  },
+  "error": {
+    "internalServerError": "Erreur interne du serveur",
+    "server.not.reachable": "Serveur inaccessible",
+    "url.not.found": "Non trouvé",
+    "NotNull": "Le champ {{fieldName}} ne peut pas être vide !",
+    "Size": "Le champ {{fieldName}} ne respecte pas les critères minimum et maximum !",
+    "userexists": "Login déjà utilisé !",
+    "emailexists": "Email déjà utilisé !",
+    "idexists": "Une nouvelle entité {{entityName}} ne peut pas avoir d'identifiant !",
+    "idnull": "Identifiant invalide",
+    "idinvalid": "Invalid Id",
+    "idnotfound": "ID cannot be found",
+    "file": {
+      "could.not.extract": "Impossible d'extraire le fichier",
+      "not.image": "Le fichier doit être une image et non du type \"{{ fileType }}\""
+    }
+  },
+  "footer": "Ceci est votre pied de page"
+}

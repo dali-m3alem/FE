@@ -1,0 +1,203 @@
+<section  *ngIf="userInfo" >
+    <div class="container py-5">
+      <div class="row">
+        <div class="col">
+          <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">User</a></li>
+              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img  [src]="getImageUrl()" 
+              alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;"/>
+              <h5 class="my-3">{{ userInfo.username }}</h5>
+              <p class="text-muted mb-1"> {{ userInfo.titre }}</p>
+              <p class="text-muted mb-4">{{ userInfo.email }}</p>
+              <div class="d-flex justify-content-center mb-2">
+                <button class="btn btn-primary" id="edit-profile-btn" (click)="editUser(userInfo)">Modifier le profil</button>
+                <button class="btn btn-outline-primary" id="change-password-btn" (click)="change()">Change Password </button>
+
+              </div>
+            </div>
+          </div>
+      </div>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Full Name</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ userInfo.username }}</p>
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">tt</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ userInfo.titre }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0"> {{ userInfo.email }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">(216)  {{ userInfo.phoneNumber }}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Mobile</p>
+                </div>
+                <div class="col-sm-9"  *ngFor="let role of userInfo.roles">
+                  <p class="text-muted mb-0">{{role.roleName}}</p>
+                </div>
+              </div>
+             
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </section> 
+   <div class="overlay" *ngIf="showPopup"></div>
+  <div class="popup"  *ngIf="showPopup" >
+    <button class="close" (click)="togglePopup()"> <i class="fas fa-times"></i></button>
+    <form class="row g-3" #userForm="ngForm">
+      <input type="hidden" name="id" [(ngModel)]="selectedUser.id" required>
+      <div class="col-md-5">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" name="username" [(ngModel)]="selectedUser.username" required >
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['username']?.errors?.['required'] ">
+           Identifier is required
+        </div>
+      </div>
+     
+      <div class="col-md-5">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control" name="userLastName" [(ngModel)]="selectedUser.userLastName" required>
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['userLastName']?.errors?.['required'] ">
+          Last Name is required
+       </div>
+      </div>
+     
+     <div class="mb-3">
+  <label class="form-label">Email</label>
+  <input type="text" class="form-control" name="email" [(ngModel)]="selectedUser.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" >
+  <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['email']?.errors?.['required'] ">
+    Email is required
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="userForm.controls['email']?.errors?.['pattern']">
+    Invalid email format
+  </div>
+</div>
+
+      <div  class="col-md-5">
+        <label class="form-label">titre</label>
+        <input type="text" class="form-control" name="titre" [(ngModel)]="selectedUser.titre"required>
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['titre']?.errors?.['required'] ">
+          Title is required
+       </div>
+      </div>
+      <div  class="col-md-5">
+        <label class="form-label">phoneNumber</label>
+        <input  class="form-control" name="phoneNumber"[(ngModel)]="selectedUser.phoneNumber"required [pattern]="'^[0-9]{8}$'">
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['phoneNumber']?.errors?.['required']">
+          Identifier is required
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['phoneNumber']?.errors?.['pattern']">
+          The phone number must be 8 digits long
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="profilePicture">Profile Picture</label>
+        <input type='file' name="profilePicture" class="form-control-file" id="profilePicture" (change)="onFileSelected($event)" >
+      </div>
+      
+      <div  class="alert alert-danger" role="alert" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      <button type="submit" class="btn btn-primary" (click)="updateUser()">Update</button>
+    </form>
+  </div>
+
+
+
+
+
+  <div class="overlay" *ngIf="showPopup2"></div>
+  <div class="popup"  *ngIf="showPopup2" >
+    <button class="close" (click)="togglePopup2()"> <i class="fas fa-times"></i></button>
+
+  <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
+    <div  class="col-md-12">
+
+     <label class="form-label">Ancien mot de passe:</label>
+
+    <input type="password"class="form-control" formControlName="oldPassword">
+    <div  class="col-md-12">
+    </div>
+    <label class="form-label">Nouveau mot de passe:</label>
+    <input type="password"class="form-control" formControlName="newPassword">
+    <div  class="col-md-12">
+    </div>
+    <label class="form-label">Confirmer le nouveau mot de passe:</label>
+    <input type="password"class="form-control" formControlName="confirmPassword">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="passwordForm.invalid">Changer le mot de passe</button>
+  </form>
+  
+  </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <div *ngIf="userInfo">
+  <p>Username: {{ userInfo.username }}</p>
+  <p>Email: {{ userInfo.email }}</p>
+  <p>Phone Number: {{ userInfo.phoneNumber }}</p>
+  <p>Last Name: {{ userInfo.userLastName }}</p>
+  <p>Last Name: {{ userInfo.titre }}</p>
+
+  
+  <div style="display: inline-block; margin: 5px;" *ngFor="let role of userInfo.roles">
+    <p>{{role.roleName}}</p>
+  </div>
+  <div style="display: inline-block; margin: 5px;" *ngFor="let tasks of userInfo.tasks">
+    <p>{{tasks.title}}</p>
+  </div>
+  <p>Title: {{ userInfo.titre }}</p>
+</div>

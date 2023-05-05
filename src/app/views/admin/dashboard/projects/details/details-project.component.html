@@ -1,0 +1,78 @@
+<div class="custom-modal modal-header">
+<h5 class="modal-title" >Project</h5>
+  <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label > <span >Project Name</span> <span class="text-danger">*</span></label>
+        <input class="form-control " type="text"
+               formControlName="projectName" [value]="project.projectName">
+
+
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label > <span >Project Manager Email</span> <span class="text-danger">*</span></label>
+        <input class="form-control " type="text"
+               formControlName="email" [value]="project.email">
+
+
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label > <span >Project description</span> <span class="text-danger">*</span></label>
+
+        <textarea rows="4" class="form-control"
+                   [value]="project.descriptionP"></textarea>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label > <span >Project Objectives</span> <span class="text-danger">*</span></label>
+
+      <textarea rows="4" class="form-control"
+              [value]="project.objectiveP"></textarea>
+
+
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="form-group">
+      <label > <span >Project Duration</span> <span class="text-danger">*</span></label>
+      <input class="form-control " type="number"
+            [value]="project.durationP">
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="form-group">
+      <label > <span >Project Deadline</span> <span class="text-danger">*</span></label>
+      <div class="cal-icon">
+        <input class="form-control datetimepicker" type="text" bsDatepicker
+                [value]="project.deadlineP">
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="form-group">
+      <label > <span >Budget</span> <span class="text-danger">*</span></label>
+      <input class="form-control " type="number"
+           [value]="project.budget">
+    </div>
+  </div>
+
+
+
+</div>
+<div class="modal-footer">
+
+  <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
+
+</div>

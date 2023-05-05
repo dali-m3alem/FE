@@ -1,0 +1,99 @@
+<div class="left">
+    <h1>List of projects</h1>
+    <ul class="breadcrumb">
+      <li>
+        <a  class="active"  href="#">Dashboard</a>
+      </li>
+      
+      <li>
+        <a class="active" href="/project">Projects</a>
+      </li>
+    </ul>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Project Name</th>
+        <th>Description</th>
+        <th>Objective</th>
+        <th>Duration</th>
+        <th>Deadline</th>
+        <th>Project Manager</th>
+        <th>Status</th>
+        <th>Budget</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let project of dataArray">
+        <tr>
+          <td>{{ project.id }}</td>
+          <td>{{ project.projectName }}</td>
+          <td>{{ project.descriptionP }}</td>
+          <td>{{ project.objectiveP }}</td>
+          <td>{{ project.durationP }}</td>
+          <td>{{ project.deadlineP }}</td>
+          <td>{{ project.email }}</td>
+          <td>{{ project.status }}</td>
+          <td>{{ project.budget }}</td>
+          <td>
+            <button mat-raised-button (click)="project.expanded = !project.expanded">Details</button>
+          </td>
+        </tr>
+        <tr *ngIf="project.expanded">
+          <td colspan="9">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Activities</mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-panel-description>
+                <p>Activities:</p>
+                <ul>
+                  <li *ngFor="let activity of activitiesMap[project.id]">{{ activity.id }}
+                    {{ activity.activityName }}{{ activity.descriptionA }}{{ activity.objectiveA }}
+                  </li>
+                </ul>
+              </mat-panel-description>
+            </mat-expansion-panel>
+          </td>
+        </tr>
+        <tr *ngIf="project.expanded">
+          <td colspan="9">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Teams</mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-panel-description>
+                <p>Activities:</p>
+                <ul>
+                  <li *ngFor="let activity of activitiesMap[project.id]">{{ activity.id }}
+                    {{ activity.activityName }}{{ activity.descriptionA }}{{ activity.objectiveA }}
+                  </li>
+                </ul>
+              </mat-panel-description>
+            </mat-expansion-panel>
+          </td>
+        </tr>
+        <tr *ngIf="project.expanded">
+          <td colspan="9">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Tasks</mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-panel-description>
+                <p>Activities:</p>
+                <ul>
+                  <li *ngFor="let activity of activitiesMap[project.id]">{{ activity.id }}
+                    {{ activity.activityName }}{{ activity.descriptionA }}{{ activity.objectiveA }}
+                  </li>
+                </ul>
+              </mat-panel-description>
+            </mat-expansion-panel>
+          </td>
+        </tr>
+        
+      </ng-container>
+    </tbody>
+  </table>
+  
+  

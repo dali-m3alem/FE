@@ -1,0 +1,89 @@
+<body>
+    
+    <main>
+        <div class="head-title">
+          <div class="left">
+            <h1>Dashboard adimn</h1>
+            <ul class="breadcrumb">
+              <li>
+                <a href="#">Dashboard</a>
+              </li>
+              <li>
+                <a  href="#">Home</a>
+              </li>
+            </ul>
+          </div>
+          <a (click)="addProject()" class="btn-download">
+            <i  class="fa fa-plus" ></i>
+            <span class="text" >Create project</span>
+          </a>
+        </div>
+        <ul class="box-info">
+          <li>
+            <i class='bx bxs-calendar-check' ></i>
+            <span class="text">
+              <h3>{{ projectCount }}</h3>
+              <p>projects</p>
+            </span>
+          </li>
+          <li>
+            <i class='bx bxs-group' ></i>
+            <span class="text">
+              <h3>{{userCount}}</h3>
+              <p>users</p>
+            </span>
+          </li>
+          <li>
+            <i class='bx bxs-dollar-circle' ></i>
+            <span class="text">
+              <h3>${{budgetscount}}</h3>
+              <p>Total Sales</p>
+            </span>
+          </li>
+        </ul>
+        <div class="table-data">
+          <div class="order">
+            <div class="head">
+              <h3>Listes des projects</h3>
+              <i class='bx bx-search' ></i>
+              <i class='bx bx-filter' ></i>
+            </div>
+            <table>
+              <thead >
+                <tr>
+                  <th>User</th>
+                  <th>Date Order</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let project of dataArray">
+                  <td>
+                    <p>{{ project.projectName }}</p>
+                  </td>
+                  <td>{{project.deadlineP}}</td>
+                  <td><span [ngClass]="{'status': true, 'completed': project.status === 'completed', 'process': project.status === 'process', 'notstarted': project.status === 'not started'}">{{project.status}}</span></td>
+                </tr>
+              
+              </tbody>
+            </table>
+          </div>
+          <div class="todo">
+            <div class="head">
+              <h3>Todos</h3>
+              <i class='bx bx-plus' ></i>
+              <i class='bx bx-filter' ></i>
+            </div>
+            <ul class="todo-list">
+              <li class="completed"*ngFor="let project of dataArray">
+                <p>{{project.email}}</p>
+                <i class='bx bx-dots-vertical-rounded' ></i>
+              </li>
+             
+            
+            
+            </ul>
+          </div>
+        </div>
+      </main>
+    </body>

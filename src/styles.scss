@@ -1,0 +1,25 @@
+@import '../node_modules/bulma/bulma.sass';
+@import '~@angular/cdk/overlay-prebuilt.css';
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import 'node_modules/bootstrap/scss/bootstrap';
+// MDB SCSS
+.custom-modal .close {
+    background-color: #a0a0a0;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 13px;
+    height: 20px;
+    line-height: 20px;
+    margin: 0;
+    opacity: 1;
+    padding: 0;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    z-index: 99;
+  }

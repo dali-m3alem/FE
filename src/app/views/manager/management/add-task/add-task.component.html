@@ -1,0 +1,65 @@
+<div class="left">
+    <h1>Add Task</h1>
+    <ul class="breadcrumb">
+      <li>
+        <a class="active" href="#">Dashboard</a>
+      </li>
+      <li>
+        <a class="active" href="/add-task">Add Task</a>
+      </li>
+    </ul>
+  </div>
+  
+  <form class="row g-3" [formGroup]="taskForm" (ngSubmit)="submit()">
+    <div class="col-10">
+      <label for="title" class="form-label">Task title</label>
+      <input type="text" class="form-control" id="title" placeholder="Enter the task title" formControlName="title">
+      <div class="alert alert-danger" role="alert" *ngIf="taskForm.controls['title']?.errors?.['required'] && submitted">
+        Task title is required
+      </div>
+    </div>
+    <div class="col-10">
+      <label for="Description" class="form-label">Task Description</label>
+      <textarea class="form-control" id="description" rows="3" placeholder="Enter the team description" formControlName="description"></textarea>
+      <div class="alert alert-danger" role="alert" *ngIf="taskForm.controls['description']?.errors?.['required'] && submitted">
+        Task description is required
+      </div>
+    </div>
+  
+  
+    <div class="col-10">
+      <label for="inputUser" class="form-label">User Email</label>
+      <input type="text" class="form-control" id="inputUser" placeholder="Enter the User Email" formControlName="email">
+      <div class="alert alert-danger" role="alert" *ngIf="taskForm.controls['email']?.errors?.['required'] && submitted">
+        User email is required
+      </div>
+    </div>
+  
+  
+        <div class="col-md-3">
+          <label for="dueDate" class="form-label">Task Due Date</label>
+          <input type="date" class="form-control" id="dueDate" placeholder="Enter the task deadline" formControlName="dueDate">
+          <div class="alert alert-danger" role="alert" *ngIf="taskForm.controls['dueDate']?.errors?.['required'] && submitted">
+            Task due date is required
+          </div>
+        </div>
+        <!-- <div class="col-md-3">
+          <label for="createdBy" class="form-label">Created By</label>
+          <input type="text" class="form-control" id="createdBy" placeholder="Enter the name of the person who created the task" formControlName="createdBy">
+          <div class="alert alert-danger" role="alert" *ngIf="taskForm.controls['createdBy']?.errors?.['required'] && submitted">
+            Task creator name is required
+          </div>
+        </div>-->
+      <div class="col-md-3">
+        <label for="createdBy" class="form-label">Activity ID</label>
+        <input type="text" class="form-control" id="Activity" placeholder="Enter the Activity ID of the task" formControlName="activity">
+        <div class="alert alert-danger" role="alert" *ngIf="taskForm.controls['activity']?.errors?.['required'] && submitted">
+          Activity ID is required
+        </div>
+      </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary" (click)="submit()"> Submit </button>
+        </div>
+  
+  
+    </form>

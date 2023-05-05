@@ -1,0 +1,151 @@
+<div class="content container-fluid">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="row align-items-center">
+      <div class="col">
+        <h3 class="page-title"  >Liste des projects</h3>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink=""  ><span >tbd</span></a></li>
+          <li class="breadcrumb-item active"  > <span >Liste des projects</span> </li>
+        </ul>
+      </div>
+      <div class="col-auto float-end ms-auto">
+        <a class="btn add-btn" (click)="add()"><i class="fa fa-plus"></i>
+          <span>Project</span> </a>
+      </div>
+    </div>
+  </div>
+
+<table class="table caption-top">
+  <caption>List of projects</caption>
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Project Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">objectif</th>
+
+      <th scope="col">Duration</th>
+      <th scope="col">Deadline</th>
+      <th scope="col">Project Manager</th>
+      <th scope="col">status</th>
+      <th scope="col">budget</th>
+
+
+      <th scope="col">actions</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let project of dataArray">
+      <td>{{ project.id }}</td>
+
+      <td>{{ project.projectName }}</td>
+      <td>{{ project.descriptionP }}</td>
+      <td>{{ project.objectiveP }}</td>
+      <td>{{ project.durationP }}</td>
+      <td  *ngIf="project.deadlineP">{{ project.deadlineP | customDateTime}}</td>
+      <td class="text-center" *ngIf="!project.deadlineP">-</td>
+
+      <td>{{ project.email}}</td>
+      <td>{{ project.status}}</td>
+      <td>{{ project.budget}}</td>
+
+
+      <td>
+        <div class="bouton">
+          <button type="button" class="btn btn-outline-success"  (click)="editer(project)"  ><i class="fa fa-pencil  m-r-5"> Edit</i> </button>
+          <button type="button" class="btn btn-outline-info" (click)="details(project)"> <i class="fa fa-eye  m-r-5"> View</i> </button>
+          <button type="button" class="btn btn-outline-danger" (click)="confirmDeleteProject(project.id)"><i class="fa fa-trash  m-r-5"> Delete</i></button>
+      </div>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<div class="overlay" *ngIf="showPopup"></div>
+  <div class="popup" *ngIf="showPopup" >
+    <button class="close" (click)="togglePopup()"> <i class="fas fa-times"></i></button>
+    <form class="row g-3" #userForm="ngForm">
+      <input type="hidden" name="id" [(ngModel)]="selectedProject.id" required>
+
+      <div class="col-md-5">
+        <label class="form-label">project Name</label>
+        <input type="text" class="form-control" name="projectName" [(ngModel)]="selectedProject.projectName" required >
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['projectName']?.errors?.['required'] ">
+          Identifier is required
+       </div>
+      </div>
+
+      <div class="col-md-5">
+        <label class="form-label">objective</label>
+        <input type="text" class="form-control" name="objectiveP" [(ngModel)]="selectedProject.objectiveP" required>
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['objectiveP']?.errors?.['required'] ">
+          Identifier is required
+       </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">projectManager</label>
+
+        <input type="email" class="form-control" name="email" [(ngModel)]="selectedProject.email" required>
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['email']?.errors?.['required'] ">
+          Identifier is required
+       </div>
+       <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      </div>
+      <div  class="col-md-5">
+        <label class="form-label">deadlineP</label>
+        <input [(ngModel)]="selectedProject.deadlineP" required class="form-control" name="deadlineP" placeholder="Deadline"   pattern="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+00:00">
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['deadlineP']?.errors?.['required'] ">
+            Deadline is required
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.controls['deadlineP']?.errors?.['pattern']">
+            Please enter a valid date in the format mm/dd/yyyy
+        </div>
+    </div>
+
+         <div  class="col-md-5">
+        <label class="form-label">durationP</label>
+        <input type="text" class="form-control" name="durationP" [(ngModel)]="selectedProject.durationP"required  >
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['durationP']?.errors?.['required'] ">
+          Identifier is required
+       </div>
+
+      </div>
+      <div  class="col-md-5">
+        <label class="form-label">descriptionP</label>
+        <input  class="form-control" name="descriptionP"[(ngModel)]="selectedProject.descriptionP"required>
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['descriptionP']?.errors?.['required'] ">
+          Identifier is required
+       </div>
+      </div>
+      <div  class="col-md-5">
+        <label class="form-label">budget</label>
+        <input  class="form-control" name="budget"[(ngModel)]="selectedProject.budget" pattern="^[0-9]+$">
+
+       <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['budget']?.errors?.['pattern']">
+        The phone number must be 8 digits long
+      </div>
+      </div>
+
+
+
+
+      <button type="submit" class="btn btn-primary"  (click)="updateProject()">Update</button>
+    </form>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+

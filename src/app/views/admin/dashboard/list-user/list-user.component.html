@@ -1,0 +1,137 @@
+<table class="table align-middle mb-0 bg-white">
+    <thead >
+      <tr>
+        <th>user name</th>
+        <th>titre</th>
+        <th>last name</th>
+        <th>phoneNumber</th>
+        <th>roles</th>
+
+        <th>actions</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataArray">
+        <td>
+          <div class="d-flex align-items-center">
+            <img
+            [src]="'data:image/jpeg;base64,' + item.profilePicture" 
+                alt=""
+                style="width: 45px; height: 45px"
+                class="rounded-circle"
+                />
+                
+            <div class="ms-3">
+              <p class="fw-bold mb-1">{{item.username}}</p>
+              <p class="text-muted mb-0">{{item.email}}</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <p>{{item.titre}}</p>
+        </td>
+        <td>
+          <p>{{item.userLastName}}</p>
+        </td>
+        <td><p>{{item.phoneNumber}}</p></td>
+        <td>
+          <div style="display: inline-block; margin: 5px;" *ngFor="let role of item.roles">
+            <p>{{role.roleName}}</p>
+          </div>
+        </td>
+        <td>
+          <div class="bouton">
+            <button type="button" class="btn btn-outline-success"   (click)="editUser(item)" >Edit</button>
+            <button type="button" class="btn btn-outline-danger" (click)="deleteUser(item.id)">Delete</button>
+        </div>
+        </td>
+      </tr>
+     
+    </tbody>
+  </table>
+  <div class="overlay" *ngIf="showPopup"></div>
+  <div class="popup" *ngIf="showPopup" >
+    <button class="close" (click)="togglePopup()"> <i class="fas fa-times"></i></button>
+    <form class="row g-3" #userForm="ngForm">
+      <input type="hidden" name="id" [(ngModel)]="selectedUser.id" required>
+      <div class="col-md-5">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" name="username" [(ngModel)]="selectedUser.username" required >
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['username']?.errors?.['required'] ">
+          Identifier is required
+       </div>
+      </div>
+     
+      <div class="col-md-5">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control" name="userLastName" [(ngModel)]="selectedUser.userLastName" required>
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['userLastName']?.errors?.['required'] ">
+          Identifier is required
+       </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" [(ngModel)]="selectedUser.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['email']?.errors?.['required'] ">
+          Identifier is required
+       </div>
+       <div class="alert alert-danger" role="alert" *ngIf="userForm.controls['email']?.errors?.['pattern']">
+        Invalid email format
+    </div>
+       
+       <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      </div> 
+      <div  class="col-md-5">
+        <label class="form-label">titre</label>
+        <input type="text" class="form-control" name="titre" [(ngModel)]="selectedUser.titre"required>
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['titre']?.errors?.['required'] ">
+          Identifier is required
+       </div>
+      </div>
+      <div  class="col-md-5">
+        <label class="form-label">phoneNumber</label>
+        <input class="form-control" name="phoneNumber" [(ngModel)]="selectedUser.phoneNumber" required
+          [pattern]="'^[0-9]{8}$'">
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['phoneNumber']?.errors?.['required']">
+          Identifier is required
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="userForm.submitted && userForm.controls['phoneNumber']?.errors?.['pattern']">
+          The phone number must be 8 digits long
+        </div>
+        
+      
+      </div>
+        <div class="col-md-5">
+          <label class="form-label">Roles</label>
+          <div *ngIf="selectedUser.roles.length > 0">
+              <div *ngFor="let role of selectedUser.roles; let i=index">
+                <div class="bouton" >
+                     <select class="form-control" [(ngModel)]="role.roleName" [name]="'roleName' + (i+1)">
+                    <option value="admin">admin</option>
+                    <option value="manager">manager</option>
+                    <option value="user">user</option>
+                  </select>
+              
+                  <input type="hidden" [(ngModel)]="role.id" [name]="'roleId' + (i+1)">
+                  <button type="button" class="btn btn-primary" (click)="removeRole(i)">          <mat-icon>delete</mat-icon>
+                  </button>
+              </div>
+              </div>
+              <button type="button" class="btn btn-primary"  *ngIf="selectedUser.roles.length === 0 || selectedUser.roles.length > 0" (click)="addRole()">Add Role</button>
+
+          </div>
+          <button type="button" class="btn btn-primary" *ngIf="selectedUser.roles.length === 0" (click)="addRole()">Add Role</button>
+      </div>
+      
+      
+
+      
+
+      
+     
+      <button type="submit" class="btn btn-primary" (click)="updateUser()">Update</button>
+    </form>
+  </div>
+  

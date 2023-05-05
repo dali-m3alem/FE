@@ -1,0 +1,74 @@
+<div class="board">
+
+  
+
+  <div class="board-wrapper">
+
+    <div class="board-columns" cdkDropListGroup>
+      <div class="board-column" *ngFor="let column of board.columns">
+
+        <div  class="column-title">
+          
+
+          <ng-container [ngSwitch]="column.name">
+            <i *ngSwitchCase="'Todo'" class="fas fa-clipboard-list"></i>
+            <i *ngSwitchCase="'In progress'" class="fas fa-spinner"></i>
+            <i *ngSwitchCase="'review'" class="fas fa-eye"></i>
+            <i *ngSwitchCase="'done'" class="fas fa-check"></i>
+            <i *ngSwitchDefault class="fas fa-columns"></i>
+            
+
+          </ng-container>
+          {{ column.name }}
+          <hr [style.background]="column.name === 'Todo' ? 'red' : column.name === 'In progress' ? 'green' : column.name === 'review' ? 'blue' : column.name === 'done' ? 'purple' : 'black'">
+
+        </div>
+
+        <div class="tasks-container"
+        cdkDropList
+        [cdkDropListData]="column.tasks"
+        (cdkDropListDropped)="drop($event)">
+        <div class="task" *ngFor="let item of column.tasks" cdkDrag [cdkDragData]="item">
+         <div class="title"> {{ item.title }}</div>
+         <div class="paragraphe">{{ item.description }}</div> 
+
+         
+          <div class="Details">
+          <i class="fa fa-ellipsis-v" aria-hidden="true"  (click)="get(item)"></i>
+        </div>
+        </div>
+        
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<div class="overlay" *ngIf="showPopup"></div>
+         <div class="popup"  *ngIf="showPopup"  >
+          <div>
+    <h2>Task Information:</h2>
+    <p>Title: {{ taskStatus.title }}</p>
+    <p>Status: {{ taskStatus.status }}</p>
+    <p>Description: {{ taskStatus.description }}</p>
+    <p>deadline: {{ taskStatus.dueDate }}</p>
+    <h2>Activity Information:</h2>
+    <p>Name: {{ taskStatus.activity.activityName }}</p>
+    <p>Description: {{ taskStatus.activity.descriptionA }}</p>
+    <p>Objective: {{ taskStatus.activity.objectiveA }}</p>
+    <p>Duration: {{ taskStatus.activity.durationA }}</p>
+    <p>Deadline: {{ taskStatus.activity.deadlineA }}</p>
+    <h2>Manager Information:</h2>
+    <p>Deadline: {{ taskStatus.manager.email }}</p>
+
+  </div>
+           
+           <button class="close" (click)="togglePopup()"> <i class="fas fa-times"></i></button>
+         </div>
+
+
+
+
+
