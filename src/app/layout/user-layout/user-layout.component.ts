@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthadminService } from 'src/app/views/services/authadmin.service';
 import { navbarData } from './nav-data';
 import { notifcations } from './header-data';
+import { DataService } from 'src/app/views/services/data.service';
 
 
 interface SideNavToggle{
@@ -15,17 +16,34 @@ interface SideNavToggle{
   styleUrls: ['./user-layout.component.scss']
 })
 export class UserLayoutComponent {
-  constructor(private asd:AuthadminService, private route :Router){
+  imageSrc!: string;
+  userInfo: any;
+
+  constructor(private asd:AuthadminService, private route :Router,private ser: DataService){
+    const user = this.asd.getUser();
+
+    this.ser.getUserData(user).subscribe((data: any) => {
+      this.userInfo = data;
+      this.imageSrc = 'data:image/jpeg;base64,' + this.userInfo.profilePicture;
+
+    });
    }
-
-
- userItems=[
+   getUserNotifications() {
+    this.ser.getUserNotifications().subscribe(
+      (response:any) => {
+this.notifcations=response
+          },
+      (error: any) => {
+        console.log(error);
+      })
+  }
+  getImageUrl() {
+    return this.imageSrc;
+  }
+  userItems=[
     {icon:'far fa-user',
-     label:'profil'},
-      {icon:'far fa-cog',
-     label:'settings'},
-     {icon:'far fa-unlock-alt',
-     label:'lock screen'},
+     label:'profil', action: () => {
+      this.profil();}},
      {icon:'far fa-power-off',
      label:'logout ', action: () => {
         this.logout();}
@@ -36,6 +54,9 @@ logout(): void {
   localStorage.removeItem('token');
   localStorage.removeItem('roles')
   this.route.navigate(['/login'])
+}
+profil(){
+  this.route.navigate(['/user/profil'])
 }
    notifcations=notifcations;
   
@@ -49,6 +70,9 @@ logout(): void {
     } }
 
   ngOnInit(): void {
+    
+    this.getUserNotifications()
+
 this.screenWidth=window.innerWidth; 
 this.checkcanShowSearchAsOverlay(window.innerWidth) }
   @Output() onToggleSideNav:EventEmitter<SideNavToggle>=new EventEmitter();
@@ -80,6 +104,7 @@ return styleClass
     }else{
       this.canShowSearchAsOverlay=false;
     }
+    
   }
 
 

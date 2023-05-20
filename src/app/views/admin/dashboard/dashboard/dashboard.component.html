@@ -1,89 +1,170 @@
-<body>
-    
-    <main>
-        <div class="head-title">
-          <div class="left">
-            <h1>Dashboard adimn</h1>
-            <ul class="breadcrumb">
-              <li>
-                <a href="#">Dashboard</a>
-              </li>
-              <li>
-                <a  href="#">Home</a>
-              </li>
-            </ul>
+
+
+
+    <!-- Page Content -->
+<div class="content container-fluid">
+
+  <!-- Page Header -->
+  <div class="page-header">
+      <div class="row">
+          <div class="col-sm-12">
+              <h3 class="page-title">Welcome Admin!</h3>
+              <ul class="breadcrumb">
+                  <li class="breadcrumb-item active">Dashboard</li>
+              </ul>
           </div>
-          <a (click)="addProject()" class="btn-download">
-            <i  class="fa fa-plus" ></i>
-            <span class="text" >Create project</span>
-          </a>
-        </div>
-        <ul class="box-info">
-          <li>
-            <i class='bx bxs-calendar-check' ></i>
-            <span class="text">
-              <h3>{{ projectCount }}</h3>
-              <p>projects</p>
-            </span>
-          </li>
-          <li>
-            <i class='bx bxs-group' ></i>
-            <span class="text">
-              <h3>{{userCount}}</h3>
-              <p>users</p>
-            </span>
-          </li>
-          <li>
-            <i class='bx bxs-dollar-circle' ></i>
-            <span class="text">
-              <h3>${{budgetscount}}</h3>
-              <p>Total Sales</p>
-            </span>
-          </li>
-        </ul>
-        <div class="table-data">
-          <div class="order">
-            <div class="head">
-              <h3>Listes des projects</h3>
-              <i class='bx bx-search' ></i>
-              <i class='bx bx-filter' ></i>
-            </div>
-            <table>
-              <thead >
-                <tr>
-                  <th>User</th>
-                  <th>Date Order</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let project of dataArray">
-                  <td>
-                    <p>{{ project.projectName }}</p>
-                  </td>
-                  <td>{{project.deadlineP}}</td>
-                  <td><span [ngClass]="{'status': true, 'completed': project.status === 'completed', 'process': project.status === 'process', 'notstarted': project.status === 'not started'}">{{project.status}}</span></td>
-                </tr>
+      </div>
+  </div>
+  <!-- /Page Header -->
+
+  <div class="row">
+      <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+          <div class="card dash-widget">
+              <div class="card-body">
+                  <span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
+                  <div class="dash-widget-info">
+                      <h3>{{projectCount}}</h3>
+                      <span>Projects</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+          <div class="card dash-widget">
+              <div class="card-body">
+                  <span class="dash-widget-icon"><i class="fa fa-usd"></i></span>
+                  <div class="dash-widget-info">
+                      <h3>{{budgetscount}}</h3>
+                      <span>budget</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+          <div class="card dash-widget">
+              <div class="card-body">
+                  <span class="dash-widget-icon"><i class="fa fa-diamond"></i></span>
+                  <div class="dash-widget-info">
+                      <h3>{{countTask}}</h3>
+                      <span>Tasks</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+          <div class="card dash-widget">
+              <div class="card-body">
+                  <span class="dash-widget-icon"><i class="fa fa-user"></i></span>
+                  <div class="dash-widget-info">
+                      <h3>{{userCount}}</h3>
+                      <span>Employees</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  
+
+
+  <div class="row">
+      <div class="col-md-6 d-flex">
+          <div class="card card-table flex-fill">
+              <div class="card-header">
+                  <h3 class="card-title mb-0">Users</h3>
+              </div>
+              <div class="card-body">
+                  <div class="table-responsive">
+                      <table class="table custom-table mb-0" >
+                          <thead>
+                              <tr>
+                                  <th>Name</th>
+                                  <th>Email</th>
+                                  <th>Phone number</th>
+                                  <th class="text-end">Roles</th>
+                              </tr>
+                          </thead>
+                          <tbody *ngFor="let user of dataUser; let i = index" >
+                              <tr>
+                                  <td>
+                                      <h2 class="table-avatar" >
+                                          <div class="avatar"><img alt=""
+                                            [src]="'data:image/jpeg;base64,' + user.profilePicture"></div>
+                                          <div>{{user.firstname}} <span>{{user.titre}}</span></div>
+                                      </h2>
+                                  </td>
+                                  <td>{{user.email}}</td>
+                                  <td>
+                                    {{user.phoneNumber}}
+                                  </td>
+                                  <td *ngIf="user.roles && user.roles.length > 0">
+                                    <div *ngFor="let role of user.roles">
+                                      {{role.roleName}}
+                                    </div>
+                                  </td>
+                                  <td *ngIf="!user.roles || user.roles.length === 0"class="text-center">-</td>
+                              </tr>
+                              
+                             
+                              
+                          
+                          </tbody>
+                      </table>
+
+
+
+                  </div>
+              </div>
+              <div class="card-footer">
+                  <a routerLink="/clients/clientspage">View all clients</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 d-flex">
+          <div class="card card-table flex-fill">
+              <div class="card-header">
+                  <h3 class="card-title mb-0">Recent Projects</h3>
+              </div>
+              <div class="card-body">
+                  <div class="table-responsive">
+                      <table class="table custom-table mb-0">
+                          <thead>
+                              <tr>
+                                  <th>Project Name </th>
+                                  <th>Manager project</th>
+                                  <th class="text-end">Budget</th>
+                              </tr>
+                          </thead>
+                          <tbody *ngFor="let project of dataArray;">
+                              <tr>
+                                  <td>
+                                      <h2><div>{{ project.projectName }}</div></h2>
+                                      <small class="block text-ellipsis">
+                                           <span class="text-muted">{{ project.objectiveP }}</span>
+                                      </small>
+                                  </td>
+                                  <td>
+                                      <div>{{ project.email }}</div>
+                                  </td>
+                                  <td class="text-end">
+                                      {{project.budget}}
+                                  </td>
+                              </tr>
+                        
+                            
               
-              </tbody>
-            </table>
+                            
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              <div class="card-footer">
+                  <a routerLink="/projects/projectpage">View all projects</a>
+              </div>
           </div>
-          <div class="todo">
-            <div class="head">
-              <h3>Todos</h3>
-              <i class='bx bx-plus' ></i>
-              <i class='bx bx-filter' ></i>
-            </div>
-            <ul class="todo-list">
-              <li class="completed"*ngFor="let project of dataArray">
-                <p>{{project.email}}</p>
-                <i class='bx bx-dots-vertical-rounded' ></i>
-              </li>
-             
-            
-            
-            </ul>
-          </div>
-        </div>
-      </main>
-    </body>
+      </div>
+  </div>
+
+</div>
+<!-- /Page Content -->

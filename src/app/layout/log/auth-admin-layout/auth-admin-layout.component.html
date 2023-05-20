@@ -1,0 +1,49 @@
+
+
+<div class="account-content">
+    <div class="container">
+    
+        <!-- Account Logo -->
+        <div class="account-logo" >
+            <a href="javascript:"><img src="assets/pipes/avatar.jpg" alt="Dreamguy's Technologies"></a>
+        </div>
+        <!-- /Account Logo -->
+        
+        <div class="account-box">
+            <div class="account-wrapper">
+                <h3 class="account-title">Login</h3>
+                <p class="account-subtitle">Access to our dashboard</p>
+                
+                <!-- Account Form -->
+                <form #f="ngForm" (ngSubmit)="loginadmin(f)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input class="form-control" type="text" placeholder="Email" name="email" #email="ngModel" ngModel required>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label>Password</label>
+                            </div>
+                            <div class="col-auto">
+                                <a class="text-muted" routerLink="/forgot"  href="#!">
+                                    Forgot password?
+                                </a>
+                            </div>
+                        </div>
+                        <input class="form-control" type="password" placeholder="Password" required name="password" #password="ngModel" ngModel>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-primary account-btn" type="button" type="submit">Login</button>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="messageAuthError">
+                        {{messageAuthError}}
+                    </div>
+                    
+                </form>
+                <!-- /Account Form -->
+                
+            </div>
+        </div>
+    </div>
+</div>

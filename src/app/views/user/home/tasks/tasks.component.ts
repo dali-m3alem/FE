@@ -4,35 +4,18 @@ import { Column } from './column';
 import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { TasksService } from 'src/app/views/services/tasks.service';
 import { AuthadminService } from 'src/app/views/services/authadmin.service';
+import { Task } from 'src/app/views/model/user';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { InfoTaskComponent } from 'src/app/views/manager/management/info-task/info-task.component';
 
-export interface Task {
-  id: number;
-  title: string;
-  status: string;
-  description:string;
-  dueDate:string;
-  activity: {
-    id: number;
-    activityName: string;
-    descriptionA: string;
-    objectiveA: string;
-    durationA: string;
-    deadlineA: string;
-    project: any;
-    team: any;
-  }
-  manager:{
-    id:number;
-    email:string;
-  }
-}
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit{
-  constructor(private taskService :TasksService, private auth: AuthadminService){}
+  constructor(private taskService :TasksService, private auth: AuthadminService,public modalService: NgbModal){}
   showOverlay=false;
   showPopup: boolean = false;
   
@@ -94,6 +77,20 @@ export class TasksComponent implements OnInit{
   
   
   drop(event: CdkDragDrop<Task[]>) {
+    const targetContainer = event.container as CdkDropList<Task[]>;
+    const targetColumn = this.getColumnForContainer(targetContainer);
+      if (targetColumn && targetColumn.name === 'done') {
+        if (event.previousContainer === event.container) {
+          const targetIndex = event.currentIndex;
+          const previousIndex = event.previousIndex;
+          
+          if (targetIndex === previousIndex + 1 || targetIndex === previousIndex - 1) {
+            return; // Allow movement within the "done" column
+          }
+        } else {
+          return; // Block the movement to the "done" column from other columns
+        }
+      }
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -116,13 +113,16 @@ export class TasksComponent implements OnInit{
               activityName: '',
               descriptionA: '',
               objectiveA: '',
-              durationA: '',
               deadlineA: '',
               project: undefined,
               team: undefined
             },
             dueDate: '',
             manager: {
+              id: 0,
+              email: ''
+            },
+            user: {
               id: 0,
               email: ''
             }
@@ -184,13 +184,16 @@ export class TasksComponent implements OnInit{
       activityName: '',
       descriptionA: '',
       objectiveA: '',
-      durationA: '',
       deadlineA: '',
       project: undefined,
       team: undefined
     },
     dueDate:'',
     manager: {
+      id: 0,
+      email: ''
+    },
+    user: {
       id: 0,
       email: ''
     }
@@ -208,12 +211,15 @@ export class TasksComponent implements OnInit{
         activityName: task.activity.activityName,
         descriptionA: task.activity.descriptionA,
         objectiveA: task.activity.objectiveA,
-        durationA: task.activity.durationA,
         deadlineA: task.activity.deadlineA,
         project: task.activity.project,
         team: task.activity.team
       },
       manager:{
+        id:task.manager.id,
+        email:task.manager.email
+      },
+      user:{
         id:task.manager.id,
         email:task.manager.email
       }
@@ -222,7 +228,24 @@ export class TasksComponent implements OnInit{
     this.showPopup = true;
   } 
   // Afficher le popup pour modifier l'utilisateur
-
+  details(row: any) {
+    const options1: NgbModalOptions = {
+      size: 'xl',
+      centered: true,
+      scrollable: true,
+      windowClass:'modal-holder'
+  
+    };
+    const modalRef = this.modalService.open(InfoTaskComponent, options1);
+    modalRef.componentInstance.taskStatus = row;
+  
+    modalRef.result.then((result) => {
+      console.log(result);
+    }).catch((error) => {
+      console.log(error);
+    });
+  
+  }
    
 
     

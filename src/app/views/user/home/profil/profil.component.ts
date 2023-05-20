@@ -1,48 +1,81 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { forkJoin, of } from 'rxjs';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { id } from 'date-fns/locale';
 import { User } from 'src/app/views/model/user';
 import { AuthadminService } from 'src/app/views/services/authadmin.service';
 import { DataService } from 'src/app/views/services/data.service';
+import {MatDialog} from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { forkJoin, of } from 'rxjs';
+import Swal from 'sweetalert2';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+
+import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.scss']
+  styleUrls: ['./profil.component.scss'],
 })
-export class ProfilComponent {
+export class ProfilComponent implements OnInit {
+  @ViewChild('content', { static: true }) content!: TemplateRef<any>;
 
+	closeResult = '';
 
   userInfo: any;
   selectedFile!: File;
   public errorMessage: string = '';
+  modalRef!: NgbModalRef;
 
   imageSrc!: string;
+  userForm!: FormGroup;
 
-  constructor(private asd: DataService, private auth: AuthadminService, public dialog: MatDialog, private fb: FormBuilder) {
-    const user = this.auth.getUser();
-
-    this.asd.getUserData(user).subscribe((data: any) => {
-      this.userInfo = data;
-      this.imageSrc = 'data:image/jpeg;base64,' + this.userInfo.profilePicture;
-
-    });
+  constructor(private asd: DataService, private auth: AuthadminService, public dialog: MatDialog, private fb: FormBuilder,private modalService: NgbModal) {
+    
   }
   getImageUrl() {
     return this.imageSrc;
   }
 
   ngOnInit(): void {
+    Swal.fire({
+      title: "Chargement",
+      html: "Veuillez patientez, chargements en cours ....",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading()
+      }
+    });
+   this.loadData();
+   this.prepareForm();
+   
     
   }
+  loadData() {
+    const user = this.auth.getUser();
+    this.asd.getUserData(user).subscribe((data: any) => {
+      this.userInfo = data;
+      this.imageSrc = 'data:image/jpeg;base64,' + this.userInfo.profilePicture;
+
+    });
+    Swal.close();
+
+  }
+  prepareForm(){
+    this.userForm = this.fb.group({
+      firstname: ['', Validators.required],
+      userLastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^\\d{8}$')]],
+      titre: ['', Validators.required],
+      roles: [[]],
+    });
+  }
   showOverlay=false;
-  showPopup: boolean = false;
   showPopup2: boolean = false;
 
 
   togglePopup(): void {
-    this.showPopup = !this.showPopup;
     this.showOverlay = !this.showOverlay;
   }
   togglePopup2(): void {
@@ -51,9 +84,11 @@ export class ProfilComponent {
   }
     
     editUser(user: User) {
+      this.modalService.open(user, { size: 'lg' });
+
       this.selectedUser = {
         id: user.id,
-        username: user.username,
+        firstname: user.firstname,
         userLastName: user.userLastName,
         email: user.email,
         phoneNumber: user.phoneNumber,
@@ -64,14 +99,14 @@ export class ProfilComponent {
       };
       
       // Afficher le popup pour modifier l'utilisateur
-      this.showPopup = true;
+      this.showPopup();
     } 
     // Afficher le popup pour modifier l'utilisateur
   
      
     selectedUser: User = {
       id: 0,
-      username: '',
+      firstname: '',
       userLastName: '',
       email: '',
       phoneNumber: 0,
@@ -83,10 +118,7 @@ export class ProfilComponent {
   
     updateUser() {
       let success = true; // initialiser le flag à true
-      if (!this.selectedUser.email || !this.selectedUser.userLastName || !this.selectedUser.titre) {
-        console.log('Veuillez remplir tous les champs obligatoires');
-        return;
-      }
+    
     
       let updateObs = this.asd.updateUserWP(this.selectedUser);
       let uploadObs = this.selectedFile ? this.asd.uploadProfilePicture(this.selectedFile, this.selectedUser.id) : of(null);
@@ -95,16 +127,48 @@ export class ProfilComponent {
         ([updateResponse, uploadResponse]) => {
           console.log('User updated:', this.selectedUser.id);
           this.togglePopup();
+          this.loadData();
+            Swal.close();
+    
+            Swal.fire(
+              'Succès',
+              'Suppression avec succès',
+              'success'
+            ).then((result) => {
+              if (result.isConfirmed) {
+                this.loadData();
+              }
+            })
         },
         (error) => {
           console.log(error);
     
           if (error.status === 400) {
-            this.errorMessage = "Email already exists";
+            Swal.fire(
+              'Error',
+              'Email already exists',
+              'error'
+            );
           } else if (error.error && error.error.token) {
-            this.errorMessage = "Failed to read profile picture file";
+            Swal.fire(
+              'Error',
+              'Failed to read profile picture file',
+              'error'
+            );
           } else {
-            this.errorMessage = "Error updating user";
+            if (uploadObs) {
+              Swal.fire(
+                'Error',
+                'Error updating user picture file',
+                'error'
+              );
+            } else {
+              Swal.fire(
+                'Error',
+                'Error updating user. Failed to upload profile picture.',
+                'error'
+              );
+            }
           }
         }
       );
@@ -126,13 +190,28 @@ export class ProfilComponent {
       const { oldPassword, newPassword } = this.passwordForm.value;
       console.log(this.userInfo.id); // Utilisez `this.id` au lieu de `id`
 
-      this.asd.changePassword(this.userInfo.id, oldPassword, newPassword).subscribe(
+      this.asd.changePassword(this.userInfo.id, oldPassword, newPassword).subscribe
+      (
         () => {
-          alert('Mot de passe modifié avec succès.');
+          this.togglePopup();
+          this.loadData();
+            Swal.close();
+    
+            Swal.fire(
+              'Succès',
+              'Suppression avec succès',
+              'success'
+            )
+            
           this.passwordForm.reset();
+          
         },
         (error) => {
-          alert('Impossible de modifier le mot de passe.');
+          Swal.fire(
+            'Erreur',
+            'Password incorrecte',
+            'error'
+          )
           console.error(error);
         }
       );
@@ -154,8 +233,34 @@ this.showPopup2=true
     reader.readAsDataURL(this.selectedFile);
   }
   
+  showPopup() {
+    this.modalRef = this.modalService.open(this.content, { size: 'lg' });
+  }
+  
+  closePopup() {
+    this.modalRef.dismiss();
+  }
+  
+  openLg(userInfo: any) {
+    this.selectedUser = {
+      id: userInfo.id,
+      firstname: userInfo.firstname,
+      userLastName: userInfo.userLastName,
+      email: userInfo.email,
+      phoneNumber: userInfo.phoneNumber,
+      titre: userInfo.titre,
+      profilePicture: userInfo.profilePicture,
+      roles: userInfo.roles.map((role: any) => ({ ...role }))
+    };
+    this.modalRef = this.modalService.open(this.content, { size: 'lg' });
+  }
+	openScrollableContent(longContent: any) {
+		this.modalService.open(longContent, { scrollable: true });
+	}
   
   
+
+  showChangePasswordModal: boolean = false;
 
 }
 

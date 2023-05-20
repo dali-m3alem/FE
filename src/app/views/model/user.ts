@@ -1,6 +1,6 @@
 export class User {
     id!: number;
-    username!: string;
+    firstname!: string;
     userLastName!: string;
     email!: string;
     phoneNumber!: number;
@@ -9,6 +9,12 @@ export class User {
     profilePicture!:Uint8Array;
     
       // Ajoutez cette propriété à la classe User
+  }
+  export class Team{
+    teamId!:number;
+    teamName!:string;
+    teamDesc!:string;
+    emails!:User;
   }
   
   export class Authorisation {
@@ -21,7 +27,6 @@ export class Project {
   projectName!: string;
   descriptionP!: string;
   objectiveP!: string;
-  durationP!: number;
   deadlineP!: string;
   email!: string;
   userId!:number;
@@ -35,6 +40,32 @@ export class Activity{
   activityName!: string;
   descriptionA!: string;
   objectiveA!: string;
-  durationA!: number;
   deadlineA!: string;
+  team!:Team;
+  project!: Project; // Modifier le type de "project" en "Project"
 }
+export class Task {
+  id!: number;
+  title!: string;
+  status!: string;
+  description!:string;
+  dueDate!:string;
+  activity!: {
+    id: number;
+    activityName: string;
+    descriptionA: string;
+    objectiveA: string;
+    deadlineA: string;
+    project: any;
+    team: any;
+  }
+  user!:{
+    id:number;
+    email:string;
+  }
+  manager!:{
+    id:number;
+    email:string;
+  }
+}
+

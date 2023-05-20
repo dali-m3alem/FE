@@ -16,23 +16,6 @@ export const navbarData=[
         icon:'fa fa-tasks',
         label :'tasks'
 
-    },
-{        routeLink:'Projects',
-        icon:'fa fa-window-restore',
-        label :'Porjects'
-
-    },
-    {
-        routeLink:'Calender',
-        icon:'bx bx-calendar-event',
-        label :'Calender'
-
-    }
-    ,{
-        routeLink:'Chats',
-        icon:'fa fa-comments',
-        label :'Chats'
-
     }
     
 

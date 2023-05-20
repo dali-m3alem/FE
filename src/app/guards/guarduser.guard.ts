@@ -17,7 +17,6 @@ export class GuarduserGuard implements CanActivate {
       }
       else{
         this.router.navigate(['/login'],{queryParams:{returnUrl:state.url}})
-        localStorage.removeItem('token')
         resolve(false)
       }})
   }

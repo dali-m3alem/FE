@@ -6,6 +6,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import {ProjectService} from "../../../../services/project.service";
 import { DatePipe } from '@angular/common';
+import { AuthadminService } from 'src/app/views/services/authadmin.service';
 
 @Component({
   selector: 'app-edit-project',
@@ -19,10 +20,11 @@ export class EditProjectComponent implements OnInit {
   @Input() public project: any;
    editProjectForm!: FormGroup;
    dateDeadline!: any;
+   managers!: [] ;
   isSaving =false;
   constructor(private projectService: ProjectService, private activeModal: NgbActiveModal,
               private formBuilder: FormBuilder, private modal: NgbModal,public datePipe: DatePipe
-              ) {}
+              , private auth: AuthadminService) {}
 
 
   ngOnInit() {
@@ -37,11 +39,11 @@ export class EditProjectComponent implements OnInit {
       email: [this.project.email, Validators.required],
       descriptionP: [this.project.descriptionP, Validators.required],
       objectiveP: [this.project.objectiveP, Validators.required],
-      durationP: [this.project.durationP, Validators.required],
       deadlineP: [this.dateDeadline, Validators.required],
       budget: [this.project.budget, [Validators.required, Validators.pattern(/^[0-9]*$/)]],
 
     });
+    this.getManager();
   }
   get f(): { [key: string]: AbstractControl } {
     return this.editProjectForm.controls;
@@ -79,17 +81,19 @@ export class EditProjectComponent implements OnInit {
       });
 
       this.isSaving=true;
+      const user = this.auth.getUser();
 
       this.project.id=this.editProjectForm.value.id;
       this.project.projectName=this.editProjectForm.value.projectName;
       this.project.email=this.editProjectForm.value.email;
       this.project.descriptionP=this.editProjectForm.value.descriptionP;
       this.project.objectiveP=this.editProjectForm.value.objectiveP;
-      this.project.durationP=this.editProjectForm.value.durationP;
       this.project.deadlineP=this.editProjectForm.value.deadlineP;
       this.project.budget=this.editProjectForm.value.budget;
+      this.project.userId=user;
 
-
+      console.log(this.project)      
+      console.log(this.project.id)
       this.projectService.updateProject(this.project).subscribe((data=>{
           Swal.close();
 
@@ -113,6 +117,7 @@ export class EditProjectComponent implements OnInit {
           )
           this.modal.dismissAll();
           this.isSaving=false;
+          console.log(error)
         }
       );
 
@@ -131,5 +136,16 @@ export class EditProjectComponent implements OnInit {
   closeModal() {
     this.activeModal.close('Modal Closed');
   }
+  getManager(){
+    this.projectService.Managers().subscribe(
+      (response:any) => {
+        console.log(response)
+        this.managers = response; // Mettre à jour la variable 'managers' avec la réponse du service
 
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 }

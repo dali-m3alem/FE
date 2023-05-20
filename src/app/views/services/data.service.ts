@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
 import * as jwt_decode from 'jwt-decode';
@@ -14,7 +14,23 @@ export class DataService {
 
   constructor(private http:HttpClient) {
   }
- 
+  markUserNotificationsAsRead(userId:number){
+    const url = `http://localhost:8080/api/v1/auth/${userId}/markAsRead`;
+    return this.http.put(url, {});
+  }
+  getUnreadNotificationCount(userId: number): Observable<number> {
+    const url = `http://localhost:8080/api/v1/auth/unread-count/${userId}`;
+    return this.http.get<number>(url);
+  }
+
+  getUserNotifications(){
+    const token = localStorage.getItem('token');
+  
+    // Create the headers and include the Authorization header with the token
+       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get('http://localhost:8080/api/v1/auth/getUserNotifications', {headers})
+
+  }
   getAllusers(){
     return this.http.get('http://localhost:8080/api/v1/auth/getAllUsers')
 
@@ -37,9 +53,10 @@ deleteUser(id: number) {
   const url = `http://localhost:8080/api/v1/auth/deleteUser?id=${id}`;
   return this.http.delete(url);
 }
-updateUser(updatedUser: User): Observable<User> {
-  return this.http.put<User>('http://localhost:8080/api/v1/auth/updateUser', updatedUser);
+updateUser(formData: any) {
+  return this.http.put('http://localhost:8080/api/v1/auth/updateUser', formData)
 }
+
 updateUserWP(updatedUser: User): Observable<User> {
   return this.http.put<User>('http://localhost:8080/api/v1/auth/updateUserWP', updatedUser);
 }

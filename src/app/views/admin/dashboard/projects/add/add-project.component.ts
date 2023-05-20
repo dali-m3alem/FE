@@ -17,6 +17,8 @@ export class AddProjectComponent implements OnInit {
   addProjectForm!: FormGroup;
   isSaving =false;
   project :Project = new Project() ;
+  managers!: [] ;
+
 
   constructor(private activeModal: NgbActiveModal,
   private formBuilder: FormBuilder, private modal: NgbModal, private auth: AuthadminService,private asd:ProjectService,
@@ -33,11 +35,11 @@ export class AddProjectComponent implements OnInit {
       email: ['', Validators.required],
       descriptionP: ['', Validators.required],
       objectiveP: ['', Validators.required],
-      durationP: ['', Validators.required],
       deadlineP: ['', Validators.required],
       budget: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
 
     });
+    this.getManager();
   }
   confirmSaveProject()
   {
@@ -78,7 +80,6 @@ export class AddProjectComponent implements OnInit {
       this.project.email=this.addProjectForm.value.email;
       this.project.descriptionP=this.addProjectForm.value.descriptionP;
       this.project.objectiveP=this.addProjectForm.value.objectiveP;
-      this.project.durationP=this.addProjectForm.value.durationP;
       this.project.deadlineP=this.addProjectForm.value.deadlineP;
       this.project.budget=this.addProjectForm.value.budget;
       this.project.userId=userId;
@@ -122,5 +123,16 @@ console.log(userId)
   closeModal() {
     this.activeModal.close('Modal Closed');
   }
+  getManager(){
+    this.asd.Managers().subscribe(
+      (response:any) => {
+        console.log(response)
+        this.managers = response; // Mettre à jour la variable 'managers' avec la réponse du service
 
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 }

@@ -21,12 +21,11 @@ export class ProjectService {
     getAllProjectsByAdminId(adminId: number): Observable<Project[]> {
       return this.http.get<any>(`http://localhost:8080/api/v1/auth/projects?adminId=${adminId}`)
         .pipe(
-          map(response => response.map((project: { id:any,projectName: any; descriptionP: any; objectiveP: any; durationP: any; deadlineP: any; projectManagerEmail: any; status:any; budget:any;}) => ({
+          map(response => response.map((project: { id:any,projectName: any; descriptionP: any; objectiveP: any;  deadlineP: any; projectManagerEmail: any; status:any; budget:any;}) => ({
             id:project.id,
             projectName: project.projectName,
             descriptionP: project.descriptionP,
             objectiveP: project.objectiveP,
-            durationP: project.durationP,
             deadlineP: project.deadlineP,
             email: project.projectManagerEmail,
             status:project.status,
@@ -61,6 +60,9 @@ export class ProjectService {
     }
     projects():Observable<number>{
       return this.http.get<number>('http://localhost:8080/api/v1/auth/count')
+    }
+    Managers(){
+      return this.http.get('http://localhost:8080/api/v1/auth/managers')
     }
     budgets():Observable<number>{
       return this.http.get<number>('http://localhost:8080/api/v1/auth/total')

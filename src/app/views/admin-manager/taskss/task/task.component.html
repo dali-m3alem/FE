@@ -1,0 +1,90 @@
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title"  >List of tasks</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink=""  ><span >Home</span></a></li>
+            <li class="breadcrumb-item active"  > <span >Liste of tasks</span> </li>
+          </ul>
+        </div>
+        <div class="col-auto float-end ms-auto">
+          <a class="btn add-btn" (click)="add()"><i class="fa fa-plus"></i>
+            <span>Add task</span> </a>
+        </div>
+      </div>
+    </div>
+    <div class="search">
+      <div class="col-md-3">
+        <div class="input-group">
+          
+          <input type="text" class="form-control" [(ngModel)]="searchValue" placeholder="Search...">
+          <span class="input-group-text">
+            <i class="fa fa-search"></i>          
+            </span>
+        </div>
+      </div>
+      </div>
+    <div class="table-responsive">
+      <table class="table caption-top  table-hover">
+        <caption class="caption">List of tasks</caption>
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Task name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Deadline</th>
+            <th scope="col">Task to user</th>
+            <th scope="col">Status</th>
+     
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of dataArray | filter: searchValue">
+            
+            <td>{{ task.id }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td *ngIf="task.dueDate">{{ task.dueDate | customDateTime }}</td>
+            <td class="text-center" *ngIf="!task.dueDate">-</td>
+            
+            <td>{{ task?.user?.email }}</td>
+
+            <td>{{ task.status }}</td>
+
+           
+            <td>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-success btn-sm" (click)="editer(task)">
+                  <span class="btn-circle btn-circle-success">
+                    <i class="fa fa-pencil"></i>
+                  </span>
+                </button>
+                <button type="button" class="btn btn-outline-info btn-sm" (click)="details(task)">
+                  <span class="btn-circle btn-circle-info">
+                    <i class="fa fa-eye"></i>
+                  </span>
+                </button>
+                <button type="button" class="btn btn-outline-danger btn-sm" (click)="confirmDeleteProject(task.id)">
+                  <span class="btn-circle btn-circle-danger">
+                    <i class="fa fa-trash"></i>
+                  </span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+
+
+
+
+
+
+
+
+

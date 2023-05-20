@@ -25,12 +25,14 @@ import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CustomDatePipe } from 'src/assets/pipes/custom-date.pipe';
+import { CustomDateTimePipe } from 'src/assets/pipes/custom-date-time.pipe';
+import { FilterPipe } from 'src/assets/pipes/filter.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
-    
+    AppComponent,
     
  ],
   imports: [
@@ -56,7 +58,7 @@ import { NgModule } from '@angular/core';
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    MatDialogModule
+    MatDialogModule,
   ],
 
   providers: [],

@@ -1,0 +1,62 @@
+<div class="custom-modal modal-header">
+    <h5 class="modal-title">Team</h5>
+    <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  
+    <form (ngSubmit)="confirmEditTypeCourrier()" [formGroup]="editProjectForm">
+  
+      <div class="row">
+        <div class="col-lg-10">
+          <div class="form-group">
+            <label><span>Team name</span> <span class="text-danger">*</span></label>
+            <input readonly class="form-control" type="text"
+                   [class.invalid]="f['teamName'].invalid && f['teamName'].touched"
+                   formControlName="teamName">
+  
+            <div *ngIf="f['teamName'].invalid && f['teamName'].touched">
+              <small class="text-danger">* is required</small>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-lg-10">
+          <div class="form-group">
+            <label><span>Team description</span> <span class="text-danger">*</span></label>
+            <input class="form-control" type="text" readonly
+                   [class.invalid]="f['teamDesc'].invalid && f['teamDesc'].touched"
+                   formControlName="teamDesc">
+  
+            <div *ngIf="f['teamDesc'].invalid && f['teamDesc'].touched">
+              <small class="text-danger">* is required</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ... Autres champs de formulaire ... -->
+
+<div formArrayName="members">
+    <div *ngFor="let memberControl of membersFormArray.controls; let i = index" class="form-group">
+      <label for="memberUsername{{i}}">Member</label>
+      <input readonly type="text" [formControlName]="i" id="memberUsername{{i}}" class="form-control">
+    </div>
+  </div>
+  
+  
+      <!-- Répétez ces blocs pour les autres propriétés des membres -->
+      
+      
+  
+      
+  
+    </form>
+  
+  </div>
+  <div class="modal-footer">
+  
+    <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span>Cancel</span></button>
+  
+  </div>
+  

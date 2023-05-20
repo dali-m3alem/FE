@@ -4,17 +4,17 @@
 export const notifcations =[
     {
         icon:'far fa-cloud-download',
-        subject:'download complete',
+        date:'download complete',
         description:'loremffjeifzef'
 
     },  {
         icon:'far fa-cloud-upload',
-        subject:'upload complete',
+        date:'upload complete',
         description:'loremffjeifzef'
 
     }, {
         icon:'far fa-trash',
-        subject:'downloffad complete',
+        date:'downloffad complete',
         description:'loremffjeifzef'
 
     }

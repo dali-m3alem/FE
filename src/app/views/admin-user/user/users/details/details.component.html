@@ -1,0 +1,81 @@
+<div class="custom-modal modal-header">
+    <h5 class="modal-title" >Project</h5>
+      <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+    
+          <form class="row g-3" #userForm="ngForm"  (ngSubmit)="confirmEditTypeCourrier()">
+            <input type="hidden" name="id" [(ngModel)]="selectedUser.id" required>
+            <div class="col-md-5">
+              <label class="form-label">firstname <span class="text-danger">*</span></label>
+              <input readonly type="text" class="form-control" name="firstname" [(ngModel)]="selectedUser.firstname" required >
+             
+            </div>
+           
+            <div class="col-md-5">
+              <label class="form-label">Last Name <span class="text-danger">*</span></label>
+              <input readonly type="text" class="form-control" name="userLastName" [(ngModel)]="selectedUser.userLastName" required>
+              
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email <span class="text-danger">*</span></label>
+              <input readonly type="email" class="form-control" name="email" [(ngModel)]="selectedUser.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+             
+             
+      
+            </div> 
+            <div  class="col-md-5">
+              <label class="form-label">titre <span class="text-danger">*</span></label>
+              <input readonly type="text" class="form-control" name="titre" [(ngModel)]="selectedUser.titre"required>
+              <div class="alert alert-danger" role="alert" *ngIf=" userForm.controls['titre']?.errors?.['required'] ">
+                Identifier is required
+             </div>
+            </div>
+            <div  class="col-md-5">
+              <label class="form-label">phoneNumber<span class="text-danger">*</span></label>
+              <input readonly class="form-control" name="phoneNumber" [(ngModel)]="selectedUser.phoneNumber" required
+                [pattern]="'^[0-9]{8}$'">
+             
+              
+            
+            </div>
+              <div class="col-md-5">
+                <label class="form-label">Roles</label>
+                <div *ngIf="selectedUser.roles.length > 0">
+                    <div *ngFor="let role of selectedUser.roles; let i=index">
+                      <div class="bouton" >
+                           <input readonly class="form-control" [(ngModel)]="role.roleName" [name]="'roleName' + (i+1)">
+                          
+                    
+                        <input readonly type="hidden" [(ngModel)]="role.id" [name]="'roleId' + (i+1)">
+                       
+                    </div>
+                    </div>
+
+                </div>
+
+            </div>
+            
+            
+      
+            
+<!-- Existing code -->
+
+  
+
+
+<!-- Existing code -->
+
+
+    
+      </form>
+    
+    </div>
+    <div class="modal-footer">
+    
+      <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
+    
+    </div>
+    

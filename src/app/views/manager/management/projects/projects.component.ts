@@ -4,6 +4,9 @@ import { AuthadminService } from 'src/app/views/services/authadmin.service';
 import { ProjectService } from 'src/app/views/services/project.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ActivitiesService } from 'src/app/views/services/activities.service';
+import { ManagementRoutingModule } from '../management-routing.module';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-projects',
@@ -13,29 +16,31 @@ import { ActivitiesService } from 'src/app/views/services/activities.service';
 export class ProjectsComponent {
   dataArray!: Project[];
   panelOpenState = false;
+  searchValue: string = '';
+
   activitiesMap: {[projectId: number]: Activity[]} = {}; // tableau associatif pour stocker les activités de chaque projet
 
-  constructor(private projectService: ProjectService, private auth: AuthadminService, private activitySer:ActivitiesService) {
+  constructor(private projectService: ProjectService, private auth: AuthadminService, private activitySer:ActivitiesService , private router:Router) {
    
    }
 
    ngOnInit(): void {
+    Swal.fire({
+      title: "Chargement",
+      html: "Veuillez patientez, chargements en cours ....",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading()
+      }
+    });
     const adminId = this.auth.getUser();
     this.projectService.getAllProjectsByManagerId(adminId).subscribe(
       (response: Project[]) => {
         this.dataArray = response;
         console.log(this.dataArray);
-        this.dataArray.forEach(project => {
-          this.activitySer.getActivityByProjectId(project.id).subscribe(
-            (response: Activity[]) => {
-              this.activitiesMap[project.id] = response;
-               // stocker les activités dans le tableau associatif
-              console.log(response)
-            },
-            (error: any) => {
-              console.log(error);
-            });
-        });
+        Swal.close();
+
       },
       (error: any) => {
         console.log(error);
@@ -45,7 +50,8 @@ export class ProjectsComponent {
   togglePanel(project: Project) {
     project.expanded = !project.expanded;
   }
-
+  
+ 
 }
 
 

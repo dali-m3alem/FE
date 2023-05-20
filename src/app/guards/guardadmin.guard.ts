@@ -12,14 +12,14 @@ export class GuardadminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return new Promise((resolve,reject)=>{
-      if(this.as.LoggedIn()==true){
+      if(this.as.LoggedIn()==true && !this.as.LoggedIsAdminManager()&& !this.as.LoggedIsAdminUser()){
       resolve(true)
     }
     else{
-      this.router.navigate(['/login'],{queryParams:{returnUrl:state.url}})
-      localStorage.removeItem('token')
+      this.router.navigate(['/login'])
       resolve(false)
-    }})
+    }});
+
     
   }
   

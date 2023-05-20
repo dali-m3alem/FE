@@ -9,6 +9,7 @@ import { CalendrierComponent } from './calendrier/calendrier.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { DashboardModule } from '../../admin/dashboard/dashboard.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { MatInputModule } from '@angular/material/input';
     DragDropModule,
     FormsModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
+    DashboardModule
   ]
 })
 export class HomeModule { }

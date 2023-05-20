@@ -20,7 +20,7 @@
 
           </ng-container>
           {{ column.name }}
-          <hr [style.background]="column.name === 'Todo' ? 'red' : column.name === 'In progress' ? 'green' : column.name === 'review' ? 'blue' : column.name === 'done' ? 'purple' : 'black'">
+          <hr [style.background]="column.name === 'Todo' ? '#0F1F60' : column.name === 'In progress' ? '#FFC700' : column.name === 'review' ? ' #E08B0A' : column.name === 'done' ? '#1BE00A' : 'black'">
 
         </div>
 
@@ -32,10 +32,13 @@
          <div class="title"> {{ item.title }}</div>
          <div class="paragraphe">{{ item.description }}</div> 
 
-         
+     <div class="date">{{item.dueDate | customDateTime}}</div>
           <div class="Details">
-          <i class="fa fa-ellipsis-v" aria-hidden="true"  (click)="get(item)"></i>
-        </div>
+            <button type="button" class="btn btn-outline-info btn-sm" (click)="details(item)">
+              <span class="btn-circle btn-circle-info">
+                <i class="fa fa-eye"></i>
+              </span>
+            </button>        </div>
         </div>
         
         </div>
@@ -46,27 +49,6 @@
   </div>
 
 </div>
-<div class="overlay" *ngIf="showPopup"></div>
-         <div class="popup"  *ngIf="showPopup"  >
-          <div>
-    <h2>Task Information:</h2>
-    <p>Title: {{ taskStatus.title }}</p>
-    <p>Status: {{ taskStatus.status }}</p>
-    <p>Description: {{ taskStatus.description }}</p>
-    <p>deadline: {{ taskStatus.dueDate }}</p>
-    <h2>Activity Information:</h2>
-    <p>Name: {{ taskStatus.activity.activityName }}</p>
-    <p>Description: {{ taskStatus.activity.descriptionA }}</p>
-    <p>Objective: {{ taskStatus.activity.objectiveA }}</p>
-    <p>Duration: {{ taskStatus.activity.durationA }}</p>
-    <p>Deadline: {{ taskStatus.activity.deadlineA }}</p>
-    <h2>Manager Information:</h2>
-    <p>Deadline: {{ taskStatus.manager.email }}</p>
-
-  </div>
-           
-           <button class="close" (click)="togglePopup()"> <i class="fas fa-times"></i></button>
-         </div>
 
 
 

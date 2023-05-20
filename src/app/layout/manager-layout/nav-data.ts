@@ -1,6 +1,13 @@
-export const navbarData=[
+export interface NavbarItem {
+    routeLink: string;
+    icon: string;
+    label: string;
+    notifications?: any; // Ajoutez la propriété notifications en option
+  }
+  
+  export const navbarData=[
     {
-        routeLink:'dashboard',
+    routeLink:'dashboard',
         icon:'fal fa-home',
         label :'dashboard'
 
@@ -14,39 +21,24 @@ export const navbarData=[
     {
         routeLink:'tasks',
         icon:'fa fa-tasks',
-        label :'tasks'
+        label :'Tasks of projects'
 
     },
 {        routeLink:'project',
         icon:'fa fa-window-restore',
         label :'Porjects'
 
-    },
-    {        routeLink:'AddActivity',
-            icon:'fa fa-window-restore',
-            label :'Add Activity'
-    
-    },
-    {        routeLink:'AddTeam',
-            icon:'fa fa-window-restore',
-            label :'Add Team'
-    
-    },
-    {        routeLink:'AddTask',
-    icon:'fa fa-window-restore',
-    label :'Add Task'
-
-},
-    {
-        routeLink:'Calender',
-        icon:'bi bi-calendar',
-        label :'Calender'
-
     }
     ,{
-        routeLink:'Chats',
+        routeLink:'team',
         icon:'fa fa-comments',
-        label :'Chats'
+        label :'team'
+        
+    },
+    {
+        routeLink:'TaskUser',
+        icon:'fa fa-tasks',
+        label :'Tasks of Manager'
 
     }
     

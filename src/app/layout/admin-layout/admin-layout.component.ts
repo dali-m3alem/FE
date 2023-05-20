@@ -33,13 +33,19 @@ export class AdminLayoutComponent {
    getImageUrl() {
     return this.imageSrc;
   }
+  getUserNotifications() {
+    this.ser.getUserNotifications().subscribe(
+      (response:any) => {
+this.notifcations=response
+          },
+      (error: any) => {
+        console.log(error);
+      })
+  }
  userItems=[
     {icon:'far fa-user',
-     label:'profil'},
-      {icon:'far fa-cog',
-     label:'settings'},
-     {icon:'far fa-unlock-alt',
-     label:'lock screen'},
+     label:'profil', action: () => {
+      this.profil();}},
      {icon:'far fa-power-off',
      label:'logout ', action: () => {
         this.logout();}
@@ -50,6 +56,9 @@ logout(): void {
   localStorage.removeItem('token');
   localStorage.removeItem('roles')
   this.route.navigate(['/login'])
+}
+profil(){
+  this.route.navigate(['/profil'])
 }
    notifcations=notifcations;
   
@@ -63,6 +72,7 @@ logout(): void {
     } }
 
   ngOnInit(): void {
+    this.getUserNotifications()
 this.screenWidth=window.innerWidth; 
 this.checkcanShowSearchAsOverlay(window.innerWidth) }
   @Output() onToggleSideNav:EventEmitter<SideNavToggle>=new EventEmitter();

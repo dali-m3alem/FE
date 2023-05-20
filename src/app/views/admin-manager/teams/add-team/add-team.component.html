@@ -1,0 +1,64 @@
+
+  <div class="custom-modal modal-header">
+    <h5 class="modal-title">Team</h5>
+    <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  
+  <form class="row g-3" [formGroup]="teamForm" (ngSubmit)="confirmSaveProject()">
+    <div class="col-10">
+      <label for="teamName" class="form-label">Team Name<span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="teamName" placeholder="Enter the team name"[class.invalid]="f['teamName'].invalid && f['teamName'].touched"  formControlName="teamName">
+      <div *ngIf="f['teamName'].invalid && f['teamName'].touched">
+        <small
+          *ngIf="f['teamName'].invalid && f['teamName'].touched"
+          class="text-danger" > * is required</small>
+      </div>
+    </div>
+    <div class="col-10">
+      <label for="teamDesc" class="form-label">Team Description<span class="text-danger">*</span></label>
+      <textarea class="form-control" id="teamDesc" rows="3" placeholder="Enter the team description" formControlName="teamDesc"[class.invalid]="f['teamDesc'].invalid && f['teamDesc'].touched"></textarea>
+      <div *ngIf="f['teamDesc'].invalid && f['teamDesc'].touched">
+        <small
+          *ngIf="f['teamDesc'].invalid && f['teamDesc'].touched"
+          class="text-danger" > * is required</small>
+      </div>
+    </div>
+  
+    <div class="form-group" *ngIf="teamForm?.get('emails')">
+      <label for="emails">Emails<span class="text-danger">*</span></label>
+      <div formArrayName="emails">
+        <div *ngFor="let email of teamForm.get('emails')?.controls; let i=index" class="form-group">
+          <select class="form-control" [formControlName]="i" placeholder="Select email address">
+            <option *ngFor="let manager of managers" [value]="manager">{{ manager }}</option>
+          </select>
+          <button type="button" class="btn btn-primary" (click)="removeEmail(i)">Remove Email</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="addEmail()">Add Email</button>
+    </div>
+    
+    
+
+    
+    
+  
+  </form>
+</div>
+<div class="modal-footer">
+  <div class="row">
+    <div class="col-6 ">
+      <div >
+        <button class="btn btn-primary submit-btn"  [disabled]="isSaving"  (click)="confirmSaveProject()" ><span > Sauvgarder </span></button>
+      </div>
+    </div>
+    <div class="col-6 ">
+      <div >
+        <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
+      </div>
+    </div>
+  </div>
+</div>
+

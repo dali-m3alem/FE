@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
-import { Task } from '../manager/management/tasks/tasks.component';
+import { Task } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +12,12 @@ export class TasksService {
   helper=new JwtHelperService()
     constructor(private http:HttpClient) {
     }
-
+    
     getTasksByUserId(userId: number):Observable<Task[]> {
       return this.http.get<Task[]> (`http://localhost:8080/api/v1/auth/getTasks?userId=${userId}`);
+    }
+    getTasksnotDone() {
+      return this.http.get(`http://localhost:8080/api/v1/auth/countTask`);
     }
     getTasksByManagerId(managerId: number):Observable<Task[]> {
       return this.http.get<Task[]> (`http://localhost:8080/api/v1/auth/getTasksManager?managerId=${managerId}`);
@@ -24,6 +27,27 @@ export class TasksService {
       return this.http.put(url, task);
     }
     createTasks(formData:any){
-      return this.http.post('http://localhost:8080/api/v1/auth/create',formData)
+      const token = localStorage.getItem('token');
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.post('http://localhost:8080/api/v1/auth/create',formData, {headers})
     }
+    getTasksByActivityAndProjectAndManager(id: number,idProject:number): Observable<Task[]> {
+      const token = localStorage.getItem('token');
+    
+    // Create the headers and include the Authorization header with the token
+       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.get<Task[]>(`http://localhost:8080/api/v1/auth/getTasksByActivityAndProjectAndManager/${id}/${idProject}`, {headers});
+    }
+    deleteTask(task: number): Observable<void> {
+      const url = `http://localhost:8080/api/v1/auth/delete/${task}`;
+      return this.http.delete<void>(url);
+    }
+    managersUsers(){
+      return this.http.get('http://localhost:8080/api/v1/auth/managersUsers')
+    }
+    updateTask1(id: number, task: Task){
+      const url = `http://localhost:8080/api/v1/auth/update/${id}`;
+      return this.http.put(url, task);
+    }
+    
 }

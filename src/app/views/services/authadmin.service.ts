@@ -61,8 +61,6 @@ export class AuthadminService {
     console.log(this.LoggedIn())
 
    localStorage.setItem('token',token)
-   const rolesJSON = JSON.stringify(decodeToken.roles);
-   localStorage.setItem('roles',rolesJSON);
   }
   saveToken(token:any){
 
@@ -82,101 +80,71 @@ export class AuthadminService {
     return decodeToken.username
 
   }
-  LoggedIsManager(){
-    let token:any=localStorage.getItem('token')
-   if(!token){
-     return false
+  LoggedIsAdminUser() {
+    let token: any = localStorage.getItem('token');
+    if (!token) {
+      return false;
     }
     let decodeToken = this.helper.decodeToken(token);
-    let isAdmin: boolean = false;
     if (decodeToken.roles) {
-      for (let i = 0; i < decodeToken.roles.length; i++) {
-        const role = decodeToken.roles[i];
-        if (role.authority === 'manager') {
-          isAdmin = true;
-          break;
-        }
-        if (role.authority === 'admin') { // ajout de cette condition
-          return false;
-        }
-      }
+      let hasAdminRole = decodeToken.roles.some((role: { authority: string }) => role.authority === 'admin');
+      let hasUserRole = decodeToken.roles.some((role: { authority: string }) => role.authority === 'user');
+      return hasAdminRole && hasUserRole && !this.helper.isTokenExpired(token);
     }
-
-if(!isAdmin){
- return false;
-}
-    if(this.helper.isTokenExpired(token)){
-      return false
-    }
-
-    return true
-}
-
-
- LoggedIn(){
-     let token:any=localStorage.getItem('token')
-    if(!token){
-      return false
-     }
-     let decodeToken = this.helper.decodeToken(token);
-     let isAdmin: boolean = false;
-     if (decodeToken.roles) {
-       for (let i = 0; i < decodeToken.roles.length; i++) {
-         const role = decodeToken.roles[i];
-         if (role.authority === 'admin') {
-           isAdmin = true;
-           break;
-         }
-       }
-     }
-
- if(!isAdmin){
-  return false;
-}
-     if(this.helper.isTokenExpired(token)){
-       return false
-     }
-
-     return true
-}
-
-
-LoggedIsUser(){
-  let token:any=localStorage.getItem('token')
- if(!token){
-   return false
+    return false;
   }
-  let decodeToken = this.helper.decodeToken(token);
-  let isUser: boolean = false;
-  if (decodeToken.roles) {
-    for (let i = 0; i < decodeToken.roles.length; i++) {
-      const role = decodeToken.roles[i];
-      if (role.authority === 'user') {
-        isUser = true;
-        break;
-      }
-      if (role.authority === 'admin' || role.authority === 'manager') { // ajout de cette condition
-        return false;
-      }
-    
-    }
-  }
-
   
-
-if(!isUser){
-return false;
-}
-  if(this.helper.isTokenExpired(token)){
-    return false
+  LoggedIsAdminManager() {
+    let token: any = localStorage.getItem('token');
+    if (!token) {
+      return false;
+    }
+    let decodeToken = this.helper.decodeToken(token);
+    if (decodeToken.roles) {
+      let hasAdminRole = decodeToken.roles.some((role: { authority: string }) => role.authority === 'admin');
+      let hasManagerRole = decodeToken.roles.some((role: { authority: string }) => role.authority === 'manager');
+      return hasAdminRole && hasManagerRole && !this.helper.isTokenExpired(token);
+    }
+    return false;
   }
-
-  return true
-}
-
-
-
-
-
-
-}
+  
+  LoggedIn() {
+    let token: any = localStorage.getItem('token');
+    if (!token) {
+      return false;
+    }
+    let decodeToken = this.helper.decodeToken(token);
+    if (decodeToken.roles) {
+      let hasAdminRole = decodeToken.roles.some((role: { authority: string }) => role.authority === 'admin');
+      return hasAdminRole && !this.helper.isTokenExpired(token);
+    }
+    return false;
+  }
+  
+  LoggedIsManager() {
+    let token: any = localStorage.getItem('token');
+    if (!token) {
+      return false;
+    }
+    let decodeToken = this.helper.decodeToken(token);
+    if (decodeToken.roles) {
+      let hasManagerRole = decodeToken.roles.some((role: { authority: string }) => role.authority === 'manager');
+      let hasUserRole = decodeToken.roles.some((role: { authority: string }) => role.authority === 'user');
+      return (hasManagerRole || (hasUserRole && hasManagerRole)) && !this.helper.isTokenExpired(token);
+    }
+    return false;
+  }
+  
+  LoggedIsUser() {
+    let token: any = localStorage.getItem('token');
+    if (!token) {
+      return false;
+    }
+    let decodeToken = this.helper.decodeToken(token);
+    if (decodeToken.roles) {
+      let hasUserRole = decodeToken.roles.some((role: { authority: string }) => role.authority === 'user');
+      return hasUserRole && !this.helper.isTokenExpired(token);
+    }
+    return false;
+  }
+}  

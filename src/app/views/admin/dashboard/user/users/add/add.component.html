@@ -1,0 +1,180 @@
+<div class="custom-modal modal-header">
+    <h5 class="modal-title" >Add user</h5>
+      <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="confirmSaveProject()" [formGroup]="formLogin">
+    
+    
+    
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="form-group">
+              <label > <span >first name</span> <span class="text-danger">*</span></label>
+                <input class="form-control " type="text"
+                       [class.invalid]="f['firstname'].invalid && f['firstname'].touched"
+                       formControlName="firstname"
+                     >
+    
+                <div *ngIf="f['firstname'].invalid && f['firstname'].touched">
+                  <small
+                    *ngIf="f['firstname'].invalid && f['firstname'].touched"
+                    class="text-danger" > * is required</small>
+                </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="form-group">
+              <label > <span >password</span> <span class="text-danger">*</span></label>
+              <input class="form-control " type="password"
+                     [class.invalid]="f['password'].invalid &&  f['password'].touched"
+                     formControlName="password"
+                     >
+    
+              <div *ngIf=" f['password'].invalid &&  f['password'].touched">
+                <small
+                  *ngIf=" f['password'].invalid &&  f['password'].touched"
+                  class="text-danger" > * is required</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-5">
+            <div class="form-group">
+              <label > <span >confirmPassword</span> <span class="text-danger">*</span></label>
+              <input class="form-control " type="password"
+                     [class.invalid]="f['confirmPassword'].invalid &&  f['confirmPassword'].touched"
+                     formControlName="confirmPassword"
+                     >
+                      <div *ngIf="formLogin.controls['confirmPassword'].errors?.['confirmedValidator'] ">
+                        <small
+                        *ngIf="formLogin.controls['confirmPassword'].errors?.['confirmedValidator'] "
+                          class="text-danger" > * Passwords do not match</small>
+                      </div>
+              <div *ngIf=" f['confirmPassword'].invalid &&  f['confirmPassword'].touched">
+                <small
+                  *ngIf=" f['confirmPassword'].invalid &&  f['confirmPassword'].touched"
+                  class="text-danger" > * is required</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="form-group">
+              <label > <span >userLastName</span> <span class="text-danger">*</span></label>
+              <input class="form-control " type="text"
+                     [class.invalid]="f['userLastName'].invalid &&  f['userLastName'].touched"
+                     formControlName="userLastName"
+                     >
+    
+              <div *ngIf=" f['userLastName'].invalid &&  f['userLastName'].touched">
+                <small
+                  *ngIf=" f['userLastName'].invalid &&  f['userLastName'].touched"
+                  class="text-danger" > * is required</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="form-group">
+              <label > <span >phoneNumber</span> <span class="text-danger">*</span></label>
+              <input class="form-control " type="text"
+                     [class.invalid]="f['phoneNumber'].invalid &&  f['phoneNumber'].touched"
+                     formControlName="phoneNumber" [pattern]="'^[0-9]{8}$'"
+                     >
+    
+              <div *ngIf="formLogin.controls['phoneNumber'].errors?.['pattern'] ">
+                <small
+                *ngIf="formLogin.controls['phoneNumber'].errors?.['pattern'] "
+                  class="text-danger" > *  The phone number must be 8 digits long</small>
+              </div>
+              <div *ngIf=" f['phoneNumber'].invalid &&  f['phoneNumber'].touched">
+                <small
+                  *ngIf=" f['phoneNumber'].invalid &&  f['phoneNumber'].touched"
+                  class="text-danger" > * is required</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="form-group">
+              <label > <span >email</span> <span class="text-danger">*</span></label>
+              <input class="form-control " type="email"
+                     [class.invalid]="f['email'].invalid &&  f['email'].touched"
+                     formControlName="email"
+                     >
+                     <div *ngIf="formLogin.controls['email']?.errors?.['pattern']">
+                      <small
+                      *ngIf="formLogin.controls['email']?.errors?.['pattern']"
+                                        class="text-danger"> * Invalid email format</small>
+                    </div>
+              <div *ngIf=" f['email'].invalid &&  f['email'].touched">
+                <small
+                  *ngIf=" f['email'].invalid &&  f['email'].touched"
+                  class="text-danger" > * is required</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="form-group">
+              <label > <span >roleName</span> <span class="text-danger">*</span></label>
+              <select id="inputRole" class="form-select" formControlName="roleName">
+                <option value="manager">Manager</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+              </select>
+    
+              <div *ngIf=" f['roleName'].invalid &&  f['roleName'].touched">
+                <small
+                  *ngIf=" f['roleName'].invalid &&  f['roleName'].touched"
+                  class="text-danger" > * is required</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="form-group">
+              <label > <span >titre</span> <span class="text-danger">*</span></label>
+              <input class="form-control " type="text"
+                     [class.invalid]="f['titre'].invalid &&  f['titre'].touched"
+                     formControlName="titre"
+                     >
+    
+              <div *ngIf=" f['titre'].invalid &&  f['titre'].touched">
+                <small
+                  *ngIf=" f['titre'].invalid &&  f['titre'].touched"
+                  class="text-danger" > * is required</small>
+              </div>
+            </div>
+          </div>
+        </div>        
+    
+       
+        <div class="form-group">
+          <label for="profilePicture">Profile Picture</label>
+          <input
+            type="file"
+            id="profilePicture"
+            name="profilePicture"
+            class="form-control"
+            (change)="onFileSelected($event)"
+          />
+        </div>
+        
+
+      </form>
+    
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+        <div class="col-6 ">
+          <div >
+            <button class="btn btn-primary submit-btn"  [disabled]="isSaving"  (click)="confirmSaveProject()" ><span > Sauvgarder </span></button>
+          </div>
+        </div>
+        <div class="col-6 ">
+          <div >
+            <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    

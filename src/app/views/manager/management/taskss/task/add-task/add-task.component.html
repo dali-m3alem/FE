@@ -1,0 +1,80 @@
+
+<div class="custom-modal modal-header">
+  <h5 class="modal-title">Add task</h5>
+  <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+ 
+  
+  <form class="row g-3" [formGroup]="taskForm" (ngSubmit)="confirmSaveProject()">
+    <div class="col-7">
+      <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="title"[class.invalid]="f['title'].invalid && f['title'].touched" placeholder="Enter the activity Name" formControlName="title">
+      
+     
+      <div *ngIf="f['title'].invalid && f['title'].touched">
+        <small
+          *ngIf="f['title'].invalid && f['title'].touched"
+          class="text-danger" > * is required</small>
+      </div>
+    </div>
+   
+  
+    <div class="col-5">
+      <label for="descriptionA" class="form-label">Task to user<span class="text-danger">*</span></label>
+      <select class="form-control" id="" rows="3" placeholder="Enter the activity objective" formControlName="email" [class.invalid]="f['email'].invalid && f['email'].touched">
+        <option *ngFor="let manager of managers" [value]="manager">{{ manager }}</option>
+      </select>
+      <div *ngIf="f['email'].invalid && f['email'].touched">
+        <small
+          *ngIf="f['email'].invalid && f['email'].touched"
+          class="text-danger" > * is required</small>
+      </div>
+    </div>  
+    <div class="col-12">
+      <label for="description" class="form-label">Description<span class="text-danger">*</span></label>
+      <textarea class="form-control" id="description" rows="3" placeholder="Enter the activity description" formControlName="description" [class.invalid]="f['description'].invalid && f['description'].touched"></textarea>
+      <div *ngIf="f['description'].invalid && f['description'].touched">
+        <small
+          *ngIf="f['description'].invalid && f['description'].touched"
+          class="text-danger" > * is required</small>
+      </div>
+    </div>
+   
+    <div class="col-md-4">
+      <label for="inputActivityDeadline" class="form-label">Deadline<span class="text-danger">*</span></label>
+      <input type="date" class="form-control" id="inputActivityDeadline" placeholder="Enter the activity deadline" formControlName="dueDate" [class.invalid]="f['dueDate'].invalid && f['dueDate'].touched">
+      <div *ngIf="f['dueDate'].invalid && f['dueDate'].touched">
+        <small
+          *ngIf="f['dueDate'].invalid && f['dueDate'].touched"
+          class="text-danger" > * is required</small>
+      </div>
+    </div>
+  
+    
+  
+   
+
+    
+  
+  
+  </form>
+    
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+        <div class="col-6 ">
+          <div >
+            <button class="btn btn-primary submit-btn"  [disabled]="isSaving"  (click)="confirmSaveProject()" ><span > Save </span></button>
+          </div>
+        </div>
+        <div class="col-6 ">
+          <div >
+            <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    

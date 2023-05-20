@@ -17,8 +17,7 @@ export class GuardmanagerGuard implements CanActivate {
         resolve(true)
       }
       else{
-        this.router.navigate(['/login'],{queryParams:{returnUrl:state.url}})
-        localStorage.removeItem('token')
+        this.router.navigate(['/login'])
         resolve(false)
       }})
   }
