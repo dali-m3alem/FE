@@ -111,7 +111,7 @@ managers!: [] ;
     })
   }
   getManager(){
-    this.serv.managersUsers().subscribe(
+    this.serv.getTeamMembersByActivityId(this.idAc).subscribe(
       (response:any) => {
         console.log(response)
         this.managers = response; // Mettre à jour la variable 'managers' avec la réponse du service

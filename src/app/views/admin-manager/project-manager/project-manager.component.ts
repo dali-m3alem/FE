@@ -15,7 +15,7 @@ export class ProjectManagerComponent {
   dataArray!: Project[];
   panelOpenState = false;
   searchValue: string = '';
-
+ 
   activitiesMap: {[projectId: number]: Activity[]} = {}; // tableau associatif pour stocker les activités de chaque projet
 
   constructor(private projectService: ProjectService, private auth: AuthadminService, private activitySer:ActivitiesService , private router:Router) {
@@ -32,8 +32,7 @@ export class ProjectManagerComponent {
         Swal.showLoading()
       }
     });
-    const adminId = this.auth.getUser();
-    this.projectService.getAllProjectsByManagerId(adminId).subscribe(
+    this.projectService.getAllProjectsByManagerId().subscribe(
       (response: Project[]) => {
         this.dataArray = response;
         console.log(this.dataArray);

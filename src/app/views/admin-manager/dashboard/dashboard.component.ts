@@ -4,7 +4,8 @@ import { Project } from 'src/app/views/model/user';
 import { AuthadminService } from 'src/app/views/services/authadmin.service';
 import { DataService } from 'src/app/views/services/data.service';
 import { ProjectService } from 'src/app/views/services/project.service';
-
+import { AddProjectComponent } from '../projects/add/add-project.component';
+import { AddComponent } from '../user/users/add/add.component';
 import { TasksService } from 'src/app/views/services/tasks.service';
 
 @Component({
@@ -14,7 +15,7 @@ import { TasksService } from 'src/app/views/services/tasks.service';
 })
 export class DashboardComponent implements OnInit {
 
-  dataArray!: Project[];
+  dataArray!: any;
   budgetscount: number = 0;
   projectCount: number = 0;
   userCount:number=0;
@@ -82,8 +83,7 @@ export class DashboardComponent implements OnInit {
     
   } 
   loadProject(){
-    const adminId = this.auth.getUser();
-    this.projectService.getAllProjectsByAdminId(adminId).subscribe(
+    this.projectService.getAllProjectsByAdminId().subscribe(
       (response) => {
         this.dataArray = response;
         console.log(this.dataArray);
@@ -94,8 +94,44 @@ export class DashboardComponent implements OnInit {
     );
   }
   
+  addProject(){
+  
+      const options2: NgbModalOptions = {
+        size: 'xl',
+        centered: true,
+        scrollable: true,
+        windowClass:'modal-holder'
+  
+      };
+      const modalRef = this.modalService.open(AddProjectComponent, options2);
+  
+      modalRef.result.then((result) => {
+        console.log(result);
+        this.loadProject();
+      }).catch((error) => {
+        console.log(error);
+      });
+   
+  }
+  addUser(){
+  
+    const options2: NgbModalOptions = {
+      size: 'xl',
+      centered: true,
+      scrollable: true,
+      windowClass:'modal-holder'
 
+    };
+    const modalRef = this.modalService.open(AddComponent, options2);
+
+    modalRef.result.then((result) => {
+      console.log(result);
+      this.loadProject();
+    }).catch((error) => {
+      console.log(error);
+    });
  
+}
 
 
 
@@ -125,8 +161,7 @@ export class DashboardComponent implements OnInit {
 
 
   loadData() {
-    const user = this.auth.getUser();
-    this.asd.getUserData(user).subscribe((data: any) => {
+    this.asd.getUserData().subscribe((data: any) => {
       this.userInfo = data;
       this.imageSrc = 'data:image/jpeg;base64,' + this.userInfo.profilePicture;
 

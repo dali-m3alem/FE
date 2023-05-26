@@ -1,5 +1,5 @@
 <div class="custom-modal modal-header">
- <h5 class="modal-title">Task informations</h5>
+ <h1 class="modal-title" class="fw-bold mb-1">Task informations</h1>
     <button type="button" class="close" (click)="closeModal()" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -8,20 +8,50 @@
   <div class="modal-body">
     <div class="division">
       <div class="part">
-        <h1>Task Information:</h1>
-        <p>Title: {{ taskStatus?.title }}</p>
-        <p>Status: {{ taskStatus?.status }}</p>
-        <p>Description: {{ taskStatus?.description }}</p>
-        <p>Deadline: {{ taskStatus?.dueDate | customDateTime }}</p>
+        <h2 class="fw-bold mb-1">Task Information:</h2>
+        <div class="details">
+          <label class="fw-bold mb-1">Title:</label>
+          <p class="info-text">{{ taskStatus?.title }}</p>
+        </div>
+        <div class="details">
+          <label class="fw-bold mb-1">Status:</label>
+          <p class="info-text">{{ taskStatus?.status }}</p>
+        </div>
+        <div class="details">
+          <label class="fw-bold mb-1">Deadline:</label>
+          <p class="info-text">{{ taskStatus?.dueDate | customDateTime }}</p>
+        </div>
+        <div class="details">
+          <label class="fw-bold mb-1">Description:</label>
+          <p class="info-text">{{ taskStatus?.description }}</p>
+        </div>
+
+       
       </div>
       <div class="part">
-        <h1>Activity Information:</h1>
-        <p>Name: {{ taskStatus?.activity?.activityName }}</p>
-        <p>Description: {{ taskStatus?.activity?.descriptionA }}</p>
-        <p>Objective: {{ taskStatus?.activity?.objectiveA }}</p>
-        <p>Deadline: {{ taskStatus?.activity?.deadlineA | customDateTime }}</p>
-        <h1>Manager Information:</h1>
-        <p>Manager email: {{ taskStatus?.manager?.email }}</p>
+        <h2 class="fw-bold mb-1">Activity Information:</h2>
+        <div class="details">
+          <label class="fw-bold mb-1">Activity name:</label>
+          <p class="info-text">{{ taskStatus?.activity?.activityName }}</p>
+        </div>   
+        <div class="details">
+          <label class="fw-bold mb-1">Description:</label>
+          <p class="info-text">{{ taskStatus?.activity?.descriptionA }}</p>
+        </div>
+        <div class="details">
+          <label class="fw-bold mb-1">Objective:</label>
+          <p class="info-text">{{ taskStatus?.activity?.objectiveA }}</p>
+        </div>
+        <div class="details">
+          <label class="fw-bold mb-1">Deadline:</label>
+          <p class="info-text">{{ taskStatus?.activity?.deadlineA | customDateTime}}</p>
+        </div>
+        <h2 class="fw-bold mb-1">Manager Information:</h2>
+        
+        <div class="details">
+          <label class="fw-bold mb-1">Manager email:</label>
+          <p class="info-text">{{ taskStatus?.manager?.email}}</p>
+        </div>
       </div>
     </div>
   </div>

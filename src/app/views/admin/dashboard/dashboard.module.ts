@@ -32,10 +32,11 @@ import { AddComponent } from './user/users/add/add.component';
 import { DetailsComponent } from './user/users/details/details.component';
 import { EditComponent } from './user/users/edit/edit.component';
 import { FilterPipe } from 'src/assets/pipes/filter.pipe';
+import { EmployesComponent } from './user/users/employes/employes.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, CustomDateTimePipe,CustomDatePipe, ProfilComponent, CalendrierComponent, ProjectsComponent, AddProjectComponent, DetailsProjectComponent, EditProjectComponent, UsersComponent, AddComponent, DetailsComponent, FilterPipe,EditComponent],
+  declarations: [DashboardComponent, CustomDateTimePipe,CustomDatePipe, ProfilComponent, CalendrierComponent, ProjectsComponent, AddProjectComponent, DetailsProjectComponent, EditProjectComponent, UsersComponent, AddComponent, DetailsComponent, FilterPipe,EditComponent, EmployesComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

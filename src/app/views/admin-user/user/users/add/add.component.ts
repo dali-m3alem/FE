@@ -97,10 +97,10 @@ export class AddComponent {
       formData.append('roleName', this.formLogin.get('roleName')!.value);
       formData.append('titre', this.formLogin.get('titre')!.value);
       formData.append('confirmPassword', this.formLogin.get('confirmPassword')!.value);
+      console.log(this.formLogin)
       if (this.selectedFile) {
         formData.append('profilePicture', this.selectedFile);
       }
-      console.log(this.formLogin)
 
       this.asd.adduser(formData).subscribe((data=>{
           Swal.close();

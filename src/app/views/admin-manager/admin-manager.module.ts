@@ -39,7 +39,7 @@ import { DetailsTeamComponent } from './teams/details-team/details-team.componen
 import { TeamsComponent } from './teams/teams.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskUserComponent } from './task-user/task-user.component';
-import { ChatComponent } from './chat/chat.component';
+import { EmployesComponent } from './user/users/employes/employes.component';
 
 
 @NgModule({
@@ -56,7 +56,7 @@ import { ChatComponent } from './chat/chat.component';
     DetailsActivityComponent,        TeamComponent, ProjectManagerComponent,
     AddTaskComponent,UpdateTaskComponent,DetailsTaskComponent,TaskComponent
 ,InfoTaskComponent,AddTeamComponent,UpdateTeamComponent,DetailsTeamComponent
-,TeamsComponent,TasksComponent,TaskUserComponent,ChatComponent
+,TeamsComponent,TasksComponent,TaskUserComponent,EmployesComponent
   ],
   imports: [
     CommonModule,

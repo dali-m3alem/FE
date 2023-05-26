@@ -44,6 +44,8 @@ export class AuthAdminLayoutComponent implements OnInit {
   loginadmin(f: any) {
     let data = f.value;
     console.log(data);
+   
+    if (data.email && data.password){
     this.asd.login(data).subscribe(
       (response) => {
         this.dataReceived = response;
@@ -87,8 +89,9 @@ export class AuthAdminLayoutComponent implements OnInit {
           }
         }
       },
-      (err) => (this.messageAuthError = 'Invalid email and password')
+      (err) => (this.messageAuthError = 'Invalid email or password')
     );
+    }
   }
   
 

@@ -15,7 +15,7 @@ import { TasksService } from 'src/app/views/services/tasks.service';
 })
 export class DashboardComponent implements OnInit {
 
-  dataArray!: Project[];
+  dataArray!: any;
   budgetscount: number = 0;
   projectCount: number = 0;
   userCount:number=0;
@@ -83,8 +83,7 @@ export class DashboardComponent implements OnInit {
     
   } 
   loadProject(){
-    const adminId = this.auth.getUser();
-    this.projectService.getAllProjectsByAdminId(adminId).subscribe(
+    this.projectService.getAllProjectsByAdminId().subscribe(
       (response) => {
         this.dataArray = response;
         console.log(this.dataArray);
@@ -162,8 +161,7 @@ export class DashboardComponent implements OnInit {
 
 
   loadData() {
-    const user = this.auth.getUser();
-    this.asd.getUserData(user).subscribe((data: any) => {
+    this.asd.getUserData().subscribe((data: any) => {
       this.userInfo = data;
       this.imageSrc = 'data:image/jpeg;base64,' + this.userInfo.profilePicture;
 

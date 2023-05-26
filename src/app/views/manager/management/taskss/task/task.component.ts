@@ -76,7 +76,7 @@ console.log(response)
   }}
   editer(row: Task) {
     const options3: NgbModalOptions = {
-      size: 'xl',
+      size: 'l',
       centered: true,
       scrollable: true,
       windowClass:'modal-holder'
@@ -129,7 +129,7 @@ console.log(response)
 
 add(){
   const options2: NgbModalOptions = {
-    size: 'xl',
+    size: 'l',
     centered: true,
     scrollable: true,
     windowClass:'modal-holder'
@@ -147,7 +147,7 @@ add(){
 }
 details(row: Task) {
   const options1: NgbModalOptions = {
-    size: 'xl',
+    size: 'l',
     centered: true,
     scrollable: true,
     windowClass:'modal-holder'

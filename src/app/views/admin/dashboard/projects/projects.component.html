@@ -32,28 +32,39 @@
       <caption class="caption">List of projects</caption>
       <thead class="thead-light">
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Project Name</th>
-          <th scope="col">Description</th>
-          <th scope="col">Objective</th>
-          <th scope="col">Deadline</th>
-          <th scope="col">Project Manager</th>
-          <th scope="col">Status</th>
-          <th scope="col">Budget</th>
-          <th scope="col">Actions</th>
+          <th class="fw-bold mb-1" scope="col">Project Name</th>
+          <th class="fw-bold mb-1" scope="col">Description</th>
+          <th class="fw-bold mb-1" scope="col">Objective</th>
+          <th class="fw-bold mb-1" scope="col">Deadline</th>
+          <th class="fw-bold mb-1" scope="col">Project Manager</th>
+          <th class="fw-bold mb-1" scope="col">Status</th>
+          <th class="fw-bold mb-1" scope="col">Budget</th>
+          <th class="fw-bold mb-1" scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let project of dataArray | filter: searchValue">
-          <td>{{ project.id }}</td>
           <td>{{ project.projectName }}</td>
-          <td>{{ project.descriptionP }}</td>
-          <td>{{ project.objectiveP }}</td>
+          <td class="fixed-width-column">{{ project.descriptionP }}</td>
+          <td class="fixed-width-column">{{ project.objectiveP }}</td>
           <td *ngIf="project.deadlineP">{{ project.deadlineP | customDateTime }}</td>
           <td class="text-center" *ngIf="!project.deadlineP">-</td>
-          <td>{{ project.email }}</td>
+          <td>
+            <div class="d-flex align-items-center">
+              <img
+              [src]="'data:image/jpeg;base64,' +  project?.email?.profilePicture" 
+                  alt=""
+                  style="width: 35px; height: 35px"
+                  class="rounded-circle"
+                  />
+              <div class="ms-3">
+                <p class="fw-bold mb-1">{{ project?.email?.email }}</p>
+              </div>
+            </div>
+          </td>
           <td>{{ project.status }}</td>
           <td>{{ project.budget }}</td>
+          
           <td>
             <div class="btn-group" role="group">
               <button type="button" class="btn btn-outline-success btn-sm" (click)="editer(project)">

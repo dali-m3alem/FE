@@ -1,5 +1,5 @@
 <div class="custom-modal modal-header">
-    <h5 class="modal-title" >Edit user</h5>
+    <h1 class="modal-title" class="fw-bold mb-1">Edit user</h1>
       <button type="button" class="close" (click)="closeModal()" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -9,7 +9,7 @@
           <form class="row g-3" #userForm="ngForm"  (ngSubmit)="confirmEditTypeCourrier()">
             <input readonly type="hidden" name="id" [(ngModel)]="selectedUser.id" required>
             <div class="col-md-5">
-              <label class="form-label">firstname <span class="text-danger">*</span></label>
+              <label class="form-label" class="fw-bold mb-1">First Name <span class="text-danger">*</span></label>
               <input  type="text" class="form-control" name="firstname" [(ngModel)]="selectedUser.firstname" required >
               
               <div *ngIf=" userForm.controls['firstname']?.errors?.['required']">
@@ -20,7 +20,7 @@
             </div>
            
             <div class="col-md-5">
-              <label class="form-label">Last Name <span class="text-danger">*</span></label>
+              <label class="form-label" class="fw-bold mb-1">Last Name <span class="text-danger">*</span></label>
               <input  type="text" class="form-control" name="userLastName" [(ngModel)]="selectedUser.userLastName" required>
               
              <div *ngIf=" userForm.controls['userLastName']?.errors?.['required']">
@@ -29,8 +29,8 @@
                                 class="text-danger"> * is required</small>
             </div>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Email <span class="text-danger">*</span></label>
+            <div class="col-md-5">
+              <label class="form-label" class="fw-bold mb-1">Email Adress<span class="text-danger">*</span></label>
               <input type="email" class="form-control" name="email" [(ngModel)]="selectedUser.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
              
              <div *ngIf=" userForm.controls['email']?.errors?.['required']">
@@ -47,7 +47,7 @@
       
             </div> 
             <div  class="col-md-5">
-              <label class="form-label">titre <span class="text-danger">*</span></label>
+              <label class="form-label" class="fw-bold mb-1">Title <span class="text-danger">*</span></label>
               <input type="text" class="form-control" name="titre" [(ngModel)]="selectedUser.titre"required>
              
              <div *ngIf=" userForm.controls['titre']?.errors?.['required']">
@@ -57,7 +57,7 @@
             </div>
             </div>
             <div  class="col-md-5">
-              <label class="form-label">Phone Number<span class="text-danger">*</span></label>
+              <label class="form-label" class="fw-bold mb-1">Phone Number<span class="text-danger">*</span></label>
               <input class="form-control" name="phoneNumber" [(ngModel)]="selectedUser.phoneNumber" required
                 [pattern]="'^[0-9]{8}$'">
               <div class="alert alert-danger" role="alert" *ngIf=" userForm.controls['phoneNumber']?.errors?.['required']">
@@ -76,23 +76,25 @@
               </div>
             
             </div>
-              <div class="col-md-5">
-                <label class="form-label">Roles</label>
+              <div class="col-md-10">
+                <label class="form-label" class="fw-bold mb-1">Roles</label>
                 <div *ngIf="selectedUser.roles.length > 0">
+                  
                     <div *ngFor="let role of selectedUser.roles; let i=index">
                       <div class="bouton" >
-                           <select class="form-control" [(ngModel)]="role.roleName" [name]="'roleName' + (i+1)">
+                        <div class="selection">
+
+                           <select class="form-select" [(ngModel)]="role.roleName" [name]="'roleName' + (i+1)">
                           <option value="admin">admin</option>
                           <option value="manager">manager</option>
                           <option value="user">user</option>
                         </select>
-                    
                         <input type="hidden" [(ngModel)]="role.id" [name]="'roleId' + (i+1)">
-                        <button type="button" class="btn btn-primary" (click)="removeRole(i)">          <mat-icon>delete</mat-icon>
-                        </button>
+                        <button type="button" class="btn btn-danger" (click)="removeRole(i)"><mat-icon>delete</mat-icon></button>
+                        <button type="button" class="btn btn-primary"  *ngIf="selectedUser.roles.length === 0 || selectedUser.roles.length > 0" (click)="addRole()">Add</button>
+                      </div>
                     </div>
                     </div>
-                    <button type="button" class="btn btn-primary"  *ngIf="selectedUser.roles.length === 0 || selectedUser.roles.length > 0" (click)="addRole()">Add Role</button>
 
                 </div>
                 <button type="button" class="btn btn-primary" *ngIf="selectedUser.roles.length === 0" (click)="addRole()">Add Role</button>
@@ -108,20 +110,19 @@
 
 
 <!-- Existing code -->
+<div class="modal-footer">
 
 <div class="submit-section">
   <button class="btn btn-primary submit-btn" [disabled]="isSaving || userForm.invalid" type="submit">
-    <span>Sauvegarder</span>
+    <span>Save</span>
   </button>
+  <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
 </div>
 
-    
+</div>
+
+
       </form>
     
     </div>
-    <div class="modal-footer">
-    
-      <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
-    
-    </div>
-    
+   

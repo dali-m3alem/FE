@@ -32,7 +32,7 @@
           <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
               <div class="card dash-widget">
                   <div class="card-body">
-                      <span class="dash-widget-icon"><i class="fa fa-usd"></i></span>
+                      <span class="dash-widget-icon"><i class="fa fa-money"></i></span>
                       <div class="dash-widget-info">
                           <h3>{{budgetscount}}</h3>
                           <span>budget</span>
@@ -65,6 +65,42 @@
       </div>
     
 
+
+
+
+
+      <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Total Revenue</h3>
+                            <div mk-morris-js [options]="chartOptions" [data]="chartData" type="Bar">
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Sales Overview</h3>
+                            <div mk-morris-js [options]="lineOption" [data]="lineData" type="Line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
       
     
     
@@ -84,17 +120,19 @@
                                       <th>Team members</th>
                                   </tr>
                               </thead>
-                              <tbody *ngFor="let user of dataUser; let i = index" >
+                              <tbody *ngFor="let user of dataUser.slice(0, 5);; let i = index" >
                                   <tr>
                                       <td>
                                          {{user.teamName}}
                                       </td>
                                       <td>{{user.teamDesc}}</td>
+                                      
                                      
-<td><div class="project-members m-b-15">
+<td>
+    <div class="project-members m-b-15">
   <ul class="team-members" >
       <li *ngFor="let member of user.members">
-          <a data-bs-toggle="tooltip" title="Jeffery Lalor"><img alt=""
+          <a data-bs-toggle="tooltip"  [title]="member.firstname"><img alt=""
             [src]="'data:image/jpeg;base64,' + member.profilePicture" ></a>
       </li>
     
@@ -102,7 +140,6 @@
 </div>
 </td>                           
 
-</tr>
                                   
                                  
                                   
@@ -146,8 +183,12 @@
                                           <div>{{ project.email }}</div>
                                       </td>
                                       <td class="text-end">
-                                          {{project.status}}
-                                      </td>
+                                        <a  *ngIf="project.status ==='done'" class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Done</a>
+                                        <a  *ngIf="project.status ==='not started'" class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Not Started</a>
+                                        <a  *ngIf="project.status ==='in progress'" class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> In Progress</a>
+
+                                        
+                                    </td>
                                   </tr>
                             
                                 

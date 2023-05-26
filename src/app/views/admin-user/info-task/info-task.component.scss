@@ -1,6 +1,14 @@
 .custom-modal {
-    max-width: 300px !important; /* adjust the width as desired */
-    max-height: 400px !important; /* adjust the height as desired */
-    overflow-y: auto;
-  }
-  
+  max-width: 300px !important; /* adjust the width as desired */
+  max-height: 400px !important; /* adjust the height as desired */
+  overflow-y: auto;
+}
+
+.info-text{
+font-size: 16px;
+color: grey;
+}
+.details{
+display: flex;
+gap: 15px;
+}

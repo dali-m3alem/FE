@@ -26,6 +26,7 @@ export type ChartOptions = {
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  
   constructor(private asd: DataService,public modalService: NgbModal,private projectService: ProjectService,private serv:DataService, private auth: AuthadminService,private task :TasksService,private teamSer:TeamsService) {}
   dataArray!: Project[];
   budgetscount: number = 0;
@@ -33,8 +34,62 @@ export class DashboardComponent implements OnInit {
   userCount:number=0;
   countTask:any;
   dataUser: any;
+
+
+   chartData;
+   chartOptions;
+   lineData;
+   lineOption;
+  public barColors = {
+    a: "#ff9b44",
+    b: "#fc6075",
+  };
+  public lineColors = {
+    a: "#ff9b44",
+    b: "#fc6075",   
+  };
+
   ngOnInit(): void {
    
+
+    this.chartOptions = {
+      xkey: "y",
+      ykeys: ["a", "b"],
+      labels: ["Total Income", "Total Outcome"],
+      barColors: [this.barColors.a, this.barColors.b],
+    };
+
+    this.chartData = [
+      { y: "2006", a: 100, b: 90 },
+      { y: "2007", a: 75, b: 65 },
+      { y: "2008", a: 50, b: 40 },
+      { y: "2009", a: 75, b: 65 },
+      { y: "2010", a: 50, b: 40 },
+      { y: "2011", a: 75, b: 65 },
+      { y: "2012", a: 100, b: 90 },
+    ];
+
+    this.lineOption = {
+      xkey: "y",
+      ykeys: ["a", "b"],
+      labels: ["Total Sales", "Total Revenue"],
+      resize: true,
+      lineColors: [this.lineColors.a, this.lineColors.b],
+    };
+
+    this.lineData = [
+      { y: '2006', a: 50, b: 90 },
+      { y: '2007', a: 75,  b: 65 },
+      { y: '2008', a: 50,  b: 40 },
+      { y: '2009', a: 75,  b: 65 },
+      { y: '2010', a: 50,  b: 40 },
+      { y: '2011', a: 75,  b: 65 },
+      { y: '2012', a: 100, b: 50 }
+    ];
+
+
+
+
   
   this.loadProject();
     this.loadData();
@@ -80,8 +135,7 @@ export class DashboardComponent implements OnInit {
     return this.imageSrc;
   }
   loadData() {
-    const user = this.auth.getUser();
-    this.asd.getUserData(user).subscribe((data: any) => {
+    this.asd.getUserData().subscribe((data: any) => {
       this.userInfo = data;
       this.imageSrc = 'data:image/jpeg;base64,' + this.userInfo.profilePicture;
 
@@ -90,8 +144,7 @@ export class DashboardComponent implements OnInit {
   }
  
   loadProject(){
-    const adminId = this.auth.getUser();
-    this.projectService.getAllProjectsByManagerId(adminId).subscribe(
+    this.projectService.getAllProjectsByManagerId().subscribe(
       (response: Project[]) => {
         this.dataArray = response;
         console.log(this.dataArray);

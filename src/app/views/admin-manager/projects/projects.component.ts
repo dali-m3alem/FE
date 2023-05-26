@@ -3,13 +3,13 @@ import { AuthadminService } from 'src/app/views/services/authadmin.service';
 import { ProjectService } from 'src/app/views/services/project.service';
 import { Project } from 'src/app/views/model/user';
 //import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { MatDatepicker } from '@angular/material/datepicker';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from "sweetalert2";
 import {NgbModal, NgbModalOptions} from "@ng-bootstrap/ng-bootstrap";
 import {AddProjectComponent} from "./add/add-project.component";
 import {DetailsProjectComponent} from "./details/details-project.component";
 import {EditProjectComponent} from "./edit/edit-project.component";
-import { MatDatepicker } from '@angular/material/datepicker';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -17,8 +17,7 @@ import { MatDatepicker } from '@angular/material/datepicker';
 })
 export class ProjectsComponent {
   searchValue: string = '';
-  @ViewChild('picker')
-  picker!: MatDatepicker<Date>;
+
   dataArray!: Project[];
   submitted = false;
   public projects : Array<Project> = [];
@@ -40,8 +39,7 @@ export class ProjectsComponent {
   }
 
   loadData(){
-    const adminId = this.auth.getUser();
-    this.projectService.getAllProjectsByAdminId(adminId).subscribe(
+    this.projectService.getAllProjectsByAdminId().subscribe(
       (response: Project[]) => {
         this.dataArray = response;
         console.log(this.dataArray);
@@ -77,9 +75,9 @@ export class ProjectsComponent {
       console.log(error);
     });
   }
-  details(row: Project) {
+  details(row: any) {
     const options1: NgbModalOptions = {
-      size: 'xl',
+      size: 'l',
       centered: true,
       scrollable: true,
       windowClass:'modal-holder'
@@ -97,7 +95,7 @@ export class ProjectsComponent {
   }
   editer(row: Project) {
     const options3: NgbModalOptions = {
-      size: 'xl',
+      size: 'l',
       centered: true,
       scrollable: true,
       windowClass:'modal-holder'
@@ -115,6 +113,8 @@ export class ProjectsComponent {
   }
 
 
+  @ViewChild('picker')
+  picker!: MatDatepicker<Date>;
   confirmDeleteProject(id: number)
   {
     Swal.fire({

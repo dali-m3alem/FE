@@ -29,7 +29,7 @@
         [cdkDropListData]="column.tasks"
         (cdkDropListDropped)="drop($event)">
         <div class="task" *ngFor="let item of column.tasks" cdkDrag [cdkDragData]="item">
-         <div class="title"> {{ item.title }}</div>
+         <div class="titre"> {{ item.title }}</div>
          <div class="paragraphe">{{ item.description }}</div> 
 
      <div class="date">{{item.dueDate | customDateTime}}</div>

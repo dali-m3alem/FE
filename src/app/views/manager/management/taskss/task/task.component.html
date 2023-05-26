@@ -32,12 +32,12 @@
         <caption class="caption">List of tasks</caption>
         <thead class="thead-light">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Task name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Deadline</th>
-            <th scope="col">Task to user</th>
-            <th scope="col">Status</th>
+            <th scope="col" class="fw-bold mb-1">ID</th>
+            <th scope="col" class="fw-bold mb-1">Task name</th>
+            <th scope="col" class="fw-bold mb-1">Description</th>
+            <th scope="col" class="fw-bold mb-1">Deadline</th>
+            <th scope="col" class="fw-bold mb-1">Task to user</th>
+            <th scope="col" class="fw-bold mb-1">Status</th>
      
           </tr>
         </thead>
@@ -49,8 +49,19 @@
             <td>{{ task.description }}</td>
             <td *ngIf="task.dueDate">{{ task.dueDate | customDateTime }}</td>
             <td class="text-center" *ngIf="!task.dueDate">-</td>
-            
-            <td>{{ task?.user?.email }}</td>
+            <td>
+              <div class="d-flex align-items-center">
+                <img
+                [src]="'data:image/jpeg;base64,' +  task?.user?.profilePicture" 
+                    alt=""
+                    style="width: 35px; height: 35px"
+                    class="rounded-circle"
+                    />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">{{ task?.user?.email  }}</p>
+                </div>
+              </div>
+            </td>
 
             <td>{{ task.status }}</td>
 
@@ -79,6 +90,20 @@
       </table>
     </div>
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

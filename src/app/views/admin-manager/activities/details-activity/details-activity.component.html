@@ -1,103 +1,49 @@
 <div class="custom-modal modal-header">
-    <h5 class="modal-title" >Activity</h5>
-      <button type="button" class="close" (click)="closeModal()" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-    
-      <form (ngSubmit)="confirmEditTypeCourrier()" [formGroup]="editProjectForm">
-    
-    
-        <div class="row">
-          <div class="col-lg-10">
-            <div class="form-group">
-              <label > <span >Activity Name</span> <span class="text-danger">*</span></label>
-                <input readonly class="form-control " type="text"
-                       [class.invalid]="f['activityName'].invalid && f['activityName'].touched"
-                       formControlName="activityName"
-                     >
-    
-                <div *ngIf="f['activityName'].invalid && f['activityName'].touched">
-                  <small
-                    *ngIf="f['activityName'].invalid && f['activityName'].touched"
-                    class="text-danger" > * is required</small>
-                </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-10">
-            <div class="form-group">
-              <label > <span >Description</span> <span class="text-danger">*</span></label>
-    
-              <textarea readonly rows="4" class="form-control"  [class.invalid]="f['descriptionA'].invalid  &&  f['descriptionP'].touched"
-                        formControlName="descriptionA"></textarea>
-              <div *ngIf="f['descriptionA'].invalid  && f['descriptionA'].touched">
-                <small
-                  *ngIf="f['descriptionA'].invalid && f['descriptionA'].touched"
-                  class="text-danger" > * is required</small>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-10">
-            <div class="form-group">
-              <label > <span >Objectives</span> <span class="text-danger">*</span></label>
-      
-              <textarea readonly rows="4" class="form-control"  [class.invalid]="f['objectiveA'].invalid &&  f['objectiveP'].touched"
-                        formControlName="objectiveA"></textarea>
-      
-              <div *ngIf=" f['objectiveA'].invalid  &&  f['objectiveA'].touched">
-                <small
-                  *ngIf=" f['objectiveA'].invalid  &&  f['objectiveA'].touched"
-                  class="text-danger" > * is required</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="form-group">
-              <label > <span >Deadline</span> <span class="text-danger">*</span></label>
-              <div class="cal-icon">
-                <input readonly class="form-control datetimepicker" type="date"bsDatepicker
-                       [class.invalid]="f['deadlineA'].invalid &&  f['deadlineA'].touched"
-                       formControlName="deadlineA">
-                <div *ngIf="f['deadlineA'].invalid &&  f['deadlineA'].touched">
-                  <small
-                    *ngIf="f['deadlineA'].invalid &&  f['deadlineA'].touched"
-                    class="text-danger"> * is required</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="form-group">
-                <label><span>Team ID</span><span class="text-danger">*</span></label>
-              
-                <input readonly class="form-control" [class.invalid]="f['team'].invalid && f['team'].touched"
-                        formControlName="team">
-                 
-              
-                <div *ngIf="f['team'].invalid && f['team'].touched">
-                  <small class="text-danger">* is required</small>
-                </div>
-              </div>
-              
-          </div>
-    
-        <div class="submit-section">
-          <button class="btn btn-primary submit-btn"  [disabled]="isSaving" type="submit" ><span > Save </span></button>
-        </div>
-    
-      </form>
-    
-    </div>
-    <div class="modal-footer">
-    
-      <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
-    
-    </div>
-    
-
-
-    
+  <h1 class="modal-title" class="fw-bold mb-1">Activity</h1>
+    <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
   
+    <form>
+      <div class="details">
+        <label class="fw-bold mb-1">Activity Name:</label>
+        <p class="info-text">{{ activity.activityName }}</p>
+      </div>
+      <div class="details">
+        <label class="fw-bold mb-1">Activity description:</label>
+        <p class="info-text">{{ activity.descriptionA }}</p>
+      </div><div class="details">
+        <label class="fw-bold mb-1">Activity objective:</label>
+        <p class="info-text">{{ activity.objectiveA }}</p>
+      </div><div class="details">
+        <label class="fw-bold mb-1">Activity status:</label>
+        <p class="info-text">{{ activity.status }}</p>
+      </div>
+      <div class="details">
+        <label class="fw-bold mb-1">Activity deadline:</label>
+        <p class="info-text">{{ activity.deadlineA | customDateTime }}</p>
+      </div>
+      <div class="details">
+        <label class="fw-bold mb-1">Team Name:</label>
+        <p class="info-text">{{ activity?.team?.teamName  }}</p>
+      </div>
+      <div class="details">
+        <label class="fw-bold mb-1">Project Name:</label>
+        <p class="info-text">{{ activity.project.projectName }}</p>
+      </div>
+      
+    </form>
+  
+  </div>
+  <div class="modal-footer">
+  
+    <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
+  
+  </div>
+  
+
+
+  
+

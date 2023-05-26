@@ -66,7 +66,7 @@ export class HomeComponent {
         console.log(error);
       }
     );
-    this.task.getTasksByUserId(this.userId)
+    this.task.getTasksByUserId()
     .subscribe(
       (tasks: Task[]) => {
         this.tasks = tasks;
@@ -79,8 +79,7 @@ export class HomeComponent {
     return this.imageSrc;
   }
   loadData() {
-    const user = this.auth.getUser();
-    this.asd.getUserData(user).subscribe((data: any) => {
+    this.asd.getUserData().subscribe((data: any) => {
       this.userInfo = data;
       this.imageSrc = 'data:image/jpeg;base64,' + this.userInfo.profilePicture;
 
@@ -89,8 +88,7 @@ export class HomeComponent {
   }
  
   loadProject(){
-    const adminId = this.auth.getUser();
-    this.task.getTasksByUserId(adminId).subscribe(
+    this.task.getTasksByUserId().subscribe(
       (response:any) => {
         this.dataArray = response;
         console.log(this.dataArray);

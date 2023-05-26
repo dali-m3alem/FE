@@ -1,367 +1,47 @@
-.title{
-  font-family: 'Lato';
-font-style: normal;
-font-weight: 600;
-font-size: 36px;
-line-height: 30px;
-}
-header{
-  margin-bottom: 20px;
-}
-nav{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 20px;
-}
-.section1{
-  width: 50%;
-}
-.section2{
-  background-color: white;
 
-  width: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.27);
-  height: 300px;
-  border-radius: 20px;
+.team-members {
+  display: inline-flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-bottom: 0;
+  padding: 0;
 }
-.part1{
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  gap: 50px;
-  margin-bottom: 10px;
+.team-members > li:first-child a {
+margin-left: 0;
 }
-.part2{
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: flex-start;
-  gap: 30px;
+.team-members > li > a {
+border: 2px solid #fff;
+border-radius: 100%;
+display: block;
+height: 30px;
+overflow: hidden;
+width: 30px;
 }
-.btn{
-  border-radius: 50px;
-  color: white;
-  background-color: rgb(47, 109, 202);
+.team-members .all-users {
+line-height: 28px;
+opacity: 0.8;
 }
-.work{font-family: 'Lato';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 29px;}
-  a{
-    font-family: 'Lato';
-font-style: normal;
-font-weight: 150;
-font-size: 20px;
-text-decoration: none;
-line-height: 24px;
-  }
-  .active {
-color: rgba(27, 77, 93, 0.916);  }
-  
-  
-  a:not([href]):not([class]), a:not([href]):not([class]):hover {
-    color: grey;
-    text-decoration: none;
-}
-.item{
-  border: 1px solid rgba(0, 0, 0, 0.27);
-  border-radius: 10px;
-  display: flex;
-  justify-content: flex-start;
-  padding: 5px;
-  gap: 30px;
-  padding-left: 10px;
-  margin-bottom: 20px;
-  background: #ffffff;
-}
-.task{
-  border: 1px solid rgba(0, 0, 0, 0.27);
-  padding: 10px;
-  background-color: #9E4784;
-  border-radius: 5px;
-  color: white;
-  width: 40px;
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 900;
-  font-size: 40px;
-  line-height: 48px;;
-text-decoration: none;
+.all-users {
+background-color: #ff5e3a;
+color: #fff;
+font-size: 10px;
+font-weight: 800;
+line-height: 34px;
 text-align: center;
-line-height: 24px;
 }
-
-.imagee{
-  width: 100px;
-height: 90px;
-border-radius: 50px;
+.all-users:hover, .all-users:active {
+color: #fff;
 }
-.name{
-  font-family: 'Lexend Exa';
-font-style: normal;
-font-family: 'Lato';
-font-weight: 400;
-font-size: 24px;
-line-height: 29px;
+.team-members img {
+width: 100%;
 }
-.section21{
+.pro-teams .pro-team-members {
+  margin-left: 15px;
   display: flex;
-  justify-content: flex-start;
-}
-.details{
-  
-
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 200;
-  font-size: 15px;
-  line-height: 14px;
-  /* identical to box height */
-  
-  
-  color: #A8AEC0;
-}
-.datetime {
- 
-  font-size: 16px;
-  padding: 30px;
-  color: #ffffff;
-  
-  background: #043775;
-  box-shadow: 0 0 10px rgba(181, 154, 154, 0.25);
-  border-radius: 20px;
-  border-right: 10px #f9fbff solid;
-  font-weight: 300;
-  font-family: "Inter", sans-serif;
-  margin: 30px;
-}
-.partie{
-  display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-.time {
-  margin-bottom: 30px;
-  font-size: 3em;
-  color:#ffffff;
-}
-
-.date {
-  margin-top: 12px;
-  font-size: 1.75em;
-}
-.part11{
-  display: flex;
-}
-.photo{
-  width: 81px;
-  height: 78px;
-  border-radius: 100%;
-  left: 5%;
-}
-.nomEmail{
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 2  px;
-  font-size: 25px;
-}
-.statue{
-  font-family: 'Lexend Exa';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 30px;
-
-}
-.email{
-  font-family: 'Lexend Exa';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 20px;
-
-color: rgba(0, 0, 0, 0.5);
-
-}
-
-section{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;  
-}
-.items{
-  border: 1px solid rgba(0, 0, 0, 0.27);
-  border-radius: 20px;
-  margin: 20px;
-  background-color: white;
-}
-.section3{
-  width: 40%;
-}
-.title1{
-  font-family: 'Lato';
-font-style: normal;
-font-weight: 600;
-font-size: 20px;
-line-height: 24px;
-padding: 10px;
-}
-.ligne1{display: flex;
-justify-content: space-between;}
-
-.comment{
-  font-family: 'Lato';
-font-style: normal;
-font-weight: 600;
-font-size: 16px;
-line-height: 19px;
-
-color: rgba(0, 0, 0, 0.35);
-padding: 10px;
-}
-.ligne2
-{display: flex;
-justify-content: space-between;}
-
-
-.items .ligne2 svg {
-  font-size: 30px; /* Remplacez la valeur par celle de votre choix */
-  padding: 10px;
-}
-.items .ligne2 svg:first-of-type {
-  color: #5C469C; /* Remplacez "green" par la couleur de votre choix */
-  font-size: 30px; /* Remplacez la valeur par celle de votre choix */
-  padding: 10px;
-  width: 50px;
-}
-.section4{
-  width: 60%;
-
-}
-.lign{
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-margin-bottom: 30px;
-gap: 50px;
-}
-.img{
-  width: 71px;
-  height: 38px;
-  border-radius: 100%;
-}
-.colonne2{display: flex;
-gap: 5px;}
-.username{
-  font-family: 'Lato';
-font-style: normal;
-font-weight: 300;
-font-size: 20px;
-line-height: 14px;
-/* identical to box height */
-
-margin-bottom: 10px;
-color: #A8AEC0;
-}
-.colonne2 hr{
-  width: 40.11px;
-height: 0px;
-left: 813px;
-top: 665px;
-
-border: 1px solid #a6a3a3;
-transform: rotate(90deg);
-}
-
-.colonne1{
-display: grid;
-margin-left: 90px;
-font-family: 'Lato';
-font-style: normal;
-font-weight: 600;
-font-size: 32px;
-line-height: 38px;
-}
-.user{
-  text-align: unset;
-  font-family: 'Lato';
-font-style: normal;
-
-}
-
-.users{
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 29px;
-  margin-left: 80px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-footer {
-  background-color: black;
-  padding: 20px;
-  color: white;
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  font-family: Abyssinica SIL;
-  font-weight: 300;
-  font-size: 20px;
-}
-
-.element {
-  grid-column: span 2/span 2;
-  justify-content: space-between;
-  gap: 10px;
-  display: grid;
-
   align-items: center;
-
-
 }
 
-.nav {
-  grid-column: span 1/span 1;
-  display: grid;
-}
 
-.logo {
-  grid-column: span 2/span 2;
-  padding: 10px 10px;
-}
-.btn svg{
-    width: 25px;
+.team-members {
+    flex-wrap: wrap;
 }

@@ -2,25 +2,25 @@ export const navbarData=[
     {
         routeLink:'dashboard',
         icon:'fal fa-home',
-        label :'dashboard'
+        label :'Dashboard'
 
     },
 {        routeLink:'Projects',
-        icon:'fa fa-window-restore',
+        icon:'fa fa-cubes',
         label :'Porjects'
 
     },
       {
         routeLink:'user11',
-        icon:'fa fa-server',
-        label :'user'
+        icon:'fa fa-users',
+        label :'Users'
     
       }
       ,
     {
         routeLink:'profil',
         icon:'fa fa-user',
-        label :'profile'
+        label :'Profil'
 
     }
       

@@ -29,6 +29,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CustomDatePipe } from 'src/assets/pipes/custom-date.pipe';
 import { CustomDateTimePipe } from 'src/assets/pipes/custom-date-time.pipe';
 import { FilterPipe } from 'src/assets/pipes/filter.pipe';
+import { MorrisJsModule } from 'angular-morris-js';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { FilterPipe } from 'src/assets/pipes/filter.pipe';
     MdbTooltipModule,
     MdbValidationModule,
     MatDialogModule,
+    MorrisJsModule
   ],
 
   providers: [],

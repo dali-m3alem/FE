@@ -31,6 +31,7 @@ export class UpdateTaskComponent implements OnInit{
 
 
  ngOnInit() {
+  console.log(this.task)
   
    if(this.task.dueDate){
    this.dueDate  = this.datePipe.transform(this.task.dueDate, 'yyyy-MM-dd')
@@ -145,7 +146,7 @@ export class UpdateTaskComponent implements OnInit{
    this.activeModal.close('Modal Closed');
  }
  getManager(){
-   this.taskSer.managersUsers().subscribe(
+   this.taskSer.getTeamMembersByActivityId(this.task.activity.id).subscribe(
      (response:any) => {
        console.log(response)
        this.managers = response; // Mettre à jour la variable 'managers' avec la réponse du service

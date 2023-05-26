@@ -97,7 +97,7 @@ export class UsersComponent {
   }
   editer(row: User) {
     const options3: NgbModalOptions = {
-      size: 'xl',
+      size: 'l',
       centered: true,
       scrollable: true,
       windowClass:'modal-holder'
@@ -121,7 +121,7 @@ export class UsersComponent {
 
   add(){
     const options2: NgbModalOptions = {
-      size: 'xl',
+      size: 'l',
       centered: true,
       scrollable: true,
       windowClass:'modal-holder'
@@ -138,27 +138,24 @@ export class UsersComponent {
   }
 
   loadData(){
-   
     const adminId = this.auth.getUser();
 
     this.ds.getAllusers().subscribe(
       (response: any) => {
         this.dataArray = response.filter((user: any) => user.id !== adminId);
         Swal.close();
+       
       },
       (error: any) => {
         console.log(error);
       }
     );
-
-
-    
   } 
   confirmDeleteUser(id: number)
   {
     Swal.fire({
       title: "Confirmation",
-      text:  'Voulez vous confirmer ?',
+      text:  'Do you want to confirm ?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
@@ -264,7 +261,7 @@ this.ds.updateUser(this.selectedUser).subscribe(
 
   details(row: User) {
     const options1: NgbModalOptions = {
-      size: 'xl',
+      size: 'l',
       centered: true,
       scrollable: true,
       windowClass:'modal-holder'

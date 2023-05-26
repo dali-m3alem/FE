@@ -1,90 +1,62 @@
 <div class="head-title">
-    <div class="left" *ngFor="let item of dataArray">
-      <h1>{{item.teamName}}</h1>
-      <p>{{item.teamDesc}}</p>
-      <ul class="breadcrumb">
-        <li>
-          <a href="#">Dashboard</a>
-        </li>
-        <li><i class='bx bx-chevron-right' ></i></li>
-        <li>
-          <a class="active" href="#">Home</a>
-        </li>
-      </ul>
+  <div class="left" *ngFor="let item of dataArray">
+    <div class="details">
+      <label class="fw-bold mb-1">Project Name:</label>
+      <p class="info-text">{{ item.teamName }}</p>
     </div>
-    <a href="#" class="btn-download">
-      <i class='bx bxs-cloud-download' ></i>
-      <span class="text">Download PDF</span>
-    </a>
-  </div>
-<div class="content container-fluid">
-
-    <!-- Page Header -->
-    <div class="page-header">
-      <div class="row align-items-center">
-        <div class="col">
-          <h3 class="page-title"  >Liste des projects</h3>
-          <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a routerLink=""  ><span >tbd</span></a></li>
-            <li class="breadcrumb-item active"  > <span >Liste des projects</span> </li>
-          </ul>
-        </div>
-        <div class="col-auto float-end ms-auto">
-          <a class="btn add-btn" (click)="add()"><i class="fa fa-plus"></i>
-            <span>Project</span> </a>
-        </div>
-      </div>
-    </div>
-    <div class="table-responsive">
-      <table class="table caption-top table-bordered table-hover">
-        <caption class="caption">List of projects</caption>
-        <thead class="thead-light">
-          <tr>
-            
-
-            <th scope="col">user name</th>
-            <th scope="col">titre</th>
-            <th scope="col">last name</th>
-            <th scope="col">phoneNumber</th>
-            <th scope="col">roles</th>
     
-            <th>actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of dataArray">
-            <td *ngFor="let member of item.members">
-                <div class="d-flex align-items-center">
-                    <img
-                    [src]="'data:image/jpeg;base64,' + member.profilePicture" 
-                        alt=""
-                        style="width: 45px; height: 45px"
-                        class="rounded-circle"
-                        />
-                      
-                  <div class="ms-3" >
-                    <p class="fw-bold mb-1">{{member.username}}</p>
-                    <p class="text-muted mb-0">{{member.email}}</p>
-                  </div>
-                </div>
-              </td>
-            
-            <td *ngFor="let member of item.members">{{member.titre}}</td>
-            <td *ngFor="let member of item.members">{{member.userLastName}}</td>
-            <td *ngFor="let member of item.members">{{member.phoneNumber}}</td>
-          <div *ngFor="let member of item.members">
-            <td *ngIf="member.roles && member.roles.length > 0">
-                <div *ngFor="let role of member.roles">
-                  {{role.roleName}}
-                </div>
-              </td>
-              <td *ngIf="!member.roles || member.roles.length === 0"class="text-center">-</td>
-            </div>
-             
-            <td>
-              
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  </div>
+</div>
+
+<div class="content container-fluid">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="row align-items-center">
+      <div class="col">
+        <h3 class="page-title">List of members</h3>
+       
+      </div>
+     
     </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table caption-top table-bordered table-hover">
+      <caption class="caption">List of members</caption>
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" class="fw-bold mb-1">user name</th>
+          <th scope="col" class="fw-bold mb-1">titre</th>
+          <th scope="col" class="fw-bold mb-1">last name</th>
+          <th scope="col" class="fw-bold mb-1">phoneNumber</th>
+          <th scope="col" class="fw-bold mb-1">roles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let item of dataArray">
+          <tr *ngFor="let member of item.members">
+            <td>
+              <div class="d-flex align-items-center">
+                <img [src]="'data:image/jpeg;base64,' + member.profilePicture" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">{{member.username}}</p>
+                  <p class="text-muted mb-0">{{member.email}}</p>
+                </div>
+              </div>
+            </td>
+            <td>{{member.titre}}</td>
+            <td>{{member.userLastName}}</td>
+            <td>{{member.phoneNumber}}</td>
+            <td>
+              <div *ngIf="member.roles && member.roles.length > 0">
+                <div *ngFor="let role of member.roles">{{role.roleName}}</div>
+              </div>
+              <div *ngIf="!member.roles || member.roles.length === 0" class="text-center">-</div>
+            </td>
+            <td></td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

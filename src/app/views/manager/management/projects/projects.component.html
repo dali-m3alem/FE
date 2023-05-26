@@ -29,20 +29,18 @@
       <caption class="caption">List of projects</caption>
       <thead class="thead-light">
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Project Name</th>
-          <th scope="col">Description</th>
-          <th scope="col">Objective</th>
-          <th scope="col">Deadline</th>
-          <th scope="col">Project Manager</th>
-          <th scope="col">Status</th>
-          <th scope="col">Budget</th>
-          <th scope="col">Actions</th>
+          <th scope="col" class="fw-bold mb-1">Project Name</th>
+          <th scope="col" class="fw-bold mb-1">Description</th>
+          <th scope="col" class="fw-bold mb-1">Objective</th>
+          <th scope="col" class="fw-bold mb-1">Deadline</th>
+          <th scope="col" class="fw-bold mb-1">Project Manager</th>
+          <th scope="col" class="fw-bold mb-1">Status</th>
+          <th scope="col" class="fw-bold mb-1">Budget</th>
+          <th scope="col" class="fw-bold mb-1">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let project of dataArray | filter: searchValue">
-          <td>{{ project.id }}</td>
           <td>{{ project.projectName }}</td>
           <td>{{ project.descriptionP }}</td>
           <td>{{ project.objectiveP }}</td>

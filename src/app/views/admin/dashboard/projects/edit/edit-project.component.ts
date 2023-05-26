@@ -36,7 +36,7 @@ export class EditProjectComponent implements OnInit {
 
       id: [this.project.id, [Validators.required]],
       projectName: [this.project.projectName, Validators.required],
-      email: [this.project.email, Validators.required],
+      email: [this.project?.email?.email, Validators.required],
       descriptionP: [this.project.descriptionP, Validators.required],
       objectiveP: [this.project.objectiveP, Validators.required],
       deadlineP: [this.dateDeadline, Validators.required],

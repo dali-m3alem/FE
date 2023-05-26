@@ -8,7 +8,6 @@ import { AuthadminService } from 'src/app/views/services/authadmin.service';
 import { ProjectService } from 'src/app/views/services/project.service';
 
 
-
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',

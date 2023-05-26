@@ -1,91 +1,94 @@
 <div class="content container-fluid">
 
-    <!-- Page Header -->
-    <div class="page-header">
-      <div class="row align-items-center">
-        <div class="col">
-          <h3 class="page-title"  >List of activities</h3>
-          <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a routerLink=""  ><span >Home</span></a></li>
-            <li class="breadcrumb-item active"  > <span >List of activities</span> </li>
-          </ul>
-        </div>
-        <div class="col-auto float-end ms-auto">
-          <a class="btn add-btn" (click)="add()"><i class="fa fa-plus"></i>
-            <span>Add activity</span> </a>
-        </div>
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="row align-items-center">
+      <div class="col">
+        <h3 class="page-title"  >List of activities</h3>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink=""  ><span >Home</span></a></li>
+          <li class="breadcrumb-item active"  > <span >List of activities</span> </li>
+        </ul>
+      </div>
+      <div class="col-auto float-end ms-auto">
+        <a class="btn add-btn" (click)="add()"><i class="fa fa-plus"></i>
+          <span>Add activity</span> </a>
       </div>
     </div>
-    <div class="search">
-      <div class="col-md-3">
-        <div class="input-group">
-          
-          <input type="text" class="form-control" [(ngModel)]="searchValue" placeholder="Search...">
-          <span class="input-group-text">
-            <i class="fa fa-search"></i>          
-            </span>
-        </div>
+  </div>
+  <div class="search">
+    <div class="col-md-3">
+      <div class="input-group">
+        
+        <input type="text" class="form-control" [(ngModel)]="searchValue" placeholder="Search...">
+        <span class="input-group-text">
+          <i class="fa fa-search"></i>          
+          </span>
       </div>
-      </div>
-    <div class="table-responsive">
-      <table class="table caption-top  table-hover">
-        <caption class="caption">List of activity</caption>
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Activity name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Objective</th>
-            <th scope="col">Deadline</th>
-            <th scope="col">Team activity</th>
-            <th scope="col">Project id</th>
-     
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let activity of dataArray | filter: searchValue">
-            <td>{{ activity.id }}</td>
-            <td>{{ activity.activityName }}</td>
-            <td>{{ activity.descriptionA }}</td>
-            <td>{{ activity.objectiveA }}</td>
-            <td *ngIf="activity.deadlineA">{{ activity.deadlineA | customDateTime }}</td>
-            <td class="text-center" *ngIf="!activity.deadlineA">-</td>
-            <td>{{ activity?.team?.teamName            }}</td>
-            <td>{{ activity.project.id }}</td>
+    </div>
+    </div>
+  <div class="table-responsive">
+    <table class="table caption-top  table-hover">
+      <caption class="caption">List of activity</caption>
+      <thead class="thead-light">
+        <tr>
+          <th class="fw-bold mb-1" scope="col">Activity name</th>
+          <th  class="fw-bold mb-1" scope="col">Description</th>
+          <th class="fw-bold mb-1" scope="col">Objective</th>
+          <th class="fw-bold mb-1" scope="col">Status</th>
 
-            <td>
-              <a [routerLink]="'/manager/activity/task/' + activity.id + '/' + activity.project.id"><button class="btn add-btn"  >Task</button></a>
-  
-            </td>
-            <td>
-              <a [routerLink]="'/manager/activity/team/' + activity.id + '/' + activity.project.id"><button class="btn btn-primary submit-btn"  >Team</button></a>
-  
-            </td>
-            <td>
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-success btn-sm" (click)="editer(activity)">
-                  <span class="btn-circle btn-circle-success">
-                    <i class="fa fa-pencil"></i>
-                  </span>
-                </button>
-                
-                <button type="button" class="btn btn-outline-info btn-sm" (click)="details(activity)">
-                  <span class="btn-circle btn-circle-info">
-                    <i class="fa fa-eye"></i>
-                  </span>
-                </button>
-                <button type="button" class="btn btn-outline-danger btn-sm" (click)="confirmDeleteProject(activity.id)">
-                  <span class="btn-circle btn-circle-danger">
-                    <i class="fa fa-trash"></i>
-                  </span>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
+          <th class="fw-bold mb-1" scope="col">Deadline</th>
+
+          <th class="fw-bold mb-1" scope="col">Team activity</th>
+          <th class="fw-bold mb-1" scope="col">Project Name</th>
+   
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let activity of dataArray | filter: searchValue">
+          <td>{{ activity.activityName }}</td>
+          <td>{{ activity.descriptionA }}</td>
+          <td>{{ activity.objectiveA }}</td>
+          <td>{{ activity.status}}</td>
+
+          <td *ngIf="activity.deadlineA">{{ activity.deadlineA | customDateTime }}</td>
+          <td class="text-center" *ngIf="!activity.deadlineA">-</td>
+          <td>{{ activity?.team?.teamName            }}</td>
+          <td>{{ activity.project.projectName }}</td>
+
+          <td>
+            <a [routerLink]="'/AdminManager/activity/task/' + activity.id + '/' + activity.project.id"><button class="btn add-btn"  >Task</button></a>
+
+          </td>
+          <td>
+            <a [routerLink]="'/AdminManager/activity/team/' + activity.id + '/' + activity.project.id"><button class="btn add-btn" >Team</button></a>
+
+          </td>
+          <td>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-outline-success btn-sm" (click)="editer(activity)">
+                <span class="btn-circle btn-circle-success">
+                  <i class="fa fa-pencil"></i>
+                </span>
+              </button>
+              
+              <button type="button" class="btn btn-outline-info btn-sm" (click)="details(activity)">
+                <span class="btn-circle btn-circle-info">
+                  <i class="fa fa-eye"></i>
+                </span>
+              </button>
+              <button type="button" class="btn btn-outline-danger btn-sm" (click)="confirmDeleteProject(activity.id)">
+                <span class="btn-circle btn-circle-danger">
+                  <i class="fa fa-trash"></i>
+                </span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 
 
 

@@ -69,56 +69,10 @@
     
     
       <div class="row">
-          <div class="col-md-6 d-flex">
-              <div class="card card-table flex-fill">
-                  <div class="card-header">
-                      <h3 class="card-title mb-0">Teams</h3>
-                  </div>
-                  <div class="card-body">
-                      <div class="table-responsive">
-                          <table class="table custom-table mb-0" >
-                              <thead>
-                                  <tr>
-                                      <th>Team name</th>
-                                      <th>Team description</th>
-                                      <th>Team members</th>
-                                  </tr>
-                              </thead>
-                              <tbody *ngFor="let user of dataUser; let i = index" >
-                                  <tr>
-                                      <td>
-                                         {{user.teamName}}
-                                      </td>
-                                      <td>{{user.teamDesc}}</td>
-                                     
-<td><div class="project-members m-b-15">
-  <ul class="team-members" >
-      <li *ngFor="let member of user.members">
-          <a data-bs-toggle="tooltip" title="Jeffery Lalor"><img alt=""
-            [src]="'data:image/jpeg;base64,' + member.profilePicture" ></a>
-      </li>
-    
-  </ul>
-</div>
-</td>                           
+          
 
-</tr>
-                                  
-                                 
-                                  
-                              
-                              </tbody>
-                          </table>
-    
-    
-    
-                      </div>
-                  </div>
-                  <div class="card-footer">
-                      <a routerLink="/clients/clientspage">View all clients</a>
-                  </div>
-              </div>
-          </div>
+
+        
           <div class="col-md-6 d-flex">
               <div class="card card-table flex-fill">
                   <div class="card-header">

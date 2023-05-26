@@ -19,6 +19,9 @@
                     <div class="form-group">
                         <label>Email Address</label>
                         <input class="form-control" type="text" placeholder="Email" name="email" #email="ngModel" ngModel required>
+                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                            Email is required
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -31,15 +34,20 @@
                                 </a>
                             </div>
                         </div>
-                        <input class="form-control" type="password" placeholder="Password" required name="password" #password="ngModel" ngModel>
+                        <input class="form-control" type="password" placeholder="Password" required name="password" #password="ngModel" ngModel required>
+                        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                            Password is required
+                        </div>
                     </div>
                     <div class="form-group text-center">
                         <button class="btn btn-primary account-btn" type="button" type="submit">Login</button>
                     </div>
-                    <div class="alert alert-danger" *ngIf="messageAuthError">
-                        {{messageAuthError}}
-                    </div>
-                    
+                  
+                    <div *ngIf="messageAuthError" >
+                        <small class="text-danger">
+                            {{messageAuthError}}
+                        </small>
+                      </div>
                 </form>
                 <!-- /Account Form -->
                 

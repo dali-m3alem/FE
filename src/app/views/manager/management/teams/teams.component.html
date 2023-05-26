@@ -35,23 +35,31 @@
         <thead class="thead-light">
           <tr>
             
-            <th scope="col">Team id</th>
-            <th scope="col">Team name</th>
-            <th scope="col">Team description</th>
-            <th scope="col">Actions</th>
+           <th scope="col" class="fw-bold mb-1">Team name</th>
+            <th scope="col" class="fw-bold mb-1">Team description</th>
+            <th scope="col" class="fw-bold mb-1">Actions</th>
     
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of dataArray | filter: searchValue">
-            <td >
-              {{item.id}}
-            </td>
+           
             <td >
                 {{item.teamName}}
               </td>
             
             <td >{{item.teamDesc}}</td>
+              <td>
+                <div class="project-members m-b-15">
+              <ul class="team-members" >
+                  <li *ngFor="let member of item.members">
+                      <a data-bs-toggle="tooltip"  [title]="member.firstname"><img alt=""
+                        [src]="'data:image/jpeg;base64,' + member.profilePicture" ></a>
+                  </li>
+                
+              </ul>
+            </div>
+            </td>  
             <td>
               <div class="btn-group" role="group">
                 <button type="button" class="btn btn-outline-success btn-sm" (click)="editer(item)">
@@ -78,3 +86,22 @@
         </tbody>
       </table>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

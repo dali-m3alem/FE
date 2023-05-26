@@ -438,3 +438,16 @@ transform-origin: top center;
   background-size: 100%;
   transition: background 0s;
 }
+.badge {
+  position: absolute;
+top: 16px;
+right: 106px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 15px;
+}

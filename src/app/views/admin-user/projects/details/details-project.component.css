@@ -1,3 +1,20 @@
 .content {
 	padding: 30px;
 }
+
+
+h5{
+  font-size: 24px;
+}
+
+  .info-text{
+	font-size: 16px;
+	color: grey;
+  }
+.details{
+  display: flex;
+  gap: 15px;
+}
+.divis{
+  display: flex;
+}

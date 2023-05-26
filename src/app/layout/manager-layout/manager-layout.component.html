@@ -31,7 +31,8 @@
            
           </div>
           <div class="head-menu-item">
-            <button class="head-menu-item-btn ripple" [cdkMenuTriggerFor]="notificationOverLay">
+            <button class="head-menu-item-btn ripple" (click)="markNotificationsAsRead()" [cdkMenuTriggerFor]="notificationOverLay">
+              <span class="badge rounded-pill" *ngIf="unreadNotificationCount > 0">{{unreadNotificationCount}}</span>
               <i class="far fa-bell menu-icon" ></i>
             </button>
           </div>

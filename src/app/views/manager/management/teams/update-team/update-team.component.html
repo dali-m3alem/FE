@@ -1,5 +1,5 @@
 <div class="custom-modal modal-header">
-    <h5 class="modal-title">Team</h5>
+    <h1 class="modal-title" class="fw-bold mb-1">Team</h1>
     <button type="button" class="close" (click)="closeModal()" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="form-group">
-            <label><span>Team name</span> <span class="text-danger">*</span></label>
+            <label><span class="fw-bold mb-1">Team name</span> <span class="text-danger">*</span></label>
             <input class="form-control" type="text"
                    [class.invalid]="f['teamName'].invalid && f['teamName'].touched"
                    formControlName="teamName">
@@ -24,7 +24,7 @@
   
         <div class="col-lg-12">
           <div class="form-group">
-            <label><span>Team Description</span> <span class="text-danger">*</span></label>
+            <label><span class="fw-bold mb-1">Team Description</span> <span class="text-danger">*</span></label>
             <input class="form-control" type="text"
                    [class.invalid]="f['teamDesc'].invalid && f['teamDesc'].touched"
                    formControlName="teamDesc">
@@ -37,31 +37,35 @@
       </div>
       <!-- ... Autres champs de formulaire ... -->
 
-      <div formArrayName="members">
+      <div formArrayName="members" >
         <div *ngFor="let memberControl of membersFormArray.controls; let i = index" class="form-group">
-          <label for="memberEmail{{i}}">Member</label>
-          <select [formControlName]="i" id="memberEmail{{i}}" class="form-control">
+          <label for="memberEmail{{i}}" class="fw-bold mb-1">Member</label>
+          <div class="selection">
+
+          <select [formControlName]="i" id="memberEmail{{i}}" class="form-select">
             <option value="">Select email address</option>
             <option *ngFor="let email of managers" [value]="email">{{ email }}</option>
           </select>
-          <button type="button" class="btn btn-danger" (click)="removeMember(i)">Delete</button>
+          <button type="button" class="btn btn-danger" (click)="removeMember(i)"><mat-icon>delete</mat-icon></button>
+          <button type="button" class="btn btn-primary" (click)="addMember()">Add</button>
+          </div>
         </div>
       </div>
       
-      <button type="button" class="btn btn-primary" (click)="addMember()">Add  membre</button>
       
       
-  
+      <div class="modal-footer">
+
       <div class="submit-section">
         <button class="btn btn-primary submit-btn" [disabled]="isSaving" type="submit"><span>Save</span></button>
+        <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span>Cancel</span></button>
+
       </div>
   
+      
+      </div>
     </form>
   
   </div>
-  <div class="modal-footer">
-  
-    <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span>Cancel</span></button>
-  
-  </div>
+ *
   

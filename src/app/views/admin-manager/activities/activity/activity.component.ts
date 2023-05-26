@@ -54,7 +54,7 @@ export class ActivityComponent implements OnInit {
 
   add(){
     const options2: NgbModalOptions = {
-      size: 'xl',
+      size: 'l',
       centered: true,
       scrollable: true,
       windowClass:'modal-holder'
@@ -72,7 +72,7 @@ export class ActivityComponent implements OnInit {
   }
   details(row: any) {
     const options1: NgbModalOptions = {
-      size: 'xl',
+      size: 'l',
       centered: true,
       scrollable: true,
       windowClass:'modal-holder'
@@ -142,7 +142,7 @@ export class ActivityComponent implements OnInit {
 
 editer(row: any) {
   const options3: NgbModalOptions = {
-    size: 'xl',
+    size: 'l',
     centered: true,
     scrollable: true,
     windowClass:'modal-holder'

@@ -1,50 +1,39 @@
 <div class="custom-modal modal-header">
-    <h5 class="modal-title">Team</h5>
+    <h1 class="modal-title" class="fw-bold mb-1">Team</h1>
     <button type="button" class="close" (click)="closeModal()" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
   
-    <form (ngSubmit)="confirmEditTypeCourrier()" [formGroup]="editProjectForm">
+    <form  >
   
-      <div class="row">
-        <div class="col-lg-10">
-          <div class="form-group">
-            <label><span>Team name</span> <span class="text-danger">*</span></label>
-            <input readonly class="form-control" type="text"
-                   [class.invalid]="f['teamName'].invalid && f['teamName'].touched"
-                   formControlName="teamName">
-  
-            <div *ngIf="f['teamName'].invalid && f['teamName'].touched">
-              <small class="text-danger">* is required</small>
+      <div class="modal-body">
+        <div class="details">
+          <label class="fw-bold mb-1">Project Name:</label>
+          <p class="info-text">{{ team.teamName }}</p>
+        </div>
+        <div class="details">
+          <label class="fw-bold mb-1">Project Name:</label>
+          <p class="info-text">{{ team.teamDesc }}</p>
+        </div>
+
+
+          <label class="fw-bold mb-1"> Manager Email:</label>
+          <div class="d-flex align-items-center" *ngFor="let membre of team.members">
+            <img [src]="'data:image/jpeg;base64,' + membre.profilePicture" alt="" style="width: 35px; height: 35px" class="rounded-circle" />
+            <div class="ms-3">
+              <p class="fw-bold mb-1">{{ membre.email  }}</p>
             </div>
           </div>
-        </div>
-  
-        <div class="col-lg-10">
-          <div class="form-group">
-            <label><span>Team description</span> <span class="text-danger">*</span></label>
-            <input class="form-control" type="text" readonly
-                   [class.invalid]="f['teamDesc'].invalid && f['teamDesc'].touched"
-                   formControlName="teamDesc">
-  
-            <div *ngIf="f['teamDesc'].invalid && f['teamDesc'].touched">
-              <small class="text-danger">* is required</small>
-            </div>
-          </div>
-        </div>
+
+
       </div>
+  
+       
       <!-- ... Autres champs de formulaire ... -->
 
-<div formArrayName="members">
-    <div *ngFor="let memberControl of membersFormArray.controls; let i = index" class="form-group">
-      <label for="memberUsername{{i}}">Member</label>
-      <input readonly type="text" [formControlName]="i" id="memberUsername{{i}}" class="form-control">
-    </div>
-  </div>
-  
-  
+
       <!-- Répétez ces blocs pour les autres propriétés des membres -->
       
       

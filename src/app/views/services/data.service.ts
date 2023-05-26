@@ -44,8 +44,12 @@ export class DataService {
 
 
 // Fonction pour récupérer les informations utilisateur à partir du backend
-getUserData(id: number): Observable<any> {
-  return this.http.get<any>(`http://localhost:8080/api/v1/auth/getuserId?id=${id}`);
+getUserData(): Observable<any> {
+  const token = localStorage.getItem('token');
+  
+  // Create the headers and include the Authorization header with the token
+     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get<any>(`http://localhost:8080/api/v1/auth/getuserId`,{headers});
 }
 
 
@@ -71,6 +75,7 @@ changePassword(id: number, oldPassword: string, newPassword: string) {
 }
 uploadProfilePicture(file: File, userId: number) {
   const formData = new FormData();
+  
   formData.append('file', file);
   formData.append('userId', userId.toString());
   return this.http.post('http://localhost:8080/api/v1/auth/upload-profile-picture', formData);

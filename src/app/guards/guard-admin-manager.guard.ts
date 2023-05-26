@@ -10,13 +10,13 @@ export class GuardAdminManagerGuard implements CanActivate {
   constructor(private as:AuthadminService, private router:Router){}
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return new Promise((resolve,reject)=>{
-      if(this.as.LoggedIsAdminManager()==true){
-      resolve(true)
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    if (this.as.LoggedIsAdminManager()) {
+      return true; // Autoriser l'accès à la route
+    } else {
+      this.router.navigate(['/login']);
+      return false; // Rediriger vers la page de connexion
     }
-    else{
-      this.router.navigate(['/login'])
-      resolve(false)
-    }});
+  
 }}

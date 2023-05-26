@@ -12,14 +12,16 @@ export class GuardmanagerGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return new Promise((resolve,reject)=>{
-        if(this.as.LoggedIsManager()==true){
-        resolve(true)
-      }
-      else{
-        this.router.navigate(['/login'])
-        resolve(false)
-      }})
+      return new Promise((resolve, reject) => {
+        if (this.as.LoggedIsManager()) {
+          resolve(true);
+        } else {
+          this.router.navigate(['/login']);
+          resolve(false);
+        }
+      });
   }
+  
+  
   
 }

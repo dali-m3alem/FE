@@ -52,8 +52,7 @@ export class ProfilComponent implements OnInit {
     
   }
   loadData() {
-    const user = this.auth.getUser();
-    this.asd.getUserData(user).subscribe((data: any) => {
+    this.asd.getUserData().subscribe((data: any) => {
       this.userInfo = data;
       this.imageSrc = 'data:image/jpeg;base64,' + this.userInfo.profilePicture;
 
@@ -126,7 +125,8 @@ export class ProfilComponent implements OnInit {
       forkJoin([updateObs, uploadObs]).subscribe(
         ([updateResponse, uploadResponse]) => {
           console.log('User updated:', this.selectedUser.id);
-          this.togglePopup();
+          this.closePopup();
+          
           this.loadData();
             Swal.close();
     
@@ -137,8 +137,11 @@ export class ProfilComponent implements OnInit {
             ).then((result) => {
               if (result.isConfirmed) {
                 this.loadData();
+
               }
             })
+            this.closePopup();
+
         },
         (error) => {
           console.log(error);
@@ -159,7 +162,7 @@ export class ProfilComponent implements OnInit {
             if (uploadObs) {
               Swal.fire(
                 'Error',
-                'Error updating user picture file',
+                'Error photo file too large to upload',
                 'error'
               );
             } else {

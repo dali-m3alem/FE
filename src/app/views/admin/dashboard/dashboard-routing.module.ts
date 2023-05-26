@@ -5,6 +5,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { CalendrierComponent } from './calendrier/calendrier.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { UsersComponent } from './user/users/users.component';
+import { EmployesComponent } from './user/users/employes/employes.component';
 
 const routes: Routes = [
   {path:'',component:DashboardComponent},
@@ -13,6 +14,8 @@ const routes: Routes = [
   {path:'Projects',component:ProjectsComponent},
 
   {path:'user11',component:UsersComponent},
+  {path:'users',component:EmployesComponent},
+
 
 
 

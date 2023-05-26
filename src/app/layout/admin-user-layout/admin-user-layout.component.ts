@@ -19,9 +19,8 @@ export class AdminUserLayoutComponent {
 
   constructor(private asd:AuthadminService, private route :Router,private ser:DataService){
     console.log(this.asd.LoggedIsAdminManager())
-    const user = this.asd.getUser();
 
-    this.ser.getUserData(user).subscribe((data: any) => {
+    this.ser.getUserData().subscribe((data: any) => {
       this.userInfo = data;
       this.imageSrc = 'data:image/jpeg;base64,' + this.userInfo.profilePicture;
 

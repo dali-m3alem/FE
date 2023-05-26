@@ -1,5 +1,5 @@
 <div class="custom-modal modal-header">
-    <h5 class="modal-title" >Activity</h5>
+    <h1 class="modal-title" class="fw-bold mb-1" >Activity</h1>
       <button type="button" class="close" (click)="closeModal()" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -12,7 +12,7 @@
         <div class="row">
           <div class="col-lg-10">
             <div class="form-group">
-              <label > <span >Activity name</span> <span class="text-danger">*</span></label>
+              <label > <span class="fw-bold mb-1" >Activity name</span> <span class="text-danger">*</span></label>
                 <input class="form-control " type="text"
                        [class.invalid]="f['activityName'].invalid && f['activityName'].touched"
                        formControlName="activityName"
@@ -28,7 +28,7 @@
           
           <div class="col-lg-10">
             <div class="form-group">
-              <label > <span >Description</span> <span class="text-danger">*</span></label>
+              <label > <span class="fw-bold mb-1" >Description</span> <span class="text-danger">*</span></label>
     
               <textarea rows="4" class="form-control"  [class.invalid]="f['descriptionA'].invalid  &&  f['descriptionP'].touched"
                         formControlName="descriptionA"></textarea>
@@ -41,7 +41,7 @@
           </div>
           <div class="col-lg-10">
             <div class="form-group">
-              <label > <span >Objectives</span> <span class="text-danger">*</span></label>
+              <label > <span class="fw-bold mb-1" >Objectives</span> <span class="text-danger">*</span></label>
       
               <textarea rows="4" class="form-control"  [class.invalid]="f['objectiveA'].invalid &&  f['objectiveP'].touched"
                         formControlName="objectiveA"></textarea>
@@ -56,7 +56,7 @@
         </div>
         <div class="col-lg-3">
             <div class="form-group">
-              <label > <span >Deadline</span> <span class="text-danger">*</span></label>
+              <label > <span class="fw-bold mb-1" >Deadline</span> <span class="text-danger">*</span></label>
               <div class="cal-icon">
                 <input class="form-control datetimepicker" type="date"bsDatepicker
                        [class.invalid]="f['deadlineA'].invalid &&  f['deadlineA'].touched"
@@ -71,9 +71,9 @@
           </div>
           <div class="col-lg-3">
             <div class="form-group">
-                <label><span>Team ID</span><span class="text-danger">*</span></label>
+                <label><span class="fw-bold mb-1" >Team ID</span><span class="text-danger">*</span></label>
               
-                <select class="form-control" [class.invalid]="f['team'].invalid && f['team'].touched"
+                <select class="form-select" [class.invalid]="f['team'].invalid && f['team'].touched"
                         formControlName="team">
                   <option *ngFor="let manager of managersUser" [value]="manager">{{ manager }}</option>
 
@@ -87,18 +87,17 @@
               
           </div>
     
-        <div class="submit-section">
+        
+        <div class="modal-footer">
           <button class="btn btn-primary submit-btn"  [disabled]="isSaving" type="submit" ><span > Save </span></button>
+
+          <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
+        
         </div>
-    
       </form>
     
     </div>
-    <div class="modal-footer">
-    
-      <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
-    
-    </div>
+  
     
 
 

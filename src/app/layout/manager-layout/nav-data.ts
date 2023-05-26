@@ -13,34 +13,34 @@ export interface NavbarItem {
 
     },
     {
-        routeLink:'profil',
-        icon:'fa fa-user',
-        label :'profile'
-
-    },
-    {
         routeLink:'tasks',
-        icon:'fa fa-tasks',
-        label :'Tasks of projects'
+        icon:'fa fa-check',
+        label :'Tasks of manager'
 
     },
 {        routeLink:'project',
-        icon:'fa fa-window-restore',
+        icon:'fa fa-cubes',
         label :'Porjects'
 
     }
     ,{
         routeLink:'team',
-        icon:'fa fa-comments',
+        icon:'fa fa-users',
         label :'team'
         
     },
     {
         routeLink:'TaskUser',
-        icon:'fa fa-tasks',
-        label :'Tasks of Manager'
+        icon:'fa fa-list',
+        label :'Tasks of user'
 
     }
     
+    ,
+    {
+        routeLink:'profil',
+        icon:'fa fa-user',
+        label :'profil'
 
+    }
 ];

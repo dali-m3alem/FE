@@ -12,6 +12,8 @@ import { AuthGuardGuard } from './guards/auth-guard.guard';
 import { ForgotComponent } from './layout/log/forgot/forgot.component';
 import { AdminManagerLayoutComponent } from './layout/admin-manager-layout/admin-manager-layout.component';
 import { AdminUserLayoutComponent } from './layout/admin-user-layout/admin-user-layout.component';
+import { GuardAdminManagerGuard } from './guards/guard-admin-manager.guard';
+import { GuardAdminUserGuard } from './guards/guard-admin-user.guard';
 
 const routes: Routes = [
   {path:'user',component:UserLayoutComponent,canActivate:[GuarduserGuard],children:[
@@ -30,11 +32,11 @@ const routes: Routes = [
     {path:'tasks',loadChildren:()=>import('./views/admin/dashboard/dashboard.module').then(m=>m.DashboardModule)}, {path:'project',loadChildren:()=>import('./views/admin/dashboard/dashboard.module').then(m=>m.DashboardModule)},
     {path:'profil',loadChildren:()=>import('./views/admin/dashboard/dashboard.module').then(m=>m.DashboardModule)},
 
-  ]},{path:'AdminManager',component:AdminManagerLayoutComponent ,canActivate:[GuardmanagerGuard],children:[
+  ]},{path:'AdminManager',component:AdminManagerLayoutComponent ,canActivate:[GuardAdminManagerGuard],children:[
     {path:'',loadChildren:()=>import('./views/admin-manager/admin-manager.module').then(m=>m.AdminManagerModule)},
 
   ]}
-  ,{path:'AdminUser',component:AdminUserLayoutComponent ,canActivate:[GuarduserGuard],children:[
+  ,{path:'AdminUser',component:AdminUserLayoutComponent ,canActivate:[GuardAdminUserGuard],children:[
     {path:'',loadChildren:()=>import('./views/admin-user/admin-user.module').then(m=>m.AdminUserModule)},
 
     

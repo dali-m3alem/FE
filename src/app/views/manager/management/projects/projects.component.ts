@@ -34,8 +34,7 @@ export class ProjectsComponent {
         Swal.showLoading()
       }
     });
-    const adminId = this.auth.getUser();
-    this.projectService.getAllProjectsByManagerId(adminId).subscribe(
+    this.projectService.getAllProjectsByManagerId().subscribe(
       (response: Project[]) => {
         this.dataArray = response;
         console.log(this.dataArray);

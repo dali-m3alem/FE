@@ -7,3 +7,50 @@ a {
     color: white;
     background-color: rgb(47, 109, 202);
   }
+  
+.team-members {
+  display: inline-flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-bottom: 0;
+  padding: 0;
+}
+.team-members > li:first-child a {
+margin-left: 0;
+}
+.team-members > li > a {
+border: 2px solid #fff;
+border-radius: 100%;
+display: block;
+height: 30px;
+overflow: hidden;
+width: 30px;
+}
+.team-members .all-users {
+line-height: 28px;
+opacity: 0.8;
+}
+.all-users {
+background-color: #ff5e3a;
+color: #fff;
+font-size: 10px;
+font-weight: 800;
+line-height: 34px;
+text-align: center;
+}
+.all-users:hover, .all-users:active {
+color: #fff;
+}
+.team-members img {
+width: 100%;
+}
+.pro-teams .pro-team-members {
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+}
+
+
+.team-members {
+    flex-wrap: wrap;
+}

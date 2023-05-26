@@ -16,31 +16,19 @@ interface SideNavToggle{
 export class ManagerLayoutComponent {
   imageSrc!: string;
   userInfo: any;
-
+  unreadNotificationCount!: number;
+  notifications: any;
   constructor(private asd:AuthadminService, private route :Router,private ser:DataService){
     console.log(this.asd.LoggedIsUser())
-    const user = this.asd.getUser();
 
-    this.ser.getUserData(user).subscribe((data: any) => {
+    this.ser.getUserData().subscribe((data: any) => {
       this.userInfo = data;
       this.imageSrc = 'data:image/jpeg;base64,' + this.userInfo.profilePicture;
 
     });
    }
 
-   getImageUrl() {
-    return this.imageSrc;
-  }
-  getUserNotifications() {
-    this.ser.getUserNotifications().subscribe(
-      (response:any) => {
-this.notifcations=response
-console.log(response)
-          },
-      (error: any) => {
-        console.log(error);
-      })
-  }
+  
   userItems=[
     {icon:'far fa-user',
      label:'profil', action: () => {
@@ -71,6 +59,8 @@ profil(){
     } }
 
   ngOnInit(): void {
+    this.getUnreadNotificationCount();
+    
     this.getUserNotifications()
 this.screenWidth=window.innerWidth; 
 this.checkcanShowSearchAsOverlay(window.innerWidth) }
@@ -107,7 +97,35 @@ return styleClass
 
 
 
+  getUnreadNotificationCount(){
+    const user = this.asd.getUser();
 
+    this.ser.getUnreadNotificationCount(user).subscribe(count => this.unreadNotificationCount = count);
+
+   }
+   markNotificationsAsRead() {
+    const user = this.asd.getUser();
+
+    this.ser.markUserNotificationsAsRead(user)
+      .subscribe(updatedNotifications => this.notifications = updatedNotifications);
+      this.unreadNotificationCount = 0; // Réinitialiser le compteur de notifications non lues
+
+  }
+   getImageUrl() {
+    return this.imageSrc;
+  }
+  getUserNotifications() {
+    this.ser.getUserNotifications().subscribe(
+      (response:any) => {
+    this.notifcations=response
+    this.notifications = response.reverse();
+  // Appel pour mettre à jour le compteur de notifications non lues
+
+          },
+      (error: any) => {
+        console.log(error);
+      })
+  }
 
 
 

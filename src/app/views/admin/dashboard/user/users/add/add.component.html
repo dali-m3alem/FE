@@ -1,5 +1,5 @@
 <div class="custom-modal modal-header">
-    <h5 class="modal-title" >Add user</h5>
+    <h1 class="modal-title" class="fw-bold mb-1">Add user</h1>
       <button type="button" class="close" (click)="closeModal()" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -10,9 +10,9 @@
     
     
         <div class="row">
-          <div class="col-lg-9">
+          <div class="col-lg-5">
             <div class="form-group">
-              <label > <span >first name</span> <span class="text-danger">*</span></label>
+              <label  > <span class="fw-bold mb-1" >First Name</span> <span class="text-danger">*</span></label>
                 <input class="form-control " type="text"
                        [class.invalid]="f['firstname'].invalid && f['firstname'].touched"
                        formControlName="firstname"
@@ -27,7 +27,22 @@
           </div>
           <div class="col-lg-5">
             <div class="form-group">
-              <label > <span >password</span> <span class="text-danger">*</span></label>
+              <label > <span class="fw-bold mb-1">User Lastname</span> <span class="text-danger">*</span></label>
+              <input class="form-control " type="text"
+                     [class.invalid]="f['userLastName'].invalid &&  f['userLastName'].touched"
+                     formControlName="userLastName"
+                     >
+    
+              <div *ngIf=" f['userLastName'].invalid &&  f['userLastName'].touched">
+                <small
+                  *ngIf=" f['userLastName'].invalid &&  f['userLastName'].touched"
+                  class="text-danger" > * is required</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="form-group">
+              <label > <span class="fw-bold mb-1">Password</span> <span class="text-danger">*</span></label>
               <input class="form-control " type="password"
                      [class.invalid]="f['password'].invalid &&  f['password'].touched"
                      formControlName="password"
@@ -43,7 +58,7 @@
           
           <div class="col-lg-5">
             <div class="form-group">
-              <label > <span >confirmPassword</span> <span class="text-danger">*</span></label>
+              <label > <span class="fw-bold mb-1">Confirm Password</span> <span class="text-danger">*</span></label>
               <input class="form-control " type="password"
                      [class.invalid]="f['confirmPassword'].invalid &&  f['confirmPassword'].touched"
                      formControlName="confirmPassword"
@@ -60,24 +75,10 @@
               </div>
             </div>
           </div>
+          
           <div class="col-lg-5">
             <div class="form-group">
-              <label > <span >userLastName</span> <span class="text-danger">*</span></label>
-              <input class="form-control " type="text"
-                     [class.invalid]="f['userLastName'].invalid &&  f['userLastName'].touched"
-                     formControlName="userLastName"
-                     >
-    
-              <div *ngIf=" f['userLastName'].invalid &&  f['userLastName'].touched">
-                <small
-                  *ngIf=" f['userLastName'].invalid &&  f['userLastName'].touched"
-                  class="text-danger" > * is required</small>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-5">
-            <div class="form-group">
-              <label > <span >phoneNumber</span> <span class="text-danger">*</span></label>
+              <label > <span class="fw-bold mb-1">Phone Number</span> <span class="text-danger">*</span></label>
               <input class="form-control " type="text"
                      [class.invalid]="f['phoneNumber'].invalid &&  f['phoneNumber'].touched"
                      formControlName="phoneNumber" [pattern]="'^[0-9]{8}$'"
@@ -95,9 +96,9 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-7">
+          <div class="col-lg-5">
             <div class="form-group">
-              <label > <span >email</span> <span class="text-danger">*</span></label>
+              <label > <span class="fw-bold mb-1">Email Adress</span> <span class="text-danger">*</span></label>
               <input class="form-control " type="email"
                      [class.invalid]="f['email'].invalid &&  f['email'].touched"
                      formControlName="email"
@@ -114,9 +115,9 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-5">
             <div class="form-group">
-              <label > <span >roleName</span> <span class="text-danger">*</span></label>
+              <label > <span class="fw-bold mb-1">Role</span> <span class="text-danger">*</span></label>
               <select id="inputRole" class="form-select" formControlName="roleName">
                 <option value="manager">Manager</option>
                 <option value="admin">Admin</option>
@@ -132,7 +133,7 @@
           </div>
           <div class="col-lg-5">
             <div class="form-group">
-              <label > <span >titre</span> <span class="text-danger">*</span></label>
+              <label > <span class="fw-bold mb-1">Title</span> <span class="text-danger">*</span></label>
               <input class="form-control " type="text"
                      [class.invalid]="f['titre'].invalid &&  f['titre'].touched"
                      formControlName="titre"
@@ -147,9 +148,10 @@
           </div>
         </div>        
     
-       
+        <div class="col-lg-9">
+
         <div class="form-group">
-          <label for="profilePicture">Profile Picture</label>
+          <label for="profilePicture" class="fw-bold mb-1">Profile Picture</label>
           <input
             type="file"
             id="profilePicture"
@@ -158,23 +160,17 @@
             (change)="onFileSelected($event)"
           />
         </div>
-        
+        </div>
+        <div class="modal-footer">
+          <div class="submit-section">
 
+          <button class="btn btn-primary submit-btn" type="submit" [disabled]="isSaving"  (click)="confirmSaveProject()" ><span > Save </span></button>
+          <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
+
+          </div>
+  </div>
+  
       </form>
     
     </div>
-    <div class="modal-footer">
-      <div class="row">
-        <div class="col-6 ">
-          <div >
-            <button class="btn btn-primary submit-btn"  [disabled]="isSaving"  (click)="confirmSaveProject()" ><span > Sauvgarder </span></button>
-          </div>
-        </div>
-        <div class="col-6 ">
-          <div >
-            <button type="button" class="btn btn-outline-dark" (click)="closeModal()"><span > Cancel </span></button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
+

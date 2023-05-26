@@ -21,14 +21,13 @@ export class AdminManagerLayoutComponent implements OnInit{
 
   constructor(private asd:AuthadminService, private route :Router,private ser:DataService){
     console.log(this.asd.LoggedIsAdminManager())
-    const user = this.asd.getUser();
-    this.ser.getUserData(user).subscribe((data: any) => {
+    this.ser.getUserData().subscribe((data: any) => {
       this.userInfo = data;
       this.imageSrc = 'data:image/jpeg;base64,' + this.userInfo.profilePicture;
 
     });
    }
-
+  
    getUnreadNotificationCount(){
     const user = this.asd.getUser();
 
@@ -51,8 +50,7 @@ export class AdminManagerLayoutComponent implements OnInit{
       (response:any) => {
     this.notifcations=response
     this.notifications = response.reverse();
-
-    this.getUnreadNotificationCount(); // Appel pour mettre à jour le compteur de notifications non lues
+  // Appel pour mettre à jour le compteur de notifications non lues
 
           },
       (error: any) => {
@@ -91,10 +89,9 @@ profil(){
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
     this.checkcanShowSearchAsOverlay(window.innerWidth);
-    this.getUserNotifications();
-
     this.getUnreadNotificationCount();
-
+    this.getUserNotifications();
+    
  }
   @Output() onToggleSideNav:EventEmitter<SideNavToggle>=new EventEmitter();
   collapsed=false;

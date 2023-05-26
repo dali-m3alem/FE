@@ -102,7 +102,6 @@ export class AddComponent {
         formData.append('profilePicture', this.selectedFile);
       }
 
-
       this.asd.adduser(formData).subscribe((data=>{
           Swal.close();
             Swal.fire(

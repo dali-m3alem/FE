@@ -34,13 +34,18 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/sweetalert2/src/sweetalert2.scss"
-    
+              "node_modules/sweetalert2/src/sweetalert2.scss",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/morris.js/morris.css"
                       ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
                             "node_modules/chart.js/dist/chart.js",
-                            "node_modules/apexcharts/dist/apexcharts.min.js"
+                            "node_modules/apexcharts/dist/apexcharts.min.js",
+                            "node_modules/morris.js/morris.js",
+                            "node_modules/raphael/raphael.js"
+
+
             ]
           },
           "configurations": {

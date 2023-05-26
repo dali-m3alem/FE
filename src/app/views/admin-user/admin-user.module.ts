@@ -24,6 +24,7 @@ import { DetailsComponent } from './user/users/details/details.component';
 import { TaskUserComponent } from './task-user/task-user.component';
 import { InfoTaskComponent } from './info-task/info-task.component';
 import { ProfilComponent } from './profil/profil.component';
+import { EmployesComponent } from './user/users/employes/employes.component';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { ProfilComponent } from './profil/profil.component';
     AddProjectComponent,
     ProjectsComponent,EditProjectComponent,DetailsProjectComponent
     ,UsersComponent,AddComponent,EditComponent,DetailsComponent,
-    TaskUserComponent,InfoTaskComponent,ProfilComponent
+    TaskUserComponent,InfoTaskComponent,ProfilComponent,EmployesComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 <div class="custom-modal modal-header">
-<h5 class="modal-title" >Project</h5>
+<h1 class="modal-title" class="fw-bold mb-1" >Project</h1>
   <button type="button" class="close" (click)="closeModal()" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -10,9 +10,9 @@
 
 
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-5">
         <div class="form-group">
-          <label > <span >Project Name</span> <span class="text-danger">*</span></label>
+          <label > <span class="fw-bold mb-1">Project Name</span> <span class="text-danger">*</span></label>
             <input class="form-control " type="text"
                    [class.invalid]="f['projectName'].invalid && f['projectName'].touched"
                    formControlName="projectName"
@@ -25,9 +25,9 @@
             </div>
         </div>
       </div>
-      <div class="col-lg-12">
+      <div class="col-lg-5">
         <div class="form-group">
-          <label > <span >Project Manager Email</span> <span class="text-danger">*</span></label>
+          <label > <span class="fw-bold mb-1">Project Manager Email</span> <span class="text-danger">*</span></label>
           <select class="form-control"
           [class.invalid]="f['email'].invalid && f['email'].touched"
           formControlName="email">
@@ -43,9 +43,9 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-12">
+      <div class="col-lg-5">
         <div class="form-group">
-          <label > <span >Project description</span> <span class="text-danger">*</span></label>
+          <label > <span class="fw-bold mb-1">Project description</span> <span class="text-danger">*</span></label>
 
           <textarea rows="4" class="form-control"  [class.invalid]="f['descriptionP'].invalid  &&  f['descriptionP'].touched"
                     formControlName="descriptionP"></textarea>
@@ -56,9 +56,9 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-12">
+      <div class="col-lg-5">
         <div class="form-group">
-          <label > <span >Project Objectives</span> <span class="text-danger">*</span></label>
+          <label > <span class="fw-bold mb-1">Project Objectives</span> <span class="text-danger">*</span></label>
   
           <textarea rows="4" class="form-control"  [class.invalid]="f['objectiveP'].invalid &&  f['objectiveP'].touched"
                     formControlName="objectiveP"></textarea>
@@ -76,7 +76,7 @@
      
       <div class="col-lg-4">
         <div class="form-group">
-          <label > <span >Project Deadline</span> <span class="text-danger">*</span></label>
+          <label > <span class="fw-bold mb-1">Project Deadline</span> <span class="text-danger">*</span></label>
           <div class="cal-icon">
             <input class="form-control datetimepicker" type="date"bsDatepicker
                    [class.invalid]="f['deadlineP'].invalid &&  f['deadlineP'].touched"
@@ -91,18 +91,19 @@
       </div>
       <div class="col-lg-4">
         <div class="form-group">
-          <label > <span >Budget</span> <span class="text-danger">*</span></label>
-          <input class="form-control " type="number"
-                 [class.invalid]="f['budget'].invalid &&  f['budget'].touched"
+          <label><span class="fw-bold mb-1">Budget</span> <span class="text-danger">*</span></label>
+          <input class="form-control" type="number"
+                 [class.invalid]="f['budget'].invalid && f['budget'].touched || f['budget'].value < 0"
                  formControlName="budget">
-  
-          <div *ngIf=" f['budget'].invalid  &&  f['budget'].touched">
-            <small
-              *ngIf=" f['budget'].invalid  &&  f['budget'].touched"
-              class="text-danger" > * is required</small>
+      
+          <div *ngIf="f['budget'].invalid && f['budget'].touched || f['budget'].value < 0">
+            <small class="text-danger">
+              * Budget is required and must be a positive number greater than or equal to 0
+            </small>
           </div>
         </div>
       </div>
+      
     </div>
     
 

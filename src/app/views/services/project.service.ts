@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, map } from 'rxjs';
@@ -18,10 +18,15 @@ export class ProjectService {
       return this.http.put('http://localhost:8080/api/v1/auth/updateProject', formData)
     }
     
-    getAllProjectsByAdminId(adminId: number): Observable<Project[]> {
-      return this.http.get<any>(`http://localhost:8080/api/v1/auth/projects?adminId=${adminId}`)
+    getAllProjectsByAdminId(){
+      const token = localStorage.getItem('token');
+  
+  // Create the headers and include the Authorization header with the token
+     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.get<any>(`http://localhost:8080/api/v1/auth/projects`, {headers})
         .pipe(
-          map(response => response.map((project: { id:any,projectName: any; descriptionP: any; objectiveP: any;  deadlineP: any; projectManagerEmail: any; status:any; budget:any;}) => ({
+          map(response => response.map((project: { id:any,projectName: any; descriptionP: any; objectiveP: any;  deadlineP: any; projectManagerEmail: any; status:any; budget:any;
+          activity:any}) => ({
             id:project.id,
             projectName: project.projectName,
             descriptionP: project.descriptionP,
@@ -29,15 +34,20 @@ export class ProjectService {
             deadlineP: project.deadlineP,
             email: project.projectManagerEmail,
             status:project.status,
-            budget:project.budget
+            budget:project.budget,
+            activity:project.activity
           })))
         );
     
     
     }
 
-    getAllProjectsByManagerId(managerId: number): Observable<Project[]> {
-      return this.http.get<any>(`http://localhost:8080/api/v1/auth/projectsmanager?managerId=${managerId}`)
+    getAllProjectsByManagerId(): Observable<Project[]> {
+      const token = localStorage.getItem('token');
+  
+      // Create the headers and include the Authorization header with the token
+         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.get<any>(`http://localhost:8080/api/v1/auth/projectsmanager`,{headers})
         .pipe(
           map(response => response.map((project: { id:any,projectName: any; descriptionP: any; objectiveP: any; durationP: any; deadlineP: any; admin: any; status:any; budget:any;}) => ({
             id:project.id,

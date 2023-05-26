@@ -13,14 +13,19 @@ export class TasksService {
     constructor(private http:HttpClient) {
     }
     
-    getTasksByUserId(userId: number):Observable<Task[]> {
-      return this.http.get<Task[]> (`http://localhost:8080/api/v1/auth/getTasks?userId=${userId}`);
+    getTasksByUserId():Observable<Task[]> {
+      
+      const token = localStorage.getItem('token');
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.get<Task[]> (`http://localhost:8080/api/v1/auth/getTasks`,{headers});
     }
     getTasksnotDone() {
       return this.http.get(`http://localhost:8080/api/v1/auth/countTask`);
     }
-    getTasksByManagerId(managerId: number):Observable<Task[]> {
-      return this.http.get<Task[]> (`http://localhost:8080/api/v1/auth/getTasksManager?managerId=${managerId}`);
+    getTasksByManagerId():Observable<Task[]> {
+      const token = localStorage.getItem('token');
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.get<Task[]> (`http://localhost:8080/api/v1/auth/getTasksManager`,{headers});
     }
     updateTask(task: Task) {
       const url = `http://localhost:8080/api/v1/auth/update`;
@@ -38,12 +43,16 @@ export class TasksService {
        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
       return this.http.get<Task[]>(`http://localhost:8080/api/v1/auth/getTasksByActivityAndProjectAndManager/${id}/${idProject}`, {headers});
     }
-    deleteTask(task: number): Observable<void> {
+    deleteTask(task: number) {
       const url = `http://localhost:8080/api/v1/auth/delete/${task}`;
-      return this.http.delete<void>(url);
+      return this.http.delete(url);
     }
     managersUsers(){
       return this.http.get('http://localhost:8080/api/v1/auth/managersUsers')
+    }
+    getTeamMembersByActivityId(activityId: number): Observable<string[]> {
+      const url = `http://localhost:8080/api/v1/auth/${activityId}/team-members`;
+      return this.http.get<string[]>(url);
     }
     updateTask1(id: number, task: Task){
       const url = `http://localhost:8080/api/v1/auth/update/${id}`;

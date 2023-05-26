@@ -1,6 +1,6 @@
 
 <div class="custom-modal modal-header">
-  <h5 class="modal-title">Activity</h5>
+  <h1  class="modal-title"  class="fw-bold mb-1">Activity</h1>
   <button type="button" class="close" (click)="closeModal()" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -10,7 +10,7 @@
   
   <form class="row g-3" [formGroup]="activityForm" (ngSubmit)="confirmSaveProject()">
     <div class="col-10">
-      <label for="activityName" class="form-label">Activity Name <span class="text-danger">*</span></label>
+      <label for="activityName" class="form-label" class="fw-bold mb-1" >Activity Name <span class="text-danger">*</span></label>
       <input type="text" class="form-control" id="activityName"[class.invalid]="f['activityName'].invalid && f['activityName'].touched" placeholder="Enter the activity Name" formControlName="activityName">
       
      
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="col-10">
-      <label for="descriptionA" class="form-label">Description<span class="text-danger">*</span></label>
+      <label for="descriptionA" class="form-label" class="fw-bold mb-1" >Description<span class="text-danger">*</span></label>
       <textarea class="form-control" id="descriptionA" rows="3" placeholder="Enter the activity description" formControlName="descriptionA" [class.invalid]="f['descriptionA'].invalid && f['descriptionA'].touched"></textarea>
       <div *ngIf="f['descriptionA'].invalid && f['descriptionA'].touched">
         <small
@@ -31,7 +31,7 @@
     </div>
   
     <div class="col-10">
-      <label for="descriptionA" class="form-label">Objective<span class="text-danger">*</span></label>
+      <label for="descriptionA" class="form-label" class="fw-bold mb-1" >Objective<span class="text-danger">*</span></label>
       <textarea class="form-control" id="" rows="3" placeholder="Enter the activity objective" formControlName="objectiveA" [class.invalid]="f['objectiveA'].invalid && f['objectiveA'].touched"></textarea>
       <div *ngIf="f['objectiveA'].invalid && f['objectiveA'].touched">
         <small
@@ -43,7 +43,7 @@
   
    
     <div class="col-md-3">
-      <label for="inputActivityDeadline" class="form-label"> Deadline<span class="text-danger">*</span></label>
+      <label for="inputActivityDeadline" class="form-label" class="fw-bold mb-1" > Deadline<span class="text-danger">*</span></label>
       <input type="date" class="form-control" id="inputActivityDeadline" placeholder="Enter the activity deadline" formControlName="deadlineA" [class.invalid]="f['deadlineA'].invalid && f['deadlineA'].touched">
       <div *ngIf="f['deadlineA'].invalid && f['deadlineA'].touched">
         <small
@@ -53,8 +53,8 @@
     </div>
   
     <div class="col-md-3">
-      <label for="team" class="form-label">Team ID<span class="text-danger">*</span></label>
-      <select class="form-control" [class.invalid]="f['team'].invalid && f['team'].touched"
+      <label for="team" class="form-label" class="fw-bold mb-1" >Team <span class="text-danger">*</span></label>
+      <select class="form-select" [class.invalid]="f['team'].invalid && f['team'].touched"
       formControlName="team">
           <option *ngFor="let manager of managersUser" [value]="manager">{{ manager }}</option>
       </select>

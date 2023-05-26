@@ -55,7 +55,7 @@ getRoleNames(roles: any[]): string {
     }    
     add(){
       const options2: NgbModalOptions = {
-        size: 'xl',
+        size: 'l',
         centered: true,
         scrollable: true,
         windowClass:'modal-holder'
@@ -72,7 +72,7 @@ this.getTeam()
     }
     editer(row: Team) {
       const options3: NgbModalOptions = {
-        size: 'xl',
+        size: 'l',
         centered: true,
         scrollable: true,
         windowClass:'modal-holder'
@@ -145,7 +145,7 @@ this.getTeam()
 }
 details(row: Team) {
   const options1: NgbModalOptions = {
-    size: 'xl',
+    size: 'l',
     centered: true,
     scrollable: true,
     windowClass:'modal-holder'

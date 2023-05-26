@@ -29,6 +29,8 @@ import { TaskUserComponent } from './task-user/task-user.component';
 import { InfoTaskComponent } from './info-task/info-task.component';
 import { FilterPipe } from 'src/assets/pipes/filter.pipe';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { MatIconModule } from '@angular/material/icon';
+import { MorrisJsModule } from 'angular-morris-js';
 
 
 
@@ -58,9 +60,11 @@ import { NgApexchartsModule } from "ng-apexcharts";
         CommonModule,
         ManagementRoutingModule,
         DragDropModule,
+        MatIconModule,
         ReactiveFormsModule,
         FormsModule, MatExpansionModule,DashboardModule      ,
-        NgApexchartsModule
+        NgApexchartsModule,
+        MorrisJsModule
         ],
     providers: [
         DatePipe

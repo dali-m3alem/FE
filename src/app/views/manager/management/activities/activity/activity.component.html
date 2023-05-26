@@ -32,33 +32,36 @@
         <caption class="caption">List of activity</caption>
         <thead class="thead-light">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Activity name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Objective</th>
-            <th scope="col">Deadline</th>
-            <th scope="col">Team activity</th>
-            <th scope="col">Project id</th>
+            <th class="fw-bold mb-1" scope="col">Activity name</th>
+            <th  class="fw-bold mb-1" scope="col">Description</th>
+            <th class="fw-bold mb-1" scope="col">Objective</th>
+            <th class="fw-bold mb-1" scope="col">Status</th>
+
+            <th class="fw-bold mb-1" scope="col">Deadline</th>
+
+            <th class="fw-bold mb-1" scope="col">Team activity</th>
+            <th class="fw-bold mb-1" scope="col">Project Name</th>
      
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let activity of dataArray | filter: searchValue">
-            <td>{{ activity.id }}</td>
             <td>{{ activity.activityName }}</td>
             <td>{{ activity.descriptionA }}</td>
             <td>{{ activity.objectiveA }}</td>
+            <td>{{ activity.status}}</td>
+
             <td *ngIf="activity.deadlineA">{{ activity.deadlineA | customDateTime }}</td>
             <td class="text-center" *ngIf="!activity.deadlineA">-</td>
             <td>{{ activity?.team?.teamName            }}</td>
-            <td>{{ activity.project.id }}</td>
+            <td>{{ activity.project.projectName }}</td>
 
             <td>
               <a [routerLink]="'/manager/activity/task/' + activity.id + '/' + activity.project.id"><button class="btn add-btn"  >Task</button></a>
   
             </td>
             <td>
-              <a [routerLink]="'/manager/activity/team/' + activity.id + '/' + activity.project.id"><button class="btn btn-primary submit-btn"  >Team</button></a>
+              <a [routerLink]="'/manager/activity/team/' + activity.id + '/' + activity.project.id"><button class="btn add-btn" >Team</button></a>
   
             </td>
             <td>

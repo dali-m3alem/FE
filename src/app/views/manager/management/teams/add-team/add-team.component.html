@@ -1,6 +1,6 @@
 
   <div class="custom-modal modal-header">
-    <h5 class="modal-title">Team</h5>
+    <h1 class="modal-title" class="fw-bold mb-1">Team</h1>
     <button type="button" class="close" (click)="closeModal()" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -9,7 +9,7 @@
   
   <form class="row g-3" [formGroup]="teamForm" (ngSubmit)="confirmSaveProject()">
     <div class="col-10">
-      <label for="teamName" class="form-label">Team Name<span class="text-danger">*</span></label>
+      <label for="teamName" class="form-label" class="fw-bold mb-1">Team Name<span class="text-danger">*</span></label>
       <input type="text" class="form-control" id="teamName" placeholder="Enter the team name"[class.invalid]="f['teamName'].invalid && f['teamName'].touched"  formControlName="teamName">
       <div *ngIf="f['teamName'].invalid && f['teamName'].touched">
         <small
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="col-10">
-      <label for="teamDesc" class="form-label">Team Description<span class="text-danger">*</span></label>
+      <label for="teamDesc" class="form-label" class="fw-bold mb-1">Team Description<span class="text-danger">*</span></label>
       <textarea class="form-control" id="teamDesc" rows="3" placeholder="Enter the team description" formControlName="teamDesc"[class.invalid]="f['teamDesc'].invalid && f['teamDesc'].touched"></textarea>
       <div *ngIf="f['teamDesc'].invalid && f['teamDesc'].touched">
         <small
@@ -28,16 +28,20 @@
     </div>
   
     <div class="form-group" *ngIf="teamForm?.get('emails')">
-      <label for="emails">Emails<span class="text-danger">*</span></label>
+      <label for="emails" class="fw-bold mb-1">Emails<span class="text-danger">*</span></label>
       <div formArrayName="emails">
+
         <div *ngFor="let email of teamForm.get('emails')?.controls; let i=index" class="form-group">
-          <select class="form-control" [formControlName]="i" placeholder="Select email address">
+          <div class="selection">
+
+          <select class="form-select" [formControlName]="i" placeholder="Select email address">
             <option *ngFor="let manager of managers" [value]="manager">{{ manager }}</option>
           </select>
-          <button type="button" class="btn btn-primary" (click)="removeEmail(i)">Remove Email</button>
+          <button type="button" class="btn btn-danger" (click)="removeEmail(i)"><mat-icon>delete</mat-icon></button>
+          <button type="button" class="btn btn-primary" (click)="addEmail()">Add</button>
+        </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary" (click)="addEmail()">Add Email</button>
     </div>
     
     

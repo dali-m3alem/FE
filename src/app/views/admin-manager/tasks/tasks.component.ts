@@ -44,11 +44,11 @@ export class TasksComponent implements OnInit{
     this.getTasksByUserId();
     
   }
-  userId=this.auth.getUser();
   getTasksByUserId() {
-    this.taskService.getTasksByManagerId(this.userId)
+    this.taskService.getTasksByManagerId()
       .subscribe(
         (data: Task[]) => {
+          console.log(data)
           const boardData: Board = new Board('Test Board', [
             new Column('Todo', []),
             new Column('In progress', []),
@@ -90,31 +90,15 @@ export class TasksComponent implements OnInit{
         if ((column) && task) { // check if both column and task are defined
           task.status = this.getStatusForColumn(column);
   
-          const taskStatus: Task = {
-            id: task.id,
+          const taskStatus1: any = {
             status: task.status,
-            title: '',
-            description: '',
-            activity: {
-              id: 0,
-              activityName: '',
-              descriptionA: '',
-              objectiveA: '',
-              deadlineA: '',
-              project: undefined,
-              team: undefined
-            },
-            dueDate: '',
-            manager: {
-              id: 0,
-              email: ''
-            },
-            user: {
-              id: 0,
-              email: ''
-            }
+            title: task.title,
+            description: task.description,
+            activity: task.activity.id,
+            dueDate:task.dueDate,
+            email: task.user.email
           };
-          this.taskService.updateTask(taskStatus).subscribe(
+          this.taskService.updateTask1(task.id,taskStatus1).subscribe(
             (data) => {
               console.log('Task status updated successfully');
             },
@@ -191,7 +175,7 @@ export class TasksComponent implements OnInit{
 
   details(row: any) {
     const options1: NgbModalOptions = {
-      size: 'xl',
+      size: 'l',
       centered: true,
       scrollable: true,
       windowClass:'modal-holder'
@@ -208,6 +192,8 @@ export class TasksComponent implements OnInit{
   
   }
 
-    
+   
+  
+  
   }
     

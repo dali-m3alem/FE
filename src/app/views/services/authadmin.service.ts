@@ -101,9 +101,10 @@ export class AuthadminService {
     }
     let decodeToken = this.helper.decodeToken(token);
     if (decodeToken.roles) {
+      let hasUserRole = decodeToken.roles.some((role: { authority: string }) => role.authority === 'user');
       let hasAdminRole = decodeToken.roles.some((role: { authority: string }) => role.authority === 'admin');
       let hasManagerRole = decodeToken.roles.some((role: { authority: string }) => role.authority === 'manager');
-      return hasAdminRole && hasManagerRole && !this.helper.isTokenExpired(token);
+      return  ((hasAdminRole && hasManagerRole&& hasUserRole) || (hasAdminRole && hasManagerRole))  && !this.helper.isTokenExpired(token);
     }
     return false;
   }

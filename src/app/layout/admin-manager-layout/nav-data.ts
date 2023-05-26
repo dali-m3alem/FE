@@ -2,56 +2,48 @@ export const navbarData=[
   {
       routeLink:'dashboard',
       icon:'fal fa-home',
-      label :'dashboard'
+      label :'Dashboard'
 
   },
 {        routeLink:'Projects',
-      icon:'fa fa-window-restore',
-      label :'Porjects'
+      icon:'fa fa-cubes',
+      label :'Porjects admin'
 
   },
     {
       routeLink:'user11',
-      icon:'fa fa-server',
-      label :'user'
+      icon:'fa fa-user-plus',
+      label :'Users'
   
     }
-    ,
-  {
-      routeLink:'profil',
-      icon:'fa fa-user',
-      label :'profile'
-
-  },
+   ,
   {
     routeLink:'tasks',
-    icon:'fa fa-tasks',
-    label :'Tasks of projects'
+    icon:'fa fa-check',
+    label :'Tasks of manager'
 
 },
 {        routeLink:'project',
     icon:'fa fa-window-restore',
-    label :'Porjects'
+    label :'Porjects manager'
 
 }
 ,{
     routeLink:'team',
-    icon:'fa fa-comments',
-    label :'team'
+    icon:'fa fa-users',
+    label :'Team'
     
 },
 {
     routeLink:'TaskUser',
     icon:'fa fa-tasks',
-    label :'Tasks of Manager'
+    label :'Tasks of manager'
 
-}
-    
-  
-,{
-  routeLink:'chats',
-  icon:'fa fa-comments',
-  label :'chats'
-  
+} ,
+{
+    routeLink:'profil',
+    icon:'fa fa-user',
+    label :'Profil'
+
 }
 ];

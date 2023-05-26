@@ -39,8 +39,7 @@ export class ProjectsComponent {
   }
 
   loadData(){
-    const adminId = this.auth.getUser();
-    this.projectService.getAllProjectsByAdminId(adminId).subscribe(
+    this.projectService.getAllProjectsByAdminId().subscribe(
       (response: Project[]) => {
         this.dataArray = response;
         console.log(this.dataArray);
@@ -76,9 +75,9 @@ export class ProjectsComponent {
       console.log(error);
     });
   }
-  details(row: Project) {
+  details(row: any) {
     const options1: NgbModalOptions = {
-      size: 'xl',
+      size: 'l',
       centered: true,
       scrollable: true,
       windowClass:'modal-holder'
@@ -96,7 +95,7 @@ export class ProjectsComponent {
   }
   editer(row: Project) {
     const options3: NgbModalOptions = {
-      size: 'xl',
+      size: 'l',
       centered: true,
       scrollable: true,
       windowClass:'modal-holder'
